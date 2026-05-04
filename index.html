@@ -1,0 +1,2311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TripMod — Manual de Usuario v1.0 / User Manual v1.0</title>
+  <style>
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 10pt;
+      color: #1a1a1a;
+      background: #d0d0d0;
+      line-height: 1.55;
+      counter-reset: section;
+    }
+
+    /* ============================================================
+       LANGUAGE TOGGLE
+    ============================================================ */
+    .lang-btn {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      z-index: 999;
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      padding: 6px 16px;
+      font-size: 10pt;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+    .lang-btn:hover { background: #444; }
+
+    /* hide/show by language */
+    .es, .en { display: none; }
+    body.lang-es .es { display: block; }
+    body.lang-en .en { display: block; }
+    /* inline spans */
+    span.es, span.en { display: none; }
+    body.lang-es span.es { display: inline; }
+    body.lang-en span.en { display: inline; }
+    /* table cells */
+    td.es, td.en, th.es, th.en { display: none; }
+    body.lang-es td.es, body.lang-es th.es { display: table-cell; }
+    body.lang-en td.en, body.lang-en th.en { display: table-cell; }
+    /* list items */
+    li.es, li.en { display: none; }
+    body.lang-es li.es { display: list-item; }
+    body.lang-en li.en { display: list-item; }
+
+    /* ============================================================
+       PAGE LAYOUT
+    ============================================================ */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      background: #fff;
+      margin: 10mm auto;
+      padding: 16mm 15mm 20mm 15mm;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+      position: relative;
+      page-break-after: always;
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+        break-after: page;
+        width: 210mm;
+        height: 297mm;
+        overflow: hidden;
+      }
+      .lang-btn { display: none; }
+    }
+    * {
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+    img {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: high-quality;
+    }
+
+    /* ============================================================
+       PAGE HEADER & FOOTER
+    ============================================================ */
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid #1a1a1a;
+      padding-bottom: 2.5mm;
+      margin-bottom: 5mm;
+    }
+    .ph-brand {
+      font-size: 7.5pt;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #1a1a1a;
+    }
+    .ph-section {
+      font-size: 7.5pt;
+      color: #666;
+      letter-spacing: 0.5px;
+    }
+
+    .page-footer {
+      position: absolute;
+      bottom: 8mm;
+      left: 15mm;
+      right: 15mm;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      border-top: 1px solid #ccc;
+      padding-top: 2mm;
+      font-size: 7pt;
+      color: #aaa;
+    }
+    .footer-logo-rgr {
+      height: 5.5mm;
+      width: auto;
+      display: block;
+    }
+    .footer-logo-effects {
+      height: 5.5mm;
+      width: auto;
+      display: block;
+      margin-left: auto;
+    }
+    .footer-page {
+      text-align: center;
+      font-size: 7pt;
+      color: #aaa;
+    }
+
+    /* COVER LOGOS — defined in COVER PAGE section above */
+
+    /* ============================================================
+       TYPOGRAPHY
+    ============================================================ */
+    h2.sec {
+      font-size: 12.5pt;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #1a1a1a;
+      padding-bottom: 2mm;
+      border-bottom: 2px solid #1a1a1a;
+      margin-bottom: 4mm;
+      margin-top: 5mm;
+      counter-increment: section;
+    }
+    h2.sec:first-child { margin-top: 0; }
+    h2.sec::before {
+      content: counter(section) ". ";
+      font-size: 12.5pt;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+    /* Safety / front-matter pages: no number */
+    h2.sec-front {
+      font-size: 12.5pt;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #1a1a1a;
+      padding-bottom: 2mm;
+      border-bottom: 2px solid #1a1a1a;
+      margin-bottom: 4mm;
+      margin-top: 5mm;
+    }
+    h2.sec-front:first-child { margin-top: 0; }
+
+    h3.sub {
+      font-size: 9.5pt;
+      font-weight: 700;
+      margin-top: 4mm;
+      margin-bottom: 1.5mm;
+      color: #1a1a1a;
+    }
+
+    p { margin-bottom: 2.5mm; font-size: 9.5pt; text-align: justify; }
+    p.small { font-size: 8.5pt; color: #444; }
+
+    /* ============================================================
+       DIVIDERS
+    ============================================================ */
+    hr.dash {
+      border: none;
+      border-top: 1px dashed #bbb;
+      margin: 4mm 0;
+    }
+
+    /* ============================================================
+       TABLES
+    ============================================================ */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2mm 0 4mm 0;
+      font-size: 8.5pt;
+    }
+    thead th {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 2mm 3mm;
+      text-align: left;
+      font-size: 7.5pt;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    tbody td {
+      padding: 1.8mm 3mm;
+      border-bottom: 1px solid #e8e8e8;
+      vertical-align: middle;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:nth-child(even) td { background: #f7f7f7; }
+
+    tr.cat-row td {
+      background: #3a3a3a !important;
+      color: #fff;
+      font-weight: 700;
+      font-size: 7.5pt;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 1.5mm 3mm;
+    }
+
+    /* ============================================================
+       LED INDICATORS
+    ============================================================ */
+    .led {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      vertical-align: middle;
+      border: 1px solid rgba(0,0,0,0.12);
+      flex-shrink: 0;
+    }
+    .led-blue   { background: #1a7eff; box-shadow: 0 0 4px rgba(26,126,255,0.6); }
+    .led-pink   { background: #e0198c; box-shadow: 0 0 4px rgba(224,25,140,0.6); }
+    .led-green  { background: #18c44a; box-shadow: 0 0 4px rgba(24,196,74,0.6); }
+    .led-red    { background: #e02020; box-shadow: 0 0 4px rgba(224,32,32,0.5); }
+    .led-orange { background: #e07800; box-shadow: 0 0 4px rgba(224,120,0,0.5); }
+    .led-off    { background: #d0d0d0; }
+    .led-sm     { width: 7px; height: 7px; }
+
+    .leds {
+      display: inline-flex;
+      gap: 3px;
+      align-items: center;
+    }
+
+    /* ============================================================
+       CALLOUT BOXES
+    ============================================================ */
+    .box {
+      border-left: 3px solid #1a1a1a;
+      background: #f5f5f5;
+      padding: 3mm 4mm;
+      margin: 3mm 0;
+      font-size: 8.5pt;
+    }
+    .box.note  { border-color: #1a7eff; background: #f0f6ff; }
+    .box.warn  { border-color: #cc4400; background: #fff5f0; }
+    .box.tip   { border-color: #18c44a; background: #f0fff5; }
+
+    /* ============================================================
+       PANEL SECTION IMAGES (side-by-side + single)
+    ============================================================ */
+    .panel-sections-wrap {
+      display: flex;
+      gap: 3mm;
+      margin: 2mm 0 3mm 0;
+      align-items: flex-start;
+    }
+    .panel-section-img {
+      flex: 1;
+      text-align: center;
+    }
+    .panel-section-img img {
+      max-width: 100%;
+      max-height: 90mm;
+      object-fit: contain;
+    }
+    .panel-lbl {
+      font-size: 7.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+      margin: 1mm 0 0 0;
+      color: #444;
+    }
+    .panel-section-single {
+      text-align: center;
+      margin: 2mm 0 3mm 0;
+    }
+    .panel-section-single img {
+      max-width: 100%;
+      max-height: 90mm;
+      object-fit: contain;
+    }
+
+    /* ============================================================
+       SAFETY PAGE
+    ============================================================ */
+    .safety-intro {
+      margin-bottom: 3mm;
+    }
+    .safety-intro p { margin-bottom: 1.5mm; }
+
+    .safety-list {
+      margin: 2mm 0 3mm 5mm;
+      padding: 0;
+      font-size: 9pt;
+    }
+    .safety-list li {
+      margin-bottom: 1.8mm;
+      padding-left: 1mm;
+      line-height: 1.5;
+      text-align: justify;
+    }
+
+    .disclaimer-box {
+      border: 1px solid #bbb;
+      padding: 3mm 4mm;
+      margin-top: 3mm;
+      font-size: 7.5pt;
+      color: #444;
+      line-height: 1.5;
+    }
+    .disclaimer-box strong { color: #1a1a1a; }
+
+    /* ============================================================
+       STEP LISTS
+    ============================================================ */
+    ol.steps {
+      list-style: none;
+      margin: 2mm 0 3mm 0;
+      font-size: 9pt;
+    }
+    ol.steps li {
+      display: flex;
+      gap: 3mm;
+      margin-bottom: 2mm;
+      align-items: flex-start;
+    }
+    .sn {
+      flex-shrink: 0;
+      width: 5.5mm;
+      height: 5.5mm;
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 7.5pt;
+      font-weight: 700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.3mm;
+    }
+
+    /* ============================================================
+       LAYOUT HELPERS
+    ============================================================ */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5mm;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 4mm;
+    }
+
+    /* ============================================================
+       WAVEFORM CARDS
+    ============================================================ */
+    .wave-card {
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      padding: 3mm 2.5mm 2.5mm;
+      text-align: center;
+    }
+    .wave-card svg {
+      width: 100%;
+      height: 16mm;
+      display: block;
+    }
+    .wave-name {
+      font-size: 8.5pt;
+      font-weight: 700;
+      margin-top: 1.5mm;
+      color: #1a1a1a;
+    }
+    .wave-desc {
+      font-size: 7.5pt;
+      color: #555;
+      margin-top: 0.5mm;
+      line-height: 1.3;
+    }
+
+    /* ============================================================
+       COVER PAGE
+    ============================================================ */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      gap: 8mm;
+      min-height: 261mm;
+      padding: 0;
+    }
+    .cover-top-block {
+      text-align: center;
+      padding: 5mm 0 0 0;
+    }
+    .cover-logo-tripmod {
+      max-height: 24mm;
+      width: auto;
+      display: block;
+      margin: 0 auto 5mm auto;
+    }
+    .cover-logo-phfx {
+      max-height: 9mm;
+      width: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .cover-photo-wrap {
+      position: relative;
+      width: calc(100% + 30mm);
+      margin-left: -15mm;
+      background: rgb(110, 65, 175);
+      overflow: hidden;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+    .cover-photo-wrap > img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .cover-photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(110, 65, 175, 0.45);
+    }
+    .cover-bottom-block {
+      text-align: center;
+      padding: 0 0 4mm 0;
+    }
+    .cover-subtitle-bottom {
+      font-size: 13pt;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #333;
+      margin-bottom: 4mm;
+    }
+    .cover-rgr-wrap {
+      display: inline-block;
+    }
+    .cover-logo-rgr-bottom {
+      max-height: 12mm;
+      width: auto;
+      display: block;
+    }
+    .cover-rgr-effects {
+      display: block;
+      width: 100%;
+      font-size: 5pt;
+      font-weight: 400;
+      color: #888;
+      text-align: justify;
+      text-align-last: justify;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 1mm;
+    }
+
+    /* ============================================================
+       PANEL DIAGRAM
+    ============================================================ */
+    .panel-wrap {
+      width: 100%;
+      text-align: center;
+      margin: 3mm 0 4mm;
+    }
+    .panel-wrap img {
+      max-width: 90mm;
+      max-height: 90mm;
+      object-fit: contain;
+    }
+
+    /* ============================================================
+       PRIORITY CHAIN
+    ============================================================ */
+    .priority-chain {
+      display: flex;
+      align-items: center;
+      gap: 1mm;
+      flex-wrap: wrap;
+      margin: 3mm 0;
+      font-size: 8.5pt;
+    }
+    .prio-item {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 1.5mm 3.5mm;
+      border-radius: 2px;
+      font-weight: 700;
+      font-size: 7.5pt;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .prio-item.low { background: #666; }
+    .prio-arrow {
+      font-size: 9pt;
+      color: #888;
+      font-weight: 700;
+    }
+
+    /* misc */
+    ul.plain { list-style: none; margin: 0; padding: 0; }
+    ul.plain li { margin-bottom: 1.5mm; font-size: 9pt; }
+    ul.bullet { margin-left: 5mm; margin-bottom: 3mm; }
+    ul.bullet li { margin-bottom: 1mm; font-size: 9pt; }
+    kbd {
+      background: #eee;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+      padding: 0 3px;
+      font-size: 8pt;
+      font-family: inherit;
+    }
+  </style>
+</head>
+<body class="lang-es">
+
+<script>
+(function(){
+  var s=localStorage.getItem('tripmod-lang');
+  var l=s||((navigator.language||'es').toLowerCase().startsWith('en')?'en':'es');
+  document.body.className='lang-'+l;
+})();
+</script>
+<button id="lang-btn" class="lang-btn no-print" onclick="toggleLang()">EN</button>
+<script>
+(function(){
+  var btn=document.getElementById('lang-btn');
+  if(btn) btn.textContent=document.body.classList.contains('lang-es')?'EN':'ES';
+})();
+window.toggleLang=function(){
+  var n=document.body.classList.contains('lang-es')?'en':'es';
+  document.body.classList.remove('lang-es','lang-en');
+  document.body.classList.add('lang-'+n);
+  localStorage.setItem('tripmod-lang',n);
+  var btn=document.getElementById('lang-btn');
+  if(btn) btn.textContent=n==='es'?'EN':'ES';
+};
+</script>
+
+<!-- ============================================================
+     PÁGINA 1 — PORTADA / COVER
+============================================================ -->
+<div class="page">
+  <div class="cover-page">
+
+    <!-- TOP: TripMod logo + PH-FL-TR Analog Effects -->
+    <div class="cover-top-block">
+      <img src="assets/logotipo-tripmod.png" alt="TripMod" class="cover-logo-tripmod">
+      <img src="assets/ph-fl-tr-analog-effects.png" alt="Phaser · Flanger · Tremolo Analog Effects" class="cover-logo-phfx">
+    </div>
+
+    <!-- MIDDLE: foto full-bleed con overlay lila -->
+    <div class="cover-photo-wrap">
+      <img src="assets/foto-portada-1.png" alt="">
+      <div class="cover-photo-overlay"></div>
+    </div>
+
+    <!-- BOTTOM: Manual de Usuario + logo RGR + Effects -->
+    <div class="cover-bottom-block">
+      <div class="cover-subtitle-bottom es">Manual de Usuario — v1.0</div>
+      <div class="cover-subtitle-bottom en">User Manual — v1.0</div>
+      <div class="cover-rgr-wrap">
+        <img src="assets/logo-rgr.png" alt="RGR" class="cover-logo-rgr-bottom">
+        <span class="cover-rgr-effects">Effects</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 2 — PRECAUCIONES / SAFETY
+============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="ph-brand">TripMod</span>
+    <span class="ph-section es">Precauciones</span>
+    <span class="ph-section en">Safety</span>
+  </div>
+
+  <!-- GRACIAS / THANK YOU -->
+  <div class="safety-intro">
+    <p class="es"><strong>Gracias por adquirir el TripMod.</strong> Este manual te guiará a través de todas las funciones del pedal. Léelo completo antes de comenzar a usarlo para garantizar un uso correcto y seguro. ¡Que disfrutes el sonido!</p>
+    <p class="en"><strong>Thank you for purchasing the TripMod.</strong> This manual will guide you through all the pedal's functions. Read it completely before use to ensure correct and safe operation. Enjoy the sound!</p>
+    <p class="es small">— Reinaldo González Reyes, RGR Effects &amp; Electronic Engineering</p>
+    <p class="en small">— Reinaldo González Reyes, RGR Effects &amp; Electronic Engineering</p>
+  </div>
+
+  <hr class="dash">
+
+  <h2 class="sec-front es">Instrucciones Importantes de Seguridad</h2>
+  <h2 class="sec-front en">Important Safety Instructions</h2>
+
+  <ol class="safety-list es">
+    <li>No exponer el equipo al agua, lluvia, humedad ni a ningún líquido. No colocar objetos con líquido sobre el pedal.</li>
+    <li>Limpiar únicamente con un paño suave y seco. No utilizar disolventes ni limpiadores abrasivos. Desconectar todos los cables antes de limpiar.</li>
+    <li>No abrir la carcasa. No hay partes reparables por el usuario en el interior. Confiar cualquier reparación a personal técnico calificado.</li>
+    <li>Colocar el pedal sobre una superficie estable antes de su uso.</li>
+    <li>Utilizar únicamente una fuente de alimentación de 9V a 12V DC, centro positivo, mínimo 250mA. No superar los límites indicados en las especificaciones técnicas.</li>
+    <li>Desconectar la alimentación durante tormentas eléctricas o cuando no se use durante un período prolongado.</li>
+    <li>No exponer el equipo a fuentes de calor intenso (radiadores, amplificadores, etc.).</li>
+    <li>Este producto, en combinación con un amplificador, altavoces o auriculares, puede generar niveles de sonido capaces de causar pérdida auditiva permanente. No operar a volumen alto durante períodos prolongados ni a niveles incómodos.</li>
+  </ol>
+
+  <ol class="safety-list en">
+    <li>Do not expose the unit to water, rain, moisture, or any liquid. Do not place objects containing liquid on the pedal.</li>
+    <li>Clean only with a soft, dry cloth. Do not use solvents or abrasive cleaners. Disconnect all cables before cleaning.</li>
+    <li>Do not open the casing. There are no user-serviceable parts inside. Refer all repairs to qualified service personnel.</li>
+    <li>Place the unit on a stable surface before use.</li>
+    <li>Use only a 9V to 12V DC, center-positive power supply, minimum 250mA. Do not exceed the limits specified in the technical specifications.</li>
+    <li>Disconnect the power supply during electrical storms or when not in use for an extended period.</li>
+    <li>Do not expose the unit to intense heat sources (radiators, amplifiers, etc.).</li>
+    <li>This product, in combination with an amplifier, speakers, or headphones, is capable of producing sound levels that can cause permanent hearing loss. Do not operate at high volume for extended periods or at uncomfortable levels.</li>
+  </ol>
+
+  <hr class="dash">
+
+  <h2 class="sec-front es">Convenciones en este Manual</h2>
+  <h2 class="sec-front en">Conventions in This Manual</h2>
+
+  <p class="es">A lo largo del manual se usan las siguientes convenciones:</p>
+  <p class="en">The following conventions are used throughout this manual:</p>
+
+  <table>
+    <thead><tr>
+      <th class="es">Convención</th><th class="en">Convention</th>
+      <th class="es">Significa</th><th class="en">Meaning</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>RATE A</strong></td>
+        <td class="es">Nombre de control en negrita mayúscula</td>
+        <td class="en">Bold uppercase = control name</td>
+      </tr>
+      <tr>
+        <td><strong>[FTSW IZQ]</strong> / <strong>[FTSW DER]</strong></td>
+        <td class="es">Footswitch izquierdo / derecho</td>
+        <td class="en">Left / right footswitch</td>
+      </tr>
+      <tr>
+        <td><span class="leds"><span class="led led-blue"></span><span class="led led-off"></span><span class="led led-off"></span></span></td>
+        <td class="es">LED azul encendido, otros apagados</td>
+        <td class="en">Blue LED on, others off</td>
+      </tr>
+      <tr>
+        <td class="es"><em>presionar</em></td>
+        <td class="en"><em>press</em></td>
+        <td class="es">Pulsar y soltar brevemente (&lt;1 s)</td>
+        <td class="en">Press and release quickly (&lt;1 s)</td>
+      </tr>
+      <tr>
+        <td class="es"><em>mantener</em></td>
+        <td class="en"><em>hold</em></td>
+        <td class="es">Mantener presionado ≥2 s hasta que el LED cambie</td>
+        <td class="en">Hold down ≥2 s until LED changes</td>
+      </tr>
+      <tr>
+        <td><strong>BBD</strong></td>
+        <td class="es">Bucket Brigade Device — retardo analógico por etapas de condensadores</td>
+        <td class="en">Bucket Brigade Device — analog delay using cascaded capacitor stages</td>
+      </tr>
+      <tr>
+        <td><strong>VCF</strong></td>
+        <td class="es">Voltage Controlled Filter — filtro analógico controlado por voltaje (Phaser)</td>
+        <td class="en">Voltage Controlled Filter — analog filter controlled by voltage (Phaser)</td>
+      </tr>
+      <tr>
+        <td><strong>VCA</strong></td>
+        <td class="es">Voltage Controlled Amplifier — control de amplitud por voltaje (Tremolo)</td>
+        <td class="en">Voltage Controlled Amplifier — amplitude control by voltage (Tremolo)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="dash">
+
+  <div class="disclaimer-box">
+    <p class="es" style="margin-bottom:0"><strong>Aviso legal:</strong> La información de este documento está sujeta a cambios sin previo aviso. RGR Effects &amp; Electronic Engineering no asume responsabilidad por errores que puedan aparecer en este documento. Los nombres de producto y marcas son propiedad de sus respectivos titulares. <em>TripMod User Manual v1.0</em> © 2026 RGR Effects &amp; Electronic Engineering. Reproducción sin autorización escrita estrictamente prohibida.</p>
+    <p class="en" style="margin-bottom:0"><strong>Legal disclaimer:</strong> The information in this document is subject to change without notice. RGR Effects &amp; Electronic Engineering assumes no responsibility for any errors that may appear in this document. Product names and trademarks are the property of their respective owners. <em>TripMod User Manual v1.0</em> © 2026 RGR Effects &amp; Electronic Engineering. Reproduction without written authorization is strictly prohibited.</p>
+  </div>
+
+  <div class="page-footer">
+    <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">2</span>
+    <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 3 — PANEL FRONTAL / FRONT PANEL
+============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="ph-brand">TripMod</span>
+    <span class="ph-section es">Panel Frontal</span>
+    <span class="ph-section en">Front Panel</span>
+  </div>
+
+  <h2 class="sec es">Panel Frontal</h2>
+  <h2 class="sec en">Front Panel</h2>
+
+  <!-- PHASER + FLANGER -->
+  <h3 class="sub es">Phaser + Flanger</h3>
+  <h3 class="sub en">Phaser + Flanger</h3>
+
+  <div class="panel-sections-wrap">
+    <div class="panel-section-img">
+      <img src="assets/front-panel-phaser.png" alt="Phaser Section">
+      <p class="panel-lbl">Phaser</p>
+    </div>
+    <div class="panel-section-img">
+      <img src="assets/front-panel-flanger.png" alt="Flanger Section">
+      <p class="panel-lbl">Flanger</p>
+    </div>
+  </div>
+
+  <table>
+    <thead><tr>
+      <th class="es">Control</th><th class="en">Control</th>
+      <th class="es">En Phaser</th><th class="en">On Phaser</th>
+      <th class="es">En Flanger</th><th class="en">On Flanger</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="leds"><span class="led led-blue"></span></span></td>
+        <td class="es">Phaser activo</td><td class="en">Phaser active</td>
+        <td class="es">—</td><td class="en">—</td>
+      </tr>
+      <tr>
+        <td><span class="leds"><span class="led led-pink"></span></span></td>
+        <td class="es">—</td><td class="en">—</td>
+        <td class="es">Flanger activo</td><td class="en">Flanger active</td>
+      </tr>
+      <tr>
+        <td><strong>F.DELAY</strong></td>
+        <td class="es">—</td><td class="en">—</td>
+        <td class="es">Retardo BBD — 1ms a 13ms</td><td class="en">BBD delay — 1ms to 13ms</td>
+      </tr>
+      <tr>
+        <td><strong>REG / RES</strong></td>
+        <td class="es">Resonancia — Q del filtro (VCF)</td><td class="en">Resonance — filter Q (VCF)</td>
+        <td class="es">Regeneración — feedback del delay</td><td class="en">Regeneration — delay feedback</td>
+      </tr>
+      <tr>
+        <td><strong>DEPTH</strong></td>
+        <td class="es">Profundidad LFO</td><td class="en">LFO depth</td>
+        <td class="es">Profundidad LFO</td><td class="en">LFO depth</td>
+      </tr>
+      <tr>
+        <td><strong>RATE A</strong></td>
+        <td class="es" colspan="2"><span class="leds"><span class="led led-red led-sm"></span></span> LED rojo — velocidad A, compartido entre Phaser y Flanger. Oscila con el efecto activo.</td>
+        <td class="en" colspan="2"><span class="leds"><span class="led led-red led-sm"></span></span> Red LED — speed A, shared between Phaser and Flanger. Pulses with the active effect.</td>
+      </tr>
+      <tr>
+        <td><strong>RATE B</strong></td>
+        <td class="es" colspan="2"><span class="leds"><span class="led led-orange led-sm"></span></span> LED naranja — velocidad B (mismo comportamiento que RATE A).</td>
+        <td class="en" colspan="2"><span class="leds"><span class="led led-orange led-sm"></span></span> Orange LED — speed B (same behavior as RATE A).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">3</span>
+    <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 4 — PANEL FRONTAL (cont.) — TREMOLO + FOOTSWITCHES
+============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="ph-brand">TripMod</span>
+    <span class="ph-section es">Panel Frontal</span>
+    <span class="ph-section en">Front Panel</span>
+  </div>
+
+  <!-- TREMOLO -->
+  <h3 class="sub es">Tremolo</h3>
+  <h3 class="sub en">Tremolo</h3>
+
+  <div class="panel-section-single">
+    <img src="assets/front-panel-tremolo.png" alt="Tremolo Section">
+  </div>
+
+  <table>
+    <thead><tr>
+      <th class="es">Control</th><th class="en">Control</th>
+      <th class="es">Tipo</th><th class="en">Type</th>
+      <th class="es">Función</th><th class="en">Function</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="leds"><span class="led led-green"></span></span></td>
+        <td class="es">LED verde</td><td class="en">Green LED</td>
+        <td class="es">Tremolo activo</td><td class="en">Tremolo active</td>
+      </tr>
+      <tr>
+        <td><strong>DEPTH</strong></td>
+        <td class="es">Perilla</td><td class="en">Knob</td>
+        <td class="es">Profundidad del LFO — magnitud de la variación de volumen</td>
+        <td class="en">LFO depth — magnitude of volume variation</td>
+      </tr>
+      <tr>
+        <td><strong>SHAPE</strong></td>
+        <td class="es">Perilla</td><td class="en">Knob</td>
+        <td class="es">Simetría del LFO. Activo en modos <em>Triangular Orgánica</em> y <em>Cuadrada Orgánica</em>. Inactivo en Onda Cuadrada, Rampa Ascendente, Rampa Descendente y Aleatoria.</td>
+        <td class="en">LFO symmetry. Active in <em>Triangular Orgánica</em> and <em>Cuadrada Orgánica</em> modes. Inactive in Onda Cuadrada, Rampa Ascendente, Rampa Descendente and Aleatoria.</td>
+      </tr>
+      <tr>
+        <td><strong>RATE A</strong></td>
+        <td class="es">Perilla</td><td class="en">Knob</td>
+        <td class="es">Velocidad A — <span class="leds"><span class="led led-red led-sm"></span></span> LED rojo oscila en sincronía</td>
+        <td class="en">Speed A — <span class="leds"><span class="led led-red led-sm"></span></span> red LED pulses in sync</td>
+      </tr>
+      <tr>
+        <td><strong>RATE B</strong></td>
+        <td class="es">Perilla</td><td class="en">Knob</td>
+        <td class="es">Velocidad B — <span class="leds"><span class="led led-orange led-sm"></span></span> LED naranja oscila en sincronía</td>
+        <td class="en">Speed B — <span class="leds"><span class="led led-orange led-sm"></span></span> orange LED pulses in sync</td>
+      </tr>
+      <tr>
+        <td><strong>Toggle T</strong></td>
+        <td class="es">Toggle Switch</td><td class="en">Toggle Switch</td>
+        <td class="es">Selecciona la forma Orgánica de Tremolo: <em>Triangular Orgánica</em> o <em>Cuadrada Orgánica</em>. Inactivo en Onda Cuadrada, Rampa Ascendente, Rampa Descendente y Aleatoria.</td>
+        <td class="en">Selects the Tremolo Organic waveform: <em>Triangular Orgánica</em> or <em>Cuadrada Orgánica</em>. Inactive in Onda Cuadrada, Rampa Ascendente, Rampa Descendente and Aleatoria.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub es">Footswitches</h3>
+  <h3 class="sub en">Footswitches</h3>
+  <table>
+    <thead><tr>
+      <th class="es">Footswitch</th><th class="en">Footswitch</th>
+      <th class="es">Press corto</th><th class="en">Short press</th>
+      <th class="es">Mantener</th><th class="en">Hold</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="es"><strong>Izquierdo</strong></td>
+        <td class="en"><strong>Left</strong></td>
+        <td class="es">Activar / bypass Tremolo (función por defecto)</td>
+        <td class="en">Activate / bypass Tremolo (default function)</td>
+        <td class="es">Cambiar modo de función del footswitch izquierdo (ver pág. 7)</td>
+        <td class="en">Change left footswitch function mode (see p. 7)</td>
+      </tr>
+      <tr>
+        <td class="es"><strong>Derecho</strong></td>
+        <td class="en"><strong>Right</strong></td>
+        <td class="es">Activar / bypass Phaser (PH), Flanger (FL) o PH+FL</td>
+        <td class="en">Activate / bypass Phaser (PH), Flanger (FL) or PH+FL</td>
+        <td class="es">Menú de selección de efecto: PH / FL / PH+FL / Rate A/B Tremolo (ver pág. 7)</td>
+        <td class="en">Effect selection menu: PH / FL / PH+FL / Rate A/B Tremolo (see p. 7)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">4</span>
+    <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 5 — PANEL TRASERO / REAR PANEL
+============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="ph-brand">TripMod</span>
+    <span class="ph-section es">Panel Trasero</span>
+    <span class="ph-section en">Rear Panel</span>
+  </div>
+
+  <h2 class="sec es">Panel Trasero</h2>
+  <h2 class="sec en">Rear Panel</h2>
+
+  <div class="panel-wrap">
+    <img src="assets/panel-conectores.png"
+         alt="TripMod — Panel Trasero / Rear Panel">
+  </div>
+
+  <p class="es">De izquierda a derecha:</p>
+  <p class="en">Left to right:</p>
+
+  <table>
+    <thead><tr>
+      <th class="es">Conector</th><th class="en">Connector</th>
+      <th class="es">Tipo</th><th class="en">Type</th>
+      <th class="es">Función</th><th class="en">Function</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>IN</strong></td>
+        <td class="es">Jack 1/4" mono (TS)</td><td class="en">1/4" mono jack (TS)</td>
+        <td class="es">Entrada de audio — instrumento o fuente de señal</td>
+        <td class="en">Audio input — instrument or signal source</td>
+      </tr>
+      <tr>
+        <td><strong>CTRL R</strong></td>
+        <td class="es">Jack 1/4" estéreo (TRS)</td><td class="en">1/4" stereo jack (TRS)</td>
+        <td class="es">Control externo derecho: footswitch (1, 2 ó 3 switches), pedal de expresión o señal CV. Detectado automáticamente según tipo de plug (TS/TRS). Ver secciones 6 y 7 para configuración.</td>
+        <td class="en">Right external control: footswitch (1, 2 or 3 switches), expression pedal, or CV signal. Automatically detected based on plug type (TS/TRS). See sections 6 and 7 for setup.</td>
+      </tr>
+      <tr>
+        <td><strong>9VDC</strong></td>
+        <td class="es">Conector barrel</td><td class="en">Barrel connector</td>
+        <td class="es">Alimentación 9V a 12V DC, centro negativo, mínimo 250mA (estándar pedal)</td>
+        <td class="en">9V to 12V DC power supply, center negative, minimum 250mA (standard pedal)</td>
+      </tr>
+      <tr>
+        <td><strong>CTRL L MIDI</strong></td>
+        <td class="es">Jack 1/4" estéreo (TRS)</td><td class="en">1/4" stereo jack (TRS)</td>
+        <td class="es">Entrada MIDI IN exclusiva. Estándar MIDI TRS Tipo A.</td>
+        <td class="en">Exclusive MIDI IN input. MIDI TRS Type A standard.</td>
+      </tr>
+      <tr>
+        <td><strong>OUT</strong></td>
+        <td class="es">Jack 1/4" mono (TS)</td><td class="en">1/4" mono jack (TS)</td>
+        <td class="es">Salida de audio — hacia amplificador o siguiente efecto</td>
+        <td class="en">Audio output — to amplifier or next effect</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">5</span>
+    <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 5 — SIGNAL PATH / ARQUITECTURA DEL SISTEMA
+============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="ph-brand">TripMod</span>
+    <span class="ph-section es">Arquitectura del Sistema</span>
+    <span class="ph-section en">System Architecture</span>
+  </div>
+
+  <h2 class="sec es">Arquitectura del Sistema</h2>
+  <h2 class="sec en">System Architecture</h2>
+
+  <p class="es">El TripMod implementa hardware dedicados para cada efecto de modulación. El Phaser utiliza un circuito de Filtrado de voltaje controlado (VCF), el Flanger un retardo Bucket Brigade (BBD) y el Tremolo un Control de Ganancia por voltaje (VCA). Existe una Unidad de Control (UC) que se encarga del control de LFOs, MIDI, Expresión y Switches, permitiendo expandir las posibilidades del pedal.</p>
+  <p class="en">TripMod implements dedicated hardware for each modulation effect. The Phaser uses a Voltage Controlled Filter (VCF), the Flanger a Bucket Brigade Device delay (BBD), and the Tremolo a Voltage Controlled Amplifier (VCA). A Control Unit (UC) handles LFO control, MIDI, Expression, and Switches, expanding the possibilities of the pedal.</p>
+
+  <p class="es">El siguiente diagrama muestra el camino de la señal de audio a través del TripMod, e ilustra cómo interactúan los distintos bloques principales.</p>
+  <p class="en">The following diagram shows the audio signal path through the TripMod, illustrating how the main blocks interact.</p>
+
+  <div style="text-align:center; margin: 4mm 0;">
+    <img src="assets/block-diagram-white.png"
+         alt="TripMod — Signal Path / Arquitectura del Sistema"
+         style="max-width:100%; max-height:140mm; object-fit:contain;">
+  </div>
+
+  <hr class="dash">
+
+  <h3 class="sub es">Bypass</h3>
+  <h3 class="sub en">Bypass</h3>
+  <p class="es">Cada efecto tiene bypass independiente mediante relé. Al bypassear, la señal pasa directamente sin coloración.</p>
+  <p class="en">Each effect has independent relay bypass. When bypassed, the signal passes through uncolored.</p>
+
+  <div class="page-footer">
+    <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">6</span>
+    <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 6 — OPERACIÓN BÁSICA / BASIC OPERATION
+============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="ph-brand">TripMod</span>
+    <span class="ph-section es">Operación Básica</span>
+    <span class="ph-section en">Basic Operation</span>
+  </div>
+
+  <h2 class="sec es">Operación Básica</h2>
+  <h2 class="sec en">Basic Operation</h2>
+
+  <p class="es">Esta sección describe la operación sin dispositivos externos conectados en CTRL R — solo los dos footswitches del panel frontal.</p>
+  <p class="en">This section describes operation without any external device connected to CTRL R — only the two front panel footswitches.</p>
+
+  <!-- FOOTSWITCH IZQUIERDO -->
+  <h3 class="sub es">Footswitch Izquierdo — Funciones</h3>
+  <h3 class="sub en">Left Footswitch — Functions</h3>
+
+  <table>
+    <thead><tr>
+      <th class="es">Acción</th><th class="en">Action</th>
+      <th class="es">Resultado</th><th class="en">Result</th>
+      <th>LEDs</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="es">Presionar <em>(modo Effect Toggle — por defecto)</em></td>
+        <td class="en">Press <em>(Effect Toggle mode — default)</em></td>
+        <td class="es">Activa / bypasea <strong>Tremolo</strong></td>
+        <td class="en">Activates / bypasses <strong>Tremolo</strong></td>
+        <td><span class="leds"><span class="led led-green"></span></span></td>
+      </tr>
+      <tr>
+        <td class="es">Presionar <em>(modo Rate Select)</em></td>
+        <td class="en">Press <em>(Rate Select mode)</em></td>
+        <td class="es">Alterna <strong>Rate A ↔ Rate B</strong> — Phaser & Flanger</td>
+        <td class="en">Toggles <strong>Rate A ↔ Rate B</strong> — Phaser & Flanger</td>
+        <td><span class="leds"><span class="led led-red led-sm"></span></span> / <span class="leds"><span class="led led-orange led-sm"></span></span></td>
+      </tr>
+      <tr>
+        <td class="es">Mantener (≥ 2 s)</td>
+        <td class="en">Hold (≥ 2 s)</td>
+        <td class="es">Cambia modo: <strong>Effect Toggle ↔ Rate Select</strong></td>
+        <td class="en">Switches mode: <strong>Effect Toggle ↔ Rate Select</strong></td>
+        <td><span class="leds"><span class="led led-green"></span></span> × 3</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- FOOTSWITCH DERECHO -->
+  <h3 class="sub es">Footswitch Derecho — Funciones</h3>
+  <h3 class="sub en">Right Footswitch — Functions</h3>
+
+  <table>
+    <thead><tr>
+      <th class="es">Acción</th><th class="en">Action</th>
+      <th class="es">Resultado</th><th class="en">Result</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="es">Presionar</td>
+        <td class="en">Press</td>
+        <td class="es">Activa / bypasea el efecto seleccionado:<br>
+          <span class="leds"><span class="led led-blue"></span></span> Phaser &nbsp;·&nbsp;
+          <span class="leds"><span class="led led-pink"></span></span> Flanger &nbsp;·&nbsp;
+          <span class="leds"><span class="led led-blue"></span><span class="led led-pink"></span></span> Phaser+Flanger &nbsp;·&nbsp;
+          <span class="leds"><span class="led led-green"></span></span> Alterna Rate A/B Tremolo</td>
+        <td class="en">Activates / bypasses the selected effect:<br>
+          <span class="leds"><span class="led led-blue"></span></span> Phaser &nbsp;·&nbsp;
+          <span class="leds"><span class="led led-pink"></span></span> Flanger &nbsp;·&nbsp;
+          <span class="leds"><span class="led led-blue"></span><span class="led led-pink"></span></span> Phaser+Flanger &nbsp;·&nbsp;
+          <span class="leds"><span class="led led-green"></span></span> Toggles Rate A/B Tremolo</td>
+      </tr>
+      <tr>
+        <td class="es">Mantener (≥ 2 s)</td>
+        <td class="en">Hold (≥ 2 s)</td>
+        <td class="es">Entra al menú de selección de efecto / Rate A/B Tremolo</td>
+        <td class="en">Enters the effect / Rate A/B Tremolo selection menu</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- MENÚ SELECCIÓN EFECTO -->
+  <h3 class="sub es">Menú de selección de efecto (FTSW Derecho — mantener)</h3>
+  <h3 class="sub en">Effect selection menu (Right FTSW — hold)</h3>
+
+  <p class="es">Navegar con el <strong>footswitch derecho</strong>, confirmar con el <strong>izquierdo</strong>.</p>
+  <p class="en">Navigate with the <strong>right footswitch</strong>, confirm with the <strong>left</strong> one.</p>
+  <p class="small es">Sin confirmar, el menú sale por timeout (2 min) — los LEDs parpadean 3 veces y el pedal restaura la selección anterior.</p>
+  <p class="small en">Without confirming, the menu exits on timeout (2 min) — LEDs blink 3 times and the pedal restores the previous selection.</p>
+
+  <table>
+    <thead><tr>
+      <th class="es">Opción</th><th class="en">Option</th>
+      <th class="es">LEDs</th><th class="en">LEDs</th>
+      <th class="es">Función del FTSW Derecho</th><th class="en">Right FTSW function</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="es">1</td><td class="en">1</td>
+        <td><span class="leds"><span class="led led-off"></span><span class="led led-off"></span><span class="led led-blue"></span></span></td>
+        <td class="es">Activa / bypasea <strong>Phaser</strong></td><td class="en">Activates / bypasses <strong>Phaser</strong></td>
+      </tr>
+      <tr>
+        <td class="es">2</td><td class="en">2</td>
+        <td><span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-off"></span></span></td>
+        <td class="es">Activa / bypasea <strong>Flanger</strong></td><td class="en">Activates / bypasses <strong>Flanger</strong></td>
+      </tr>
+      <tr>
+        <td class="es">3</td><td class="en">3</td>
+        <td><span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-blue"></span></span></td>
+        <td class="es">Activa / bypasea <strong>Phaser + Flanger</strong></td>
+        <td class="en">Activates / bypasses <strong>Phaser + Flanger</strong></td>
+      </tr>
+      <tr>
+        <td class="es">4</td><td class="en">4</td>
+        <td><span class="leds"><span class="led led-green"></span><span class="led led-off"></span><span class="led led-off"></span></span></td>
+        <td class="es">Alterna <strong>Rate A ↔ Rate B Tremolo</strong></td><td class="en">Toggles <strong>Rate A ↔ Rate B Tremolo</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- RATE A / B -->
+  <h3 class="sub es">Velocidades A y B (Rate A / B)</h3>
+  <h3 class="sub en">Speeds A and B (Rate A / B)</h3>
+
+  <p class="es">Cada efecto tiene dos velocidades preconfiguradas por sus controles RATE A y RATE B. Para <strong>Tremolo</strong>: controles de la sección T (izquierda). Para <strong>Phaser y Flanger</strong>: controles compartidos de la sección F y P (central/derecha).</p>
+  <p class="en">Each effect has two speeds preset by its RATE A and RATE B controls. For <strong>Tremolo</strong>: T section controls (left). For <strong>Phaser and Flanger</strong>: shared F and P section controls (center/right).</p>
+
+  <div class="box note">
+    <p class="es"><strong>LEDs de Rate A/B:</strong> Los LEDs de Rate oscilan en sincronía cuando el LFO está controlado desde las perillas RATE A o B del pedal. Cuando la velocidad proviene de un Pedal de Expresión, MIDI CC o Tap Tempo, el efecto responde a esa fuente pero los LEDs continúan reflejando el oscilador local del pedal.</p>
+    <p class="en"><strong>Rate A/B LEDs:</strong> The Rate LEDs pulse in sync when the LFO is controlled by the RATE A or B knobs. When speed comes from an Expression Pedal, MIDI CC or Tap Tempo, the effect follows that source but the LEDs continue reflecting the pedal's local oscillator.</p>
+  </div>
+
+  <div class="page-footer">
+    <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">7</span>
+    <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 5 — FORMAS DE ONDA LFO / LFO WAVEFORMS
+============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="ph-brand">TripMod</span>
+    <span class="ph-section es">Formas de Onda LFO</span>
+    <span class="ph-section en">LFO Waveforms</span>
+  </div>
+
+  <h2 class="sec es">Formas de Onda LFO</h2>
+  <h2 class="sec en">LFO Waveforms</h2>
+
+  <p class="es">El TripMod ofrece cinco formas de onda LFO seleccionables por menú para <strong>Phaser</strong> y <strong>Tremolo</strong>. Adicionalmente, para Tremolo, cuando se está en modo <em>Triangular Orgánica</em>, el Switch Toggle del panel frontal permite seleccionar la variante <em>Cuadrada Orgánica</em>. La señal <em>Triangular Orgánica</em> es el oscilador analógico del circuito — la Unidad de Control la usa como referencia de amplitud (DEPTH) y frecuencia (RATE) para generar las demás formas. El Flanger siempre usa su oscilador analógico propio.</p>
+  <p class="en">TripMod offers five menu-selectable LFO waveforms for <strong>Phaser</strong> and <strong>Tremolo</strong>. Additionally, for Tremolo, when in <em>Triangular Orgánica</em> mode, the front panel Switch Toggle allows selecting the <em>Cuadrada Orgánica</em> variant. The <em>Triangular Orgánica</em> signal is the circuit's analog oscillator — the Control Unit uses it as the amplitude (DEPTH) and frequency (RATE) reference for generating all other waveforms. Flanger always uses its own analog oscillator.</p>
+
+  <!-- WAVEFORM CARDS — 3+3 layout, 6 waveforms, all different colors -->
+  <div class="three-col" style="margin: 3mm 0;">
+    <!-- 1. Triangular Orgánica — blue, rounded peaks (bezier) -->
+    <div class="wave-card">
+      <svg viewBox="0 0 80 40" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 0,38 C 8,38 12,2 20,2 C 28,2 32,38 40,38 C 48,38 52,2 60,2 C 68,2 72,38 80,38" fill="none" stroke="#1a7eff" stroke-width="2.5"/>
+      </svg>
+      <div class="wave-name">Triangular Orgánica</div>
+      <div class="wave-desc es">Oscilador analógico — picos suaves. Toggle T activo.</div>
+      <div class="wave-desc en">Analog oscillator — soft peaks. Toggle T active.</div>
+    </div>
+    <!-- 2. Cuadrada Orgánica — amber, S-curve transitions -->
+    <div class="wave-card">
+      <svg viewBox="0 0 80 40" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 6,38 Q 0,38 0,32 L 0,8 Q 0,2 6,2 L 34,2 Q 40,2 40,8 L 40,32 Q 40,38 46,38 L 74,38 Q 80,38 80,32 L 80,8 Q 80,2 74,2" fill="none" stroke="#ff9500" stroke-width="2.5"/>
+      </svg>
+      <div class="wave-name">Cuadrada Orgánica</div>
+      <div class="wave-desc es">Variante orgánica — transiciones suaves. Seleccionada con Toggle T.</div>
+      <div class="wave-desc en">Organic variant — smooth transitions. Selected with Toggle T.</div>
+    </div>
+    <!-- 3. Rampa Ascendente — green -->
+    <div class="wave-card">
+      <svg viewBox="0 0 80 40" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="0,38 40,2 40,38 80,2" fill="none" stroke="#18c44a" stroke-width="2.5" stroke-linejoin="round"/>
+      </svg>
+      <div class="wave-name">Rampa Ascendente</div>
+      <div class="wave-desc es">Sube gradual, cae en corte.</div>
+      <div class="wave-desc en">Rises gradually, drops sharply.</div>
+    </div>
+    <!-- 4. Rampa Descendente — purple -->
+    <div class="wave-card">
+      <svg viewBox="0 0 80 40" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="0,2 40,38 40,2 80,38" fill="none" stroke="#9b30ff" stroke-width="2.5" stroke-linejoin="round"/>
+      </svg>
+      <div class="wave-name">Rampa Descendente</div>
+      <div class="wave-desc es">Cae gradual, sube en corte.</div>
+      <div class="wave-desc en">Falls gradually, rises sharply.</div>
+    </div>
+    <!-- 5. Onda Cuadrada — pink -->
+    <div class="wave-card">
+      <svg viewBox="0 0 80 40" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="0,38 0,2 40,2 40,38 80,38 80,2" fill="none" stroke="#e0198c" stroke-width="2.5" stroke-linejoin="round"/>
+      </svg>
+      <div class="wave-name">Onda Cuadrada</div>
+      <div class="wave-desc es">Corte abrupto — máximo a mínimo.</div>
+      <div class="wave-desc en">Abrupt cut — maximum to minimum.</div>
+    </div>
+    <!-- 6. Aleatoria — red -->
+    <div class="wave-card">
+      <svg viewBox="0 0 80 40" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="0,10 20,10 20,32 36,32 36,6 52,6 52,28 68,28 68,16 80,16" fill="none" stroke="#ff3b30" stroke-width="2.5" stroke-linejoin="round"/>
+      </svg>
+      <div class="wave-name">Aleatoria</div>
+      <div class="wave-desc es">Sample &amp; Hold — saltos aleatorios a cada ciclo.</div>
+      <div class="wave-desc en">Sample &amp; Hold — random jumps each cycle.</div>
+    </div>
+  </div>
+
+  <div class="box note">
+    <span class="es"><strong>Nota:</strong> En modo <em>Triangular Orgánica</em>, el Switch Toggle del panel frontal está activo y selecciona entre <em>Triangular Orgánica</em> y <em>Cuadrada Orgánica</em>. En los demás modos (Onda Cuadrada, Rampa Ascendente, Rampa Descendente, Aleatoria), el Switch Toggle se ignora. El Flanger siempre usa su oscilador analógico propio (triangular orgánica). No participa del menú de formas de onda y no admite cambio de parámetros vía MIDI CC, expresión ni Tap Tempo.</span>
+    <span class="en"><strong>Note:</strong> In <em>Triangular Orgánica</em> mode, the front panel Switch Toggle is active and selects between <em>Triangular Orgánica</em> and <em>Cuadrada Orgánica</em>. In the other modes (Onda Cuadrada, Rampa Ascendente, Rampa Descendente, Aleatoria), the Switch Toggle is ignored. Flanger always uses its own analog oscillator (triangular orgánica). It does not participate in the waveform menu and does not support parameter changes via MIDI CC, expression, or Tap Tempo.</span>
+  </div>
+
+  <!-- ACCESO AL MENÚ LFO -->
+  <h3 class="sub es">Menú de selección de forma de onda</h3>
+  <h3 class="sub en">Waveform selection menu</h3>
+
+  <p class="es"><strong>Precondición:</strong> exactamente <strong>un solo efecto debe estar activo</strong> (Phaser o Tremolo — no ambos, no ninguno).</p>
+  <p class="en"><strong>Precondition:</strong> exactly <strong>one effect must be active</strong> (Phaser OR Tremolo — not both, not none).</p>
+
+  <ol class="steps">
+    <li><span class="sn">1</span>
+      <span class="es">Con el efecto deseado activo (Phaser <span class="leds"><span class="led led-blue"></span></span> o Tremolo <span class="leds"><span class="led led-green"></span></span>), presionar <strong>ambos footswitches simultáneamente</strong> y mantenerlos por <strong>2 segundos</strong>.</span>
+      <span class="en">With the desired effect active (Phaser <span class="leds"><span class="led led-blue"></span></span> or Tremolo <span class="leds"><span class="led led-green"></span></span>), press <strong>both footswitches simultaneously</strong> and hold for <strong>2 seconds</strong>.</span>
+    </li>
+    <li><span class="sn">2</span>
+      <span class="es">El LED del efecto parpadea <strong>5 veces rápido</strong> — confirmación de entrada al menú.</span>
+      <span class="en">The effect's LED blinks <strong>5 times quickly</strong> — confirms entry into the menu.</span>
+    </li>
+    <li><span class="sn">3</span>
+      <span class="es"><strong>Footswitch derecho</strong>: avanza a la siguiente forma de onda (los LEDs cambian de patrón).</span>
+      <span class="en"><strong>Right footswitch</strong>: advance to next waveform (LED patterns change).</span>
+    </li>
+    <li><span class="sn">4</span>
+      <span class="es"><strong>Footswitch izquierdo</strong>: confirma y guarda la selección. Los LEDs parpadean rápido como confirmación.</span>
+      <span class="en"><strong>Left footswitch</strong>: confirm and save the selection. LEDs blink fast as confirmation.</span>
+    </li>
+  </ol>
+  <p class="small es">Sin confirmar, el menú sale por timeout (4 min) y restaura la forma de onda anterior — 3 parpadeos de todos los LEDs.</p>
+  <p class="small en">Without confirming, the menu exits on timeout (4 min) and restores the previous waveform — 3 blinks of all LEDs.</p>
+  <p class="small en">Without confirming, the menu times out and restores the previous waveform (3 blinks of all LEDs).</p>
+
+  <!-- TABLA LED DE FORMAS DE ONDA -->
+  <h3 class="sub es">Patrones LED en el menú</h3>
+  <h3 class="sub en">LED patterns in the menu</h3>
+
+  <table>
+    <thead><tr>
+      <th class="es">Forma de onda</th><th class="en">Waveform</th>
+      <th class="es">LEDs (todos parpadean en el menú)</th>
+      <th class="en">LEDs (all blink in the menu)</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="es">Triangular Orgánica</td><td class="en">Triangular Orgánica</td>
+        <td class="es"><span class="leds"><span class="led led-off"></span><span class="led led-off"></span><span class="led led-blue"></span></span> Azul (si es Phaser) &nbsp;|&nbsp; <span class="leds"><span class="led led-green"></span><span class="led led-off"></span><span class="led led-off"></span></span> Verde (si es Tremolo)</td>
+        <td class="en"><span class="leds"><span class="led led-off"></span><span class="led led-off"></span><span class="led led-blue"></span></span> Blue (if Phaser) &nbsp;|&nbsp; <span class="leds"><span class="led led-green"></span><span class="led led-off"></span><span class="led led-off"></span></span> Green (if Tremolo)</td>
+      </tr>
+      <tr>
+        <td class="es">Cuadrada</td><td class="en">Cuadrada</td>
+        <td class="es"><span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-off"></span></span> Rosa (igual para Phaser y Tremolo)</td>
+        <td class="en"><span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-off"></span></span> Pink (same for Phaser and Tremolo)</td>
+      </tr>
+      <tr>
+        <td class="es">Rampa Ascendente</td><td class="en">Rampa Ascendente</td>
+        <td class="es"><span class="leds"><span class="led led-green"></span><span class="led led-off"></span><span class="led led-blue"></span></span> Verde + Azul</td>
+        <td class="en"><span class="leds"><span class="led led-green"></span><span class="led led-off"></span><span class="led led-blue"></span></span> Green + Blue</td>
+      </tr>
+      <tr>
+        <td class="es">Rampa Descendente</td><td class="en">Rampa Descendente</td>
+        <td class="es"><span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-blue"></span></span> Rosa + Azul</td>
+        <td class="en"><span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-blue"></span></span> Pink + Blue</td>
+      </tr>
+      <tr>
+        <td class="es">Aleatoria</td><td class="en">Aleatoria</td>
+        <td class="es"><span class="leds"><span class="led led-green"></span><span class="led led-pink"></span><span class="led led-blue"></span></span> Verde + Rosa + Azul (los tres)</td>
+        <td class="en"><span class="leds"><span class="led led-green"></span><span class="led led-pink"></span><span class="led led-blue"></span></span> Green + Pink + Blue (all three)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="small es">La selección se guarda en memoria interna y se mantiene al apagar.</p>
+  <p class="small en">The selection is saved to internal memory and persists after power-off.</p>
+
+  <div class="box note">
+    <span class="es"><strong>Durante el menú:</strong> Los controles RATE y DEPTH moldean la forma de onda en tiempo real — útil para escuchar la diferencia antes de confirmar. En modos no orgánicos, cambiar RATE o DEPTH lentamente para no perder la sincronía del LFO generado por la Unidad de Control. Si se pierde, aumentar DEPTH o esperar al siguiente ciclo.</span>
+    <span class="en"><strong>During the menu:</strong> RATE and DEPTH controls shape the waveform in real time — useful for hearing the difference before confirming. In non-organic modes, change RATE or DEPTH slowly to avoid losing LFO sync. If sync is lost, increase DEPTH or wait for the next cycle.</span>
+  </div>
+
+  <div class="box note">
+    <span class="es"><strong>Tremolo — modo Orgánico:</strong> En <em>Triangular Orgánica</em>, el Tremolo puede sonar Triangular o Cuadrado según la posición del Toggle Switch del panel frontal. Esta selección es independiente del menú de formas de onda.</span>
+    <span class="en"><strong>Tremolo — Organic mode:</strong> In <em>Triangular Orgánica</em>, Tremolo can sound Triangular or Square based on the front panel Toggle Switch position. This selection is independent of the waveform menu.</span>
+  </div>
+
+  <div class="box note">
+    <span class="es"><strong>Nota de uso — Modos Orgánicos y Flanger:</strong><br>
+    • En <strong>Phaser</strong>, el modo <em>Triangular Orgánica</em> no admite Tap Tempo, control de Rate por MIDI CC ni por pedal de expresión. Solo funciona con los controles del panel.<br>
+    • En <strong>Tremolo</strong>, los modos <em>Triangular Orgánica</em> y <em>Cuadrada Orgánica</em> tienen la misma restricción.<br>
+    • El <strong>Flanger</strong> siempre usa su oscilador analógico propio (triangular orgánica). No participa del menú de formas de onda y no admite cambio de parámetros vía MIDI CC, expresión ni Tap Tempo.</span>
+    <span class="en"><strong>Usage note — Organic modes and Flanger:</strong><br>
+    • On <strong>Phaser</strong>, <em>Triangular Orgánica</em> mode does not support Tap Tempo, MIDI CC Rate control, or expression pedal Rate control. Only knobs work.<br>
+    • On <strong>Tremolo</strong>, <em>Triangular Orgánica</em> and <em>Cuadrada Orgánica</em> modes have the same restriction.<br>
+    • <strong>Flanger</strong> always uses its own analog oscillator (triangular). It does not participate in the waveform menu and does not support parameter changes via MIDI CC, expression, or Tap Tempo.</span>
+  </div>
+
+  <div class="page-footer">
+    <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">8</span>
+    <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 6 — FOOTSWITCH EXTERNO / EXTERNAL FOOTSWITCH
+============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="ph-brand">TripMod</span>
+    <span class="ph-section es">Footswitch Externo (CTRL R)</span>
+    <span class="ph-section en">External Footswitch (CTRL R)</span>
+  </div>
+
+  <h2 class="sec es">Footswitch Externo — CTRL R</h2>
+  <h2 class="sec en">External Footswitch — CTRL R</h2>
+
+  <p class="es">Se puede conectar en <strong>CTRL R</strong> un footswitch de 1, 2 o 3 botones (Momentary Switches, contacto Normal Open). El tipo de plug (TS o TRS) determina la configuración automáticamente.</p>
+  <p class="en">A 1, 2 or 3-button footswitch can be connected to <strong>CTRL R</strong> (Momentary Switches, Normally Open contact). The plug type (TS or TRS) automatically determines the configuration.</p>
+
+  <h3 class="sub es">Tipos de conexión</h3>
+  <h3 class="sub en">Connection types</h3>
+  <table>
+    <thead><tr>
+      <th class="es">Plug</th><th class="en">Plug</th>
+      <th class="es">Botones disponibles</th><th class="en">Available buttons</th>
+      <th class="es">Detección</th><th class="en">Detection</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>TS</strong> (mono)</td>
+        <td class="es">1 footswitch (FTSW A)</td><td class="en">1 footswitch (FTSW A)</td>
+        <td class="es">Automática al conectar</td><td class="en">Automatic on connect</td>
+      </tr>
+      <tr>
+        <td><strong>TRS</strong> (estéreo)</td>
+        <td class="es">2 botones (FTSW A + B)</td><td class="en">2 buttons (FTSW A + B)</td>
+        <td class="es">Automática al conectar</td><td class="en">Automatic on connect</td>
+      </tr>
+      <tr>
+        <td><strong>TRS (triple)</strong></td>
+        <td class="es">3 botones (FTSW A + B + C)</td><td class="en">3 buttons (FTSW A + B + C)</td>
+        <td class="es">Automática — ver Apéndice para esquema de conexión</td>
+        <td class="en">Automatic — see Appendix for connection diagram</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub es">Funciones disponibles para cada footswitch</h3>
+  <h3 class="sub en">Available functions per button</h3>
+  <table>
+    <thead><tr>
+      <th class="es">Función</th><th class="en">Function</th>
+      <th class="es">Descripción</th><th class="en">Description</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="es">Phaser ON/OFF</td><td class="en">Phaser ON/OFF</td>
+        <td class="es">Activa / bypasea Phaser</td><td class="en">Activates / bypasses Phaser</td>
+      </tr>
+      <tr>
+        <td class="es">Rate A/B Phaser &amp; Flanger</td><td class="en">Rate A/B Phaser &amp; Flanger</td>
+        <td class="es">Alterna Rate A ↔ B para Phaser y Flanger</td><td class="en">Toggles Rate A ↔ B for Phaser and Flanger</td>
+      </tr>
+      <tr>
+        <td class="es">Rate A/B Tremolo</td><td class="en">Rate A/B Tremolo</td>
+        <td class="es">Alterna Rate A ↔ B para Tremolo</td><td class="en">Toggles Rate A ↔ B for Tremolo</td>
+      </tr>
+      <tr>
+        <td class="es">Tap Tempo Phaser</td><td class="en">Tap Tempo Phaser</td>
+        <td class="es">Dos taps consecutivos definen el período del LFO de Phaser</td>
+        <td class="en">Two consecutive taps set the Phaser LFO period</td>
+      </tr>
+      <tr>
+        <td class="es">Tap Tempo Tremolo</td><td class="en">Tap Tempo Tremolo</td>
+        <td class="es">Dos taps consecutivos definen el período del LFO de Tremolo</td>
+        <td class="en">Two consecutive taps set the Tremolo LFO period</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="small es"><strong>Asignación por defecto:</strong> A = Phaser ON/OFF &nbsp;·&nbsp; B = Rate A/B Phaser &amp; Flanger &nbsp;·&nbsp; C = Rate A/B Tremolo</p>
+  <p class="small en"><strong>Default assignment:</strong> A = Phaser ON/OFF &nbsp;·&nbsp; B = Rate A/B Phaser &amp; Flanger &nbsp;·&nbsp; C = Rate A/B Tremolo</p>
+
+  <h3 class="sub es">Reasignar la función de un footswitch (mantener)</h3>
+  <h3 class="sub en">Reassigning a footswitch function (hold)</h3>
+  <ol class="steps">
+    <li><span class="sn">1</span>
+      <span class="es">Mantener presionado ≥ <strong>2 segundos</strong> el footswitch externo que se quiere reasignar. Los LEDs parpadean rápido como confirmación de entrada al menú.</span>
+      <span class="en">Hold for ≥ <strong>2 seconds</strong> the external footswitch to be reassigned. LEDs blink quickly as menu entry confirmation.</span>
+    </li>
+    <li><span class="sn">2</span>
+      <span class="es">Presionar ese mismo footswitch para avanzar entre las 5 funciones disponibles. Los LEDs del pedal muestran la función actualmente seleccionada (ver tabla).</span>
+      <span class="en">Press that same footswitch to cycle through the 5 available functions. The pedal LEDs show the currently selected function (see table).</span>
+    </li>
+    <li><span class="sn">3</span>
+      <span class="es">Confirmar con el <strong>footswitch izquierdo del panel</strong>. La asignación se guarda en memoria interna. Los LEDs parpadean 3 veces como confirmación.</span>
+      <span class="en">Confirm with the <strong>left panel footswitch</strong>. The assignment is saved to internal memory. LEDs blink 3 times as confirmation.</span>
+    </li>
+  </ol>
+  <p class="small es">Sin confirmar, el menú sale por timeout (2 min) sin guardar cambios.</p>
+  <p class="small en">Without confirming, the menu exits on timeout (2 min) without saving changes.</p>
+
+  <h3 class="sub es">Patrones LED en el menú de reasignación</h3>
+  <h3 class="sub en">LED patterns in the reassignment menu</h3>
+
+  <table>
+    <thead><tr>
+      <th class="es">Función</th><th class="en">Function</th>
+      <th class="es">Patrón LED (parpadea en el menú)</th><th class="en">LED pattern (blinks in menu)</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="es">Phaser ON/OFF</td><td class="en">Phaser ON/OFF</td>
+        <td class="es"><span class="leds"><span class="led led-off"></span><span class="led led-off"></span><span class="led led-blue"></span></span> Azul solo</td>
+        <td class="en"><span class="leds"><span class="led led-off"></span><span class="led led-off"></span><span class="led led-blue"></span></span> Blue only</td>
+      </tr>
+      <tr>
+        <td class="es">Rate A/B Phaser &amp; Flanger</td><td class="en">Rate A/B Phaser &amp; Flanger</td>
+        <td class="es"><span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-off"></span></span> Rosa solo</td>
+        <td class="en"><span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-off"></span></span> Pink only</td>
+      </tr>
+      <tr>
+        <td class="es">Rate A/B Tremolo</td><td class="en">Rate A/B Tremolo</td>
+        <td class="es"><span class="leds"><span class="led led-green"></span><span class="led led-off"></span><span class="led led-off"></span></span> Verde solo</td>
+        <td class="en"><span class="leds"><span class="led led-green"></span><span class="led led-off"></span><span class="led led-off"></span></span> Green only</td>
+      </tr>
+      <tr>
+        <td class="es">Tap Tempo Phaser</td><td class="en">Tap Tempo Phaser</td>
+        <td class="es"><span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-blue"></span></span> Azul ↔ Rosa alternados</td>
+        <td class="en"><span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-blue"></span></span> Blue ↔ Pink alternating</td>
+      </tr>
+      <tr>
+        <td class="es">Tap Tempo Tremolo</td><td class="en">Tap Tempo Tremolo</td>
+        <td class="es"><span class="leds"><span class="led led-green"></span><span class="led led-pink"></span><span class="led led-off"></span></span> Verde ↔ Rosa alternados</td>
+        <td class="en"><span class="leds"><span class="led led-green"></span><span class="led led-pink"></span><span class="led led-off"></span></span> Green ↔ Pink alternating</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub es">Tap Tempo</h3>
+  <h3 class="sub en">Tap Tempo</h3>
+  <p class="es">Tap Tempo requiere un footswitch externo con función Tap asignada. Con <strong>dos taps consecutivos</strong> el sistema calcula el período como el intervalo entre ambos taps. Cada par de taps redefine el tempo. El Tap Tempo tiene <strong>prioridad sobre MIDI CC Rate</strong>: si había un rate impuesto por MIDI CC, el primer tap lo cancela.</p>
+  <p class="en">Tap Tempo requires an external footswitch with Tap function assigned. With <strong>two consecutive taps</strong>, the system calculates the period as the interval between both taps. Each pair of taps redefines the tempo. Tap Tempo <strong>overrides MIDI CC Rate</strong>: if a rate was set by MIDI CC, the first tap cancels it.</p>
+
+  <div class="box tip">
+    <span class="es"><strong>Tap Tempo también disponible via MIDI:</strong> PC 27 = un tap para Phaser, PC 28 = un tap para Tremolo. Enviar el mismo PC dos veces para completar el par de taps.</span>
+    <span class="en"><strong>Tap Tempo also available via MIDI:</strong> PC 27 = one tap for Phaser, PC 28 = one tap for Tremolo. Send the same PC twice to complete the tap pair.</span>
+  </div>
+
+  <div class="page-footer">
+    <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">9</span>
+    <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 7 — PEDAL DE EXPRESIÓN / EXPRESSION PEDAL
+============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="ph-brand">TripMod</span>
+    <span class="ph-section es">Pedal de Expresión</span>
+    <span class="ph-section en">Expression Pedal</span>
+  </div>
+
+  <h2 class="sec es">Pedal de Expresión — CTRL R</h2>
+  <h2 class="sec en">Expression Pedal — CTRL R</h2>
+
+  <p class="es">Un pedal de expresión TRS estándar se conecta en <strong>CTRL R</strong>. El modo de operación se selecciona en el Menú Dispositivo Externo (ver pág. 11).</p>
+  <p class="en">A standard TRS expression pedal connects to <strong>CTRL R</strong>. The operating mode is selected in the External Device Menu (see p. 11).</p>
+
+  <h3 class="sub es">Modos de expresión</h3>
+  <h3 class="sub en">Expression modes</h3>
+  <table>
+    <thead><tr>
+      <th class="es">Modo</th><th class="en">Mode</th>
+      <th class="es">Función del pedal</th><th class="en">Pedal function</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="es"><strong>Rate Phaser</strong></td><td class="en"><strong>Rate Phaser</strong></td>
+        <td class="es">Controla la velocidad del LFO de Phaser en tiempo real</td>
+        <td class="en">Controls Phaser LFO speed in real time</td>
+      </tr>
+      <tr>
+        <td class="es"><strong>Depth Phaser</strong></td><td class="en"><strong>Depth Phaser</strong></td>
+        <td class="es">Controla la profundidad del LFO de Phaser</td>
+        <td class="en">Controls Phaser LFO depth</td>
+      </tr>
+      <tr>
+        <td class="es"><strong>Wah / Phaser</strong></td><td class="en"><strong>Wah / Phaser</strong></td>
+        <td class="es">Modo Wah: controla directamente la frecuencia del filtro Phaser. El pedal reemplaza al oscilador (efecto tipo wah estático).</td>
+        <td class="en">Wah mode: directly controls the Phaser filter frequency. The pedal replaces the oscillator (static wah-type effect).</td>
+      </tr>
+      <tr>
+        <td class="es"><strong>Rate Tremolo</strong></td><td class="en"><strong>Rate Tremolo</strong></td>
+        <td class="es">Controla la velocidad del LFO de Tremolo en tiempo real</td>
+        <td class="en">Controls Tremolo LFO speed in real time</td>
+      </tr>
+      <tr>
+        <td class="es"><strong>Depth Tremolo</strong></td><td class="en"><strong>Depth Tremolo</strong></td>
+        <td class="es">Controla la profundidad del LFO de Tremolo</td>
+        <td class="en">Controls Tremolo LFO depth</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub es">Prioridad de control — "Último que se movió gana"</h3>
+  <h3 class="sub en">Control priority — "Last moved wins"</h3>
+
+  <p class="es">Cuando el pedal de expresión controla el Rate o Depth, el potenciómetro físico queda en espera. Para devolver el control al knob, simplemente girarlo más del <strong>20%</strong> de su recorrido — el control regresa al knob automáticamente.</p>
+  <p class="en">When the expression pedal controls Rate or Depth, the physical knob is overridden. To return control to the knob, simply rotate it more than <strong>20%</strong> of its range — control returns to the knob automatically.</p>
+
+  <div class="priority-chain">
+    <span class="prio-item">MIDI CC</span>
+    <span class="prio-arrow">›</span>
+    <span class="prio-item">Expression</span>
+    <span class="prio-arrow">›</span>
+    <span class="prio-item">Tap Tempo</span>
+    <span class="prio-arrow">›</span>
+    <span class="prio-item low">Knob físico</span>
+  </div>
+  <p class="small es">Cadena de prioridad para control de Rate y Depth. El de mayor prioridad en uso toma el control.</p>
+  <p class="small en">Priority chain for Rate and Depth control. The highest priority source in use takes control.</p>
+
+  <div class="box note">
+    <span class="es"><strong>Nota de uso — Expression ↔ MIDI CC:</strong> Si MIDI CC controla el Rate/Depth y luego se mueve el pedal de expresión, el pedal <em>no</em> recupera automáticamente el control (CC tiene prioridad fija sobre Expression). Para que el pedal tome el control, primero cancelar el override de CC (mover el knob &gt;20% o enviar PC 25).</span>
+    <span class="en"><strong>Usage note — Expression ↔ MIDI CC:</strong> If MIDI CC controls Rate/Depth and the expression pedal is moved, the pedal does <em>not</em> automatically recover control (CC has fixed priority over Expression). To have the pedal take control, first cancel the CC override (move the knob &gt;20% or send PC 25).</span>
+  </div>
+
+  <div class="box note">
+    <span class="es"><strong>Modo Wah:</strong> El rango de respuesta se ajusta automáticamente al recorrido del pedal. En los primeros usos, hacer un recorrido completo (talón → punta) ayuda al sistema a aprender el rango de voltaje del pedal conectado.</span>
+    <span class="en"><strong>Wah mode:</strong> The response range adjusts automatically to the pedal's travel. On first use, a full sweep (heel → toe) helps the system learn the voltage range of the connected pedal.</span>
+  </div>
+
+  <h3 class="sub es">Compatibilidad</h3>
+  <h3 class="sub en">Compatibility</h3>
+  <p class="es">Compatible con pedales de expresión TRS estándar (Roland EV-5, Boss FV-500L, Behringer FCV100, etc.). Conectar en CTRL R con un cable TRS estándar.</p>
+  <p class="en">Compatible with standard TRS expression pedals (Roland EV-5, Boss FV-500L, Behringer FCV100, etc.). Connect to CTRL R with a standard TRS cable.</p>
+
+  <div class="page-footer">
+    <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">10</span>
+    <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 8 — MENÚ DISPOSITIVO EXTERNO / EXTERNAL DEVICE MENU
+============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="ph-brand">TripMod</span>
+    <span class="ph-section es">Menú Dispositivo Externo</span>
+    <span class="ph-section en">External Device Menu</span>
+  </div>
+
+  <h2 class="sec es">Menú Dispositivo Externo</h2>
+  <h2 class="sec en">External Device Menu</h2>
+
+  <p class="es">Este menú configura qué tipo de dispositivo está conectado en CTRL R y qué controla. Se accede desde el pedal sin necesidad de dispositivos externos.</p>
+  <p class="en">This menu configures what type of device is connected to CTRL R and what it controls. It is accessed from the pedal without needing any external device.</p>
+
+  <h3 class="sub es">Cómo entrar al menú</h3>
+  <h3 class="sub en">How to enter the menu</h3>
+
+  <p class="es"><strong>Precondición:</strong> todos los efectos deben estar en bypass (ninguno activo).</p>
+  <p class="en"><strong>Precondition:</strong> all effects must be bypassed (none active).</p>
+
+  <ol class="steps">
+    <li><span class="sn">1</span>
+      <span class="es">Con todos los efectos en bypass, presionar <strong>ambos footswitches simultáneamente</strong> y mantenerlos <strong>2 segundos</strong>.</span>
+      <span class="en">With all effects bypassed, press <strong>both footswitches simultaneously</strong> and hold for <strong>2 seconds</strong>.</span>
+    </li>
+    <li><span class="sn">2</span>
+      <span class="es">Los LEDs parpadean 5 veces con el patrón del modo actual — confirmación de entrada.</span>
+      <span class="en">LEDs blink 5 times with the current mode pattern — confirms entry.</span>
+    </li>
+    <li><span class="sn">3</span>
+      <span class="es"><strong>Footswitch derecho</strong>: avanza al siguiente modo (LED cambia de patrón).</span>
+      <span class="en"><strong>Right footswitch</strong>: advance to next mode (LED pattern changes).</span>
+    </li>
+    <li><span class="sn">4</span>
+      <span class="es"><strong>Footswitch izquierdo</strong>: confirma y guarda. Los LEDs parpadean rápido como confirmación.</span>
+      <span class="en"><strong>Left footswitch</strong>: confirm and save. LEDs blink fast as confirmation.</span>
+    </li>
+  </ol>
+  <p class="small es">Sin confirmar, el menú sale por timeout (2 minutos) — 3 parpadeos de todos los LEDs y el pedal vuelve al modo que tenía antes de entrar al menú.</p>
+  <p class="small en">Without confirming, the menu times out (2 minutes) — 3 blinks of all LEDs and the pedal returns to the mode it had before entering the menu.</p>
+
+  <h3 class="sub es">Modos disponibles y sus patrones LED</h3>
+  <h3 class="sub en">Available modes and their LED patterns</h3>
+
+  <table>
+    <thead><tr>
+      <th>#</th>
+      <th class="es">Modo</th><th class="en">Mode</th>
+      <th class="es">LEDs (parpadean)</th><th class="en">LEDs (blinking)</th>
+      <th class="es">Descripción</th><th class="en">Description</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td>0</td>
+        <td class="es">Footswitch</td><td class="en">Footswitch</td>
+        <td><span class="leds"><span class="led led-off"></span><span class="led led-off"></span><span class="led led-blue"></span></span></td>
+        <td class="es">CTRL R actúa como footswitch (1/2/3 botones).</td>
+        <td class="en">CTRL R acts as footswitch (1/2/3 buttons).</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td class="es">Rate Phaser</td><td class="en">Rate Phaser</td>
+        <td><span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-off"></span></span></td>
+        <td class="es">Pedal de expresión controla Rate de Phaser</td>
+        <td class="en">Expression pedal controls Phaser Rate</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td class="es">Depth Phaser</td><td class="en">Depth Phaser</td>
+        <td><span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-blue"></span></span></td>
+        <td class="es">Pedal de expresión controla Depth de Phaser</td>
+        <td class="en">Expression pedal controls Phaser Depth</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td class="es">Wah / Phaser</td><td class="en">Wah / Phaser</td>
+        <td><span class="leds"><span class="led led-off"></span><span class="led led-off"></span><span class="led led-blue"></span></span> <span style="font-size:7pt">↔</span> <span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-off"></span></span></td>
+        <td class="es">Azul y Rosa <em>alternados</em>. Modo Wah: pedal mueve directamente el filtro Phaser</td>
+        <td class="en">Blue and Pink <em>alternating</em>. Wah mode: pedal moves the Phaser filter directly</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td class="es">Rate Tremolo</td><td class="en">Rate Tremolo</td>
+        <td><span class="leds"><span class="led led-green"></span><span class="led led-off"></span><span class="led led-off"></span></span></td>
+        <td class="es">Pedal de expresión controla Rate de Tremolo</td>
+        <td class="en">Expression pedal controls Tremolo Rate</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td class="es">Depth Tremolo</td><td class="en">Depth Tremolo</td>
+        <td><span class="leds"><span class="led led-green"></span><span class="led led-pink"></span><span class="led led-off"></span></span></td>
+        <td class="es">Pedal de expresión controla Depth de Tremolo</td>
+        <td class="en">Expression pedal controls Tremolo Depth</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td class="es">Disabled</td><td class="en">Disabled</td>
+        <td><span class="leds"><span class="led led-green"></span><span class="led led-pink"></span><span class="led led-blue"></span></span></td>
+        <td class="es">Los tres parpadean juntos. CTRL R ignorado — los knobs del panel tienen control total.</td>
+        <td class="en">All three blink together. CTRL R ignored — panel knobs have full control.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box note">
+    <span class="es"><strong>Modo Disabled por defecto:</strong> El pedal sale de fábrica con CTRL R deshabilitado (modo 6) para evitar falsos triggers si hay un cable conectado al encender. Cambiar al modo deseado en la primera configuración.</span>
+    <span class="en"><strong>Disabled by default:</strong> The pedal ships with CTRL R disabled (mode 6) to avoid false triggers if a cable is connected at power-on. Change to the desired mode on first setup.</span>
+  </div>
+
+  <div class="page-footer">
+    <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">11</span>
+    <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 9 — MIDI: PROGRAM CHANGES
+============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="ph-brand">TripMod</span>
+    <span class="ph-section es">MIDI — Program Changes</span>
+    <span class="ph-section en">MIDI — Program Changes</span>
+  </div>
+
+  <h2 class="sec es">Control MIDI — Program Changes</h2>
+  <h2 class="sec en">MIDI Control — Program Changes</h2>
+
+  <p class="es">El TripMod responde a 36 Program Changes (PC 0–35) en el canal MIDI configurado. Los cambios marcados con (*) se guardan en memoria.</p>
+  <p class="en">TripMod responds to 36 Program Changes (PC 0–35) on the configured MIDI channel. Changes marked (*) are saved to memory.</p>
+
+  <table>
+    <thead><tr>
+      <th>PC</th>
+      <th class="es">Función</th><th class="en">Function</th>
+    </tr></thead>
+    <tbody>
+      <tr class="cat-row"><td colspan="3"><span class="es">Activación de efectos</span><span class="en">Effect activation</span></td></tr>
+      <tr><td>0</td><td class="es">Bypass todos los efectos activos</td><td class="en">Bypass all active effects</td></tr>
+      <tr><td>1</td><td class="es">Phaser ON</td><td class="en">Phaser ON</td></tr>
+      <tr><td>2</td><td class="es">Phaser Bypass</td><td class="en">Phaser Bypass</td></tr>
+      <tr><td>3</td><td class="es">Flanger ON</td><td class="en">Flanger ON</td></tr>
+      <tr><td>4</td><td class="es">Flanger Bypass</td><td class="en">Flanger Bypass</td></tr>
+      <tr><td>5</td><td class="es">Tremolo ON</td><td class="en">Tremolo ON</td></tr>
+      <tr><td>6</td><td class="es">Tremolo Bypass</td><td class="en">Tremolo Bypass</td></tr>
+      <tr><td>35</td><td class="es">Phaser + Flanger ON (combo simultáneo)</td><td class="en">Phaser + Flanger ON (simultaneous combo)</td></tr>
+
+      <tr class="cat-row"><td colspan="3"><span class="es">Selección Rate A/B</span><span class="en">Rate A/B selection</span></td></tr>
+      <tr><td>7</td><td class="es">Phaser Rate A</td><td class="en">Phaser Rate A</td></tr>
+      <tr><td>8</td><td class="es">Phaser Rate B</td><td class="en">Phaser Rate B</td></tr>
+      <tr><td>9</td><td class="es">Flanger Rate A</td><td class="en">Flanger Rate A</td></tr>
+      <tr><td>10</td><td class="es">Flanger Rate B</td><td class="en">Flanger Rate B</td></tr>
+      <tr><td>11</td><td class="es">Tremolo Rate A</td><td class="en">Tremolo Rate A</td></tr>
+      <tr><td>12</td><td class="es">Tremolo Rate B</td><td class="en">Tremolo Rate B</td></tr>
+
+      <tr class="cat-row"><td colspan="3"><span class="es">LFO Waveform — Phaser (*)</span><span class="en">LFO Waveform — Phaser (*)</span></td></tr>
+      <tr><td>13</td><td class="es">Phaser LFO → Triangular Orgánica</td><td class="en">Phaser LFO → Triangular Orgánica</td></tr>
+      <tr><td>14</td><td class="es">Phaser LFO → Cuadrada</td><td class="en">Phaser LFO → Cuadrada</td></tr>
+      <tr><td>15</td><td class="es">Phaser LFO → Rampa Ascendente</td><td class="en">Phaser LFO → Rampa Ascendente</td></tr>
+      <tr><td>16</td><td class="es">Phaser LFO → Rampa Descendente</td><td class="en">Phaser LFO → Rampa Descendente</td></tr>
+      <tr><td>17</td><td class="es">Phaser LFO → Aleatoria</td><td class="en">Phaser LFO → Aleatoria</td></tr>
+
+      <tr class="cat-row"><td colspan="3"><span class="es">LFO Waveform — Tremolo (*)</span><span class="en">LFO Waveform — Tremolo (*)</span></td></tr>
+      <tr><td>18</td><td class="es">Tremolo LFO → Triangular Orgánica</td><td class="en">Tremolo LFO → Triangular Orgánica</td></tr>
+      <tr><td>19</td><td class="es">Tremolo LFO → Cuadrada</td><td class="en">Tremolo LFO → Cuadrada</td></tr>
+      <tr><td>20</td><td class="es">Tremolo LFO → Rampa Ascendente</td><td class="en">Tremolo LFO → Rampa Ascendente</td></tr>
+      <tr><td>21</td><td class="es">Tremolo LFO → Rampa Descendente</td><td class="en">Tremolo LFO → Rampa Descendente</td></tr>
+      <tr><td>22</td><td class="es">Tremolo LFO → Aleatoria</td><td class="en">Tremolo LFO → Aleatoria</td></tr>
+
+      <tr class="cat-row"><td colspan="3"><span class="es">Toggle forma Tremolo orgánico</span><span class="en">Tremolo organic waveform toggle</span></td></tr>
+      <tr><td>23</td><td class="es">Tremolo → Triangular Orgánica (solo en modo Triangular Orgánica)</td><td class="en">Tremolo → Triangular Orgánica (only in Triangular Orgánica mode)</td></tr>
+      <tr><td>24</td><td class="es">Tremolo → Cuadrada Orgánica (solo en modo Triangular Orgánica)</td><td class="en">Tremolo → Cuadrada Orgánica (only in Triangular Orgánica mode)</td></tr>
+
+      <tr class="cat-row"><td colspan="3"><span class="es">Expresión y control externo</span><span class="en">Expression and external control</span></td></tr>
+      <tr><td>25</td><td class="es">External Device (Footswitch/Expresión) Disable — knobs toman control total (*)</td><td class="en">External Device (Footswitch/Expression) Disable — knobs take full control (*)</td></tr>
+      <tr><td>26</td><td class="es">Reservado</td><td class="en">Reserved</td></tr>
+      <tr><td>27</td><td class="es">Tap Tempo Phaser — cada envío = un tap. Para definir el tempo, enviar dos PC 27 consecutivos.</td><td class="en">Phaser Tap Tempo — each send = one tap. To set the tempo, send two consecutive PC 27 messages.</td></tr>
+      <tr><td>28</td><td class="es">Tap Tempo Tremolo — cada envío = un tap. Para definir el tempo, enviar dos PC 28 consecutivos.</td><td class="en">Tremolo Tap Tempo — each send = one tap. To set the tempo, send two consecutive PC 28 messages.</td></tr>
+      <tr><td>29</td><td class="es">Expression → Rate Phaser (*)</td><td class="en">Expression → Rate Phaser (*)</td></tr>
+      <tr><td>30</td><td class="es">Expression → Depth Phaser (*)</td><td class="en">Expression → Depth Phaser (*)</td></tr>
+      <tr><td>31</td><td class="es">Expression → Wah/Phaser (*)</td><td class="en">Expression → Wah/Phaser (*)</td></tr>
+      <tr><td>32</td><td class="es">Expression → Rate Tremolo (*)</td><td class="en">Expression → Rate Tremolo (*)</td></tr>
+      <tr><td>33</td><td class="es">Expression → Depth Tremolo (*)</td><td class="en">Expression → Depth Tremolo (*)</td></tr>
+      <tr><td>34</td><td class="es">Expression → Footswitch (volver a modo footswitch) (*)</td><td class="en">Expression → Footswitch (return to footswitch mode) (*)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">12</span>
+    <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 10 — MIDI: CONTROL CHANGES
+============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="ph-brand">TripMod</span>
+    <span class="ph-section es">MIDI — Control Changes</span>
+    <span class="ph-section en">MIDI — Control Changes</span>
+  </div>
+
+  <h2 class="sec es">Control MIDI — Control Changes</h2>
+  <h2 class="sec en">MIDI Control — Control Changes</h2>
+
+  <p class="es">El TripMod responde a 5 Control Changes para ajuste continuo de Rate y Depth en tiempo real.</p>
+  <p class="en">TripMod responds to 5 Control Changes for real-time continuous Rate and Depth adjustment.</p>
+
+  <table>
+    <thead><tr>
+      <th>CC</th>
+      <th class="es">Función</th><th class="en">Function</th>
+      <th class="es">Rango</th><th class="en">Range</th>
+      <th class="es">Descripción</th><th class="en">Description</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>CC 20</strong></td>
+        <td class="es">Rate Phaser</td><td class="en">Phaser Rate</td>
+        <td>0–127</td>
+        <td class="es">Controla la velocidad del LFO de Phaser</td>
+        <td class="en">Controls Phaser LFO speed</td>
+      </tr>
+      <tr>
+        <td><strong>CC 21</strong></td>
+        <td class="es">Depth Phaser</td><td class="en">Phaser Depth</td>
+        <td>0–127</td>
+        <td class="es">Controla la profundidad del LFO de Phaser (simétrica desde el centro)</td>
+        <td class="en">Controls Phaser LFO depth (symmetric from center)</td>
+      </tr>
+      <tr>
+        <td><strong>CC 22</strong></td>
+        <td class="es">Wah / Expresión</td><td class="en">Wah / Expression</td>
+        <td>0–127</td>
+        <td class="es">Controla directamente la frecuencia del filtro Phaser (modo Wah MIDI)</td>
+        <td class="en">Directly controls Phaser filter frequency (MIDI Wah mode)</td>
+      </tr>
+      <tr>
+        <td><strong>CC 23</strong></td>
+        <td class="es">Rate Tremolo</td><td class="en">Tremolo Rate</td>
+        <td>0–127</td>
+        <td class="es">Controla la velocidad del LFO de Tremolo</td>
+        <td class="en">Controls Tremolo LFO speed</td>
+      </tr>
+      <tr>
+        <td><strong>CC 24</strong></td>
+        <td class="es">Depth Tremolo</td><td class="en">Tremolo Depth</td>
+        <td>0–127</td>
+        <td class="es">Controla la profundidad del LFO de Tremolo (proporcional desde 0)</td>
+        <td class="en">Controls Tremolo LFO depth (proportional from 0)</td>
+      </tr>
+      <tr>
+        <td><strong>CC 92</strong></td>
+        <td class="es">Depth Tremolo (alias)</td><td class="en">Tremolo Depth (alias)</td>
+        <td>0–127</td>
+        <td class="es">Alias de CC 24 — mismo comportamiento</td>
+        <td class="en">Alias for CC 24 — same behavior</td>
+      </tr>
+      <tr>
+        <td><strong>CC 95</strong></td>
+        <td class="es">Depth Phaser (alias)</td><td class="en">Phaser Depth (alias)</td>
+        <td>0–127</td>
+        <td class="es">Alias de CC 21 — mismo comportamiento</td>
+        <td class="en">Alias for CC 21 — same behavior</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub es">Cadena de prioridad</h3>
+  <h3 class="sub en">Priority chain</h3>
+
+  <div class="priority-chain">
+    <span class="prio-item">MIDI CC</span>
+    <span class="prio-arrow">›</span>
+    <span class="prio-item">Expression Pedal</span>
+    <span class="prio-arrow">›</span>
+    <span class="prio-item">Tap Tempo</span>
+    <span class="prio-arrow">›</span>
+    <span class="prio-item low">Knob físico</span>
+  </div>
+
+  <p class="es">MIDI CC tiene la prioridad más alta. Una vez que un CC toma el control, la fuente de menor prioridad queda en espera hasta que se cumple la condición de retorno.</p>
+  <p class="en">MIDI CC has the highest priority. Once a CC takes control, lower-priority sources wait until the return condition is met.</p>
+
+  <h3 class="sub es">Comportamiento "último que gana"</h3>
+  <h3 class="sub en">"Last one wins" behavior</h3>
+
+  <table>
+    <thead><tr>
+      <th class="es">Transición</th><th class="en">Transition</th>
+      <th class="es">Condición de retorno</th><th class="en">Return condition</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="es">CC Rate → Knob físico</td><td class="en">CC Rate → Physical knob</td>
+        <td class="es">Girar el knob más del 20% de su recorrido</td>
+        <td class="en">Rotate the knob more than 20% of its range</td>
+      </tr>
+      <tr>
+        <td class="es">CC Rate → Tap Tempo</td><td class="en">CC Rate → Tap Tempo</td>
+        <td class="es">Realizar el primer tap — cancela el override de CC Rate</td>
+        <td class="en">Perform the first tap — cancels the CC Rate override</td>
+      </tr>
+      <tr>
+        <td class="es">Tap Tempo → CC Rate</td><td class="en">Tap Tempo → CC Rate</td>
+        <td class="es">Enviar un nuevo mensaje CC Rate — toma el control inmediatamente</td>
+        <td class="en">Send a new CC Rate message — takes control immediately</td>
+      </tr>
+      <tr>
+        <td class="es">CC Rate → Expression</td><td class="en">CC Rate → Expression</td>
+        <td class="es">El pedal de expresión <em>no</em> cancela automáticamente el CC (ver pág. 10 — Pedal de Expresión). Usar PC 25 o mover la perilla &gt;20% para liberar.</td>
+        <td class="en">The expression pedal does <em>not</em> automatically cancel CC (see p. 10 — Expression Pedal). Use PC 25 or move the knob &gt;20% to release.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">13</span>
+    <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 11 — MENÚ CANAL MIDI / MIDI CHANNEL MENU
+============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="ph-brand">TripMod</span>
+    <span class="ph-section es">Menú Canal MIDI</span>
+    <span class="ph-section en">MIDI Channel Menu</span>
+  </div>
+
+  <h2 class="sec es">Menú Canal MIDI</h2>
+  <h2 class="sec en">MIDI Channel Menu</h2>
+
+  <p class="es">El canal MIDI se configura al encender el pedal. El canal seleccionado se guarda en memoria y persiste al apagar.</p>
+  <p class="en">The MIDI channel is configured at power-on. The selected channel is saved to memory and persists after power-off.</p>
+
+  <h3 class="sub es">Procedimiento</h3>
+  <h3 class="sub en">Procedure</h3>
+
+  <ol class="steps">
+    <li><span class="sn">1</span>
+      <span class="es">Mantener presionado el <strong>footswitch derecho del panel</strong> mientras se enciende el pedal.</span>
+      <span class="en">Hold the <strong>right panel footswitch</strong> while powering on the pedal.</span>
+    </li>
+    <li><span class="sn">2</span>
+      <span class="es">El LED rosa (Flanger) parpadea por 2 segundos. <strong>Mantener presionado</strong> hasta que parpadee 5 veces rápido alternando colores — confirmación de entrada al menú.</span>
+      <span class="en">The pink (Flanger) LED blinks for 2 seconds. <strong>Keep holding</strong> until it blinks 5 times fast with alternating colors — confirms menu entry.</span>
+    </li>
+    <li><span class="sn">3</span>
+      <span class="es">Los LEDs muestran el canal actual. <strong>Footswitch derecho</strong>: siguiente canal (1→16→1 circular).</span>
+      <span class="en">LEDs show the current channel. <strong>Right footswitch</strong>: next channel (1→16→1 circular).</span>
+    </li>
+    <li><span class="sn">4</span>
+      <span class="es"><strong>Footswitch izquierdo</strong>: confirmar y guardar. El pedal continúa el arranque normal.</span>
+      <span class="en"><strong>Left footswitch</strong>: confirm and save. The pedal continues normal boot.</span>
+    </li>
+  </ol>
+  <p class="small es">Si se suelta el footswitch derecho antes de los 2 segundos, el menú se cancela y el pedal arranca con el canal anterior.</p>
+  <p class="small en">If the right footswitch is released before 2 seconds, the menu is cancelled and the pedal boots with the previous channel.</p>
+
+  <h3 class="sub es">Patrones LED por canal</h3>
+  <h3 class="sub en">LED patterns by channel</h3>
+
+  <div class="two-col">
+    <table>
+      <thead><tr>
+        <th class="es">Canal</th><th class="en">Channel</th>
+        <th class="es">Patrón LED</th><th class="en">LED Pattern</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>CH 1</td><td><span class="leds"><span class="led led-off"></span><span class="led led-off"></span><span class="led led-blue"></span></span></td><td class="es">Azul fijo</td><td class="en">Blue steady</td></tr>
+        <tr><td>CH 2</td><td><span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-off"></span></span></td><td class="es">Rosa fijo</td><td class="en">Pink steady</td></tr>
+        <tr><td>CH 3</td><td><span class="leds"><span class="led led-green"></span><span class="led led-off"></span><span class="led led-off"></span></span></td><td class="es">Verde fijo</td><td class="en">Green steady</td></tr>
+        <tr><td>CH 4</td><td><span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-blue"></span></span></td><td class="es">Azul + Rosa fijo</td><td class="en">Blue + Pink steady</td></tr>
+        <tr><td>CH 5</td><td><span class="leds"><span class="led led-green"></span><span class="led led-off"></span><span class="led led-blue"></span></span></td><td class="es">Verde + Azul fijo</td><td class="en">Green + Blue steady</td></tr>
+        <tr><td>CH 6</td><td><span class="leds"><span class="led led-green"></span><span class="led led-pink"></span><span class="led led-blue"></span></span></td><td class="es">Los tres fijo</td><td class="en">All three steady</td></tr>
+        <tr><td>CH 7</td><td><span class="leds"><span class="led led-off"></span><span class="led led-off"></span><span class="led led-blue"></span></span></td><td class="es">Azul parpadeante</td><td class="en">Blue blinking</td></tr>
+        <tr><td>CH 8</td><td><span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-off"></span></span></td><td class="es">Rosa parpadeante</td><td class="en">Pink blinking</td></tr>
+      </tbody>
+    </table>
+    <table>
+      <thead><tr>
+        <th class="es">Canal</th><th class="en">Channel</th>
+        <th class="es">Patrón LED</th><th class="en">LED Pattern</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>CH 9</td><td><span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-blue"></span></span></td><td class="es">Azul + Rosa parpadeante</td><td class="en">Blue + Pink blinking</td></tr>
+        <tr><td>CH 10</td><td><span class="leds"><span class="led led-green"></span><span class="led led-off"></span><span class="led led-off"></span></span></td><td class="es">Verde parpadeante</td><td class="en">Green blinking</td></tr>
+        <tr><td>CH 11</td><td><span class="leds"><span class="led led-green"></span><span class="led led-off"></span><span class="led led-blue"></span></span></td><td class="es">Verde + Azul parpadeante</td><td class="en">Green + Blue blinking</td></tr>
+        <tr><td>CH 12</td><td><span class="leds"><span class="led led-green"></span><span class="led led-pink"></span><span class="led led-off"></span></span></td><td class="es">Verde + Rosa parpadeante</td><td class="en">Green + Pink blinking</td></tr>
+        <tr><td>CH 13</td><td><span class="leds"><span class="led led-green"></span><span class="led led-pink"></span><span class="led led-blue"></span></span></td><td class="es">Los tres parpadeante</td><td class="en">All three blinking</td></tr>
+        <tr><td>CH 14</td><td><span class="leds"><span class="led led-off"></span><span class="led led-off"></span><span class="led led-blue"></span></span> <span style="font-size:7pt">↔</span> <span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-off"></span></span></td><td class="es">Azul ↔ Rosa alternado</td><td class="en">Blue ↔ Pink alternating</td></tr>
+        <tr><td>CH 15</td><td><span class="leds"><span class="led led-off"></span><span class="led led-off"></span><span class="led led-blue"></span></span> <span style="font-size:7pt">↔</span> <span class="leds"><span class="led led-green"></span><span class="led led-off"></span><span class="led led-off"></span></span></td><td class="es">Azul ↔ Verde alternado</td><td class="en">Blue ↔ Green alternating</td></tr>
+        <tr><td>CH 16</td><td><span class="leds"><span class="led led-green"></span><span class="led led-off"></span><span class="led led-off"></span></span> <span style="font-size:7pt">↔</span> <span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-off"></span></span></td><td class="es">Verde ↔ Rosa alternado</td><td class="en">Green ↔ Pink alternating</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="small es"><span class="leds"><span class="led led-blue"></span></span> Azul = Phaser &nbsp;·&nbsp; <span class="leds"><span class="led led-pink"></span></span> Rosa = Flanger &nbsp;·&nbsp; <span class="leds"><span class="led led-green"></span></span> Verde = Tremolo &nbsp;·&nbsp; Canal por defecto: <strong>CH 1</strong></p>
+  <p class="small en"><span class="leds"><span class="led led-blue"></span></span> Blue = Phaser &nbsp;·&nbsp; <span class="leds"><span class="led led-pink"></span></span> Pink = Flanger &nbsp;·&nbsp; <span class="leds"><span class="led led-green"></span></span> Green = Tremolo &nbsp;·&nbsp; Default channel: <strong>CH 1</strong></p>
+
+  <div class="page-footer">
+    <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">14</span>
+    <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 12 — FACTORY RESET
+============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="ph-brand">TripMod</span>
+    <span class="ph-section es">Factory Reset</span>
+    <span class="ph-section en">Factory Reset</span>
+  </div>
+
+  <h2 class="sec es">Factory Reset</h2>
+  <h2 class="sec en">Factory Reset</h2>
+
+  <p class="es">El Factory Reset restaura todos los parámetros guardados a los valores de fábrica. No afecta al firmware.</p>
+  <p class="en">Factory Reset restores all saved parameters to factory defaults. It does not affect the firmware.</p>
+
+  <h3 class="sub es">Procedimiento</h3>
+  <h3 class="sub en">Procedure</h3>
+
+  <ol class="steps">
+    <li><span class="sn">1</span>
+      <span class="es">Mantener presionado el <strong>footswitch izquierdo del panel</strong> mientras se enciende el pedal.</span>
+      <span class="en">Hold the <strong>left panel footswitch</strong> while powering on the pedal.</span>
+    </li>
+    <li><span class="sn">2</span>
+      <span class="es">Mantener presionado durante <strong>más de 3 segundos</strong>, luego <strong>soltar</strong> el footswitch.</span>
+      <span class="en">Keep holding for <strong>more than 3 seconds</strong>, then <strong>release</strong> the footswitch.</span>
+    </li>
+    <li><span class="sn">3</span>
+      <span class="es">El <strong>LED azul</strong> parpadea 3 veces — confirmación de reset ejecutado. El pedal completa el arranque normal con los valores de fábrica.</span>
+      <span class="en">The <strong>blue LED</strong> blinks 3 times — confirms the reset was executed. The pedal completes normal boot with factory values.</span>
+    </li>
+  </ol>
+
+  <div class="box warn">
+    <span class="es"><strong>Atención:</strong> El Factory Reset borra permanentemente todos los ajustes guardados. Esta operación no se puede deshacer.</span>
+    <span class="en"><strong>Warning:</strong> Factory Reset permanently erases all saved settings. This operation cannot be undone.</span>
+  </div>
+
+  <h3 class="sub es">Qué se resetea</h3>
+  <h3 class="sub en">What gets reset</h3>
+
+  <table>
+    <thead><tr>
+      <th class="es">Parámetro</th><th class="en">Parameter</th>
+      <th class="es">Valor de fábrica</th><th class="en">Factory default</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="es">Canal MIDI</td><td class="en">MIDI channel</td>
+        <td>CH 1</td>
+      </tr>
+      <tr>
+        <td class="es">LFO Waveform Phaser</td><td class="en">Phaser LFO Waveform</td>
+        <td>Triangular Orgánica</td>
+      </tr>
+      <tr>
+        <td class="es">LFO Waveform Tremolo</td><td class="en">Tremolo LFO Waveform</td>
+        <td>Triangular Orgánica</td>
+      </tr>
+      <tr>
+        <td class="es">Modo dispositivo externo (CTRL R)</td><td class="en">External device mode (CTRL R)</td>
+        <td class="es">Disabled (knobs tienen control total)</td>
+        <td class="en">Disabled (knobs have full control)</td>
+      </tr>
+      <tr>
+        <td class="es">Función footswitch externo A/B/C</td><td class="en">External footswitch A/B/C function</td>
+        <td class="es">A=Phaser ON/OFF · B=Rate PH+FL · C=Rate TR</td>
+        <td class="en">A=Phaser ON/OFF · B=Rate PH+FL · C=Rate TR</td>
+      </tr>
+      <tr>
+        <td class="es">Función footswitch izquierdo</td><td class="en">Left footswitch function</td>
+        <td class="es">Effect Toggle (Tremolo)</td>
+        <td class="en">Effect Toggle (Tremolo)</td>
+      </tr>
+      <tr>
+        <td class="es">Efecto asignado al footswitch derecho</td><td class="en">Effect assigned to right footswitch</td>
+        <td>Phaser</td>
+      </tr>
+      <tr>
+        <td class="es">Estados Rate A/B por efecto</td><td class="en">Rate A/B states per effect</td>
+        <td class="es">Rate A activo en todos</td>
+        <td class="en">Rate A active on all</td>
+      </tr>
+      <tr>
+        <td class="es">Efectos activos al encender</td><td class="en">Effects active at power-on</td>
+        <td class="es">Todos en bypass</td>
+        <td class="en">All bypassed</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div class="page-footer">
+    <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">15</span>
+    <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 13 — ESPECIFICACIONES TÉCNICAS / TECHNICAL SPECS
+============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="ph-brand">TripMod</span>
+    <span class="ph-section es">Especificaciones Técnicas</span>
+    <span class="ph-section en">Technical Specifications</span>
+  </div>
+
+  <h2 class="sec es">Especificaciones Técnicas</h2>
+  <h2 class="sec en">Technical Specifications</h2>
+
+  <div class="box warn" style="margin-bottom:5mm;">
+    <span class="es"><em>Esta sección se completará con los valores medidos y finales del hardware antes de la versión de producción del manual.</em></span>
+    <span class="en"><em>This section will be completed with measured and final hardware values before the production version of the manual.</em></span>
+  </div>
+
+  <h3 class="sub es">Audio</h3>
+  <h3 class="sub en">Audio</h3>
+  <table>
+    <thead><tr>
+      <th class="es">Parámetro</th><th class="en">Parameter</th>
+      <th class="es">Valor</th><th class="en">Value</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="es">Impedancia de entrada</td><td class="en">Input impedance</td>
+        <td class="es">A medir</td><td class="en">To be measured</td>
+      </tr>
+      <tr>
+        <td class="es">Impedancia de salida</td><td class="en">Output impedance</td>
+        <td class="es">A medir</td><td class="en">To be measured</td>
+      </tr>
+      <tr>
+        <td class="es">Nivel de señal máximo</td><td class="en">Maximum signal level</td>
+        <td class="es">A medir</td><td class="en">To be measured</td>
+      </tr>
+      <tr>
+        <td class="es">Tipo de bypass</td><td class="en">Bypass type</td>
+        <td class="es">Relé independiente por efecto (true relay bypass con Anti-Pop)</td>
+        <td class="en">Independent relay per effect (true relay bypass with Anti-Pop)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub es">Alimentación</h3>
+  <h3 class="sub en">Power</h3>
+  <table>
+    <thead><tr>
+      <th class="es">Parámetro</th><th class="en">Parameter</th>
+      <th class="es">Valor</th><th class="en">Value</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="es">Tensión de alimentación</td><td class="en">Supply voltage</td>
+        <td>9V DC (máx. 12V, &gt;250mA, regulación ≥5%)</td>
+      </tr>
+      <tr>
+        <td class="es">Polaridad</td><td class="en">Polarity</td>
+        <td class="es">Centro negativo (estándar pedal)</td><td class="en">Center negative (standard pedal)</td>
+      </tr>
+      <tr>
+        <td class="es">Consumo de corriente</td><td class="en">Current consumption</td>
+        <td class="es">A medir</td><td class="en">To be measured</td>
+      </tr>
+      <tr>
+        <td class="es">Conector</td><td class="en">Connector</td>
+        <td class="es">Barrel 5.5mm/2.1mm</td><td class="en">5.5mm/2.1mm barrel</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub es">Control</h3>
+  <h3 class="sub en">Control</h3>
+  <table>
+    <thead><tr>
+      <th class="es">Parámetro</th><th class="en">Parameter</th>
+      <th class="es">Valor</th><th class="en">Value</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="es">MIDI In</td><td class="en">MIDI In</td>
+        <td class="es">TRS Tipo A (estándar MIDI TRS-A)</td>
+        <td class="en">TRS Type A (MIDI TRS-A standard)</td>
+      </tr>
+      <tr>
+        <td class="es">Canales MIDI</td><td class="en">MIDI channels</td>
+        <td>1–16 <span class="es">(configurable en boot)</span><span class="en">(configurable at boot)</span></td>
+      </tr>
+      <tr>
+        <td class="es">Program Changes</td><td class="en">Program Changes</td>
+        <td>PC 0–35 (36 <span class="es">comandos</span><span class="en">commands</span>)</td>
+      </tr>
+      <tr>
+        <td class="es">Control Changes</td><td class="en">Control Changes</td>
+        <td>CC 20, 21, 22, 23, 24<br><span style="font-size:7.5pt; color:#666;">alias: CC 92 (Tremolo Depth), CC 95 (Phaser Depth)</span></td>
+      </tr>
+      <tr>
+        <td class="es">Formas de onda LFO</td><td class="en">LFO Waveforms</td>
+        <td class="es">Phaser y Tremolo — 6 formas de onda (Triangular Orgánica, Cuadrada Orgánica, Cuadrada, Rampa Ascendente, Rampa Descendente, Aleatoria)</td>
+        <td class="en">Phaser and Tremolo — 6 waveforms (Triangular Orgánica, Cuadrada Orgánica, Cuadrada, Rampa Ascendente, Rampa Descendente, Aleatoria)</td>
+      </tr>
+      <tr>
+        <td class="es">Rango LFO</td><td class="en">LFO range</td>
+        <td class="es">~0.6 Hz – 11 Hz (según efecto y calibración)</td>
+        <td class="en">~0.6 Hz – 11 Hz (depending on effect and calibration)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub es">Físico</h3>
+  <h3 class="sub en">Physical</h3>
+  <table>
+    <thead><tr>
+      <th class="es">Parámetro</th><th class="en">Parameter</th>
+      <th class="es">Valor</th><th class="en">Value</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="es">Dimensiones</td><td class="en">Dimensions</td>
+        <td class="es">A confirmar</td><td class="en">To be confirmed</td>
+      </tr>
+      <tr>
+        <td class="es">Peso</td><td class="en">Weight</td>
+        <td class="es">A confirmar</td><td class="en">To be confirmed</td>
+      </tr>
+      <tr>
+        <td class="es">Enclosure</td><td class="en">Enclosure</td>
+        <td class="es">Aluminio anodizado</td><td class="en">Anodized aluminum</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">16</span>
+    <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 14 — GARANTÍA Y CONTACTO / WARRANTY AND CONTACT
+============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="ph-brand">TripMod</span>
+    <span class="ph-section es">Garantía y Contacto</span>
+    <span class="ph-section en">Warranty and Contact</span>
+  </div>
+
+  <h2 class="sec es">Garantía</h2>
+  <h2 class="sec en">Warranty</h2>
+
+  <div class="es">
+    <p>RGR Effects &amp; RGR Electronic Engineering garantiza este producto contra defectos de materiales y mano de obra bajo uso normal por un período de <strong>[duración a definir]</strong> desde la fecha de compra original.</p>
+    <p>Esta garantía cubre únicamente defectos de fabricación. No cubre daños causados por uso inapropiado, accidentes, modificaciones no autorizadas, desgaste normal, o daños por agua o electricidad.</p>
+    <p>Para hacer válida la garantía, el producto debe ser retornado a RGR en su embalaje original o equivalente, con prueba de compra.</p>
+  </div>
+  <div class="en">
+    <p>RGR Effects &amp; RGR Electronic Engineering warrants this product against defects in materials and workmanship under normal use for a period of <strong>[duration to be defined]</strong> from the date of original purchase.</p>
+    <p>This warranty covers manufacturing defects only. It does not cover damage caused by misuse, accidents, unauthorized modifications, normal wear, or water/electrical damage.</p>
+    <p>To make a warranty claim, the product must be returned to RGR in its original or equivalent packaging, with proof of purchase.</p>
+  </div>
+
+  <hr class="dash">
+
+  <h2 class="sec es">Contacto</h2>
+  <h2 class="sec en">Contact</h2>
+
+  <div style="margin-top:3mm;">
+    <h3 class="sub es">Soporte técnico</h3>
+    <h3 class="sub en">Technical support</h3>
+    <p class="es">Para consultas técnicas, reparaciones y garantía:</p>
+    <p class="en">For technical questions, repairs and warranty:</p>
+    <ul class="bullet">
+      <li class="es">Email: <strong>[email a definir]</strong></li>
+      <li class="en">Email: <strong>[email to be defined]</strong></li>
+      <li class="es">Web: <strong>[web a definir]</strong></li>
+      <li class="en">Web: <strong>[web to be defined]</strong></li>
+    </ul>
+  </div>
+
+  <hr class="dash" style="margin-top:8mm;">
+
+  <div style="text-align:center; margin-top:6mm;">
+    <img src="assets/logo-rgr.png" alt="RGR" style="height:14mm; width:auto; display:inline-block;">
+    <div style="font-size:8pt; color:#666; margin-top:2mm; letter-spacing:1px; text-transform:uppercase;">
+      <span class="es">Effects &amp; Electronic Engineering</span>
+      <span class="en">Effects &amp; Electronic Engineering</span>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top:10mm; font-size:7.5pt; color:#aaa;">
+    <span class="es">TripMod — Phaser · Flanger · Tremolo — Manual de Usuario</span>
+    <span class="en">TripMod — Phaser · Flanger · Tremolo — User Manual</span>
+  </div>
+
+  <div class="page-footer">
+    <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">17</span>
+    <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
+  </div>
+</div>
+
+</body>
+</html>
