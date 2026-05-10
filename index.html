@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -97,8 +97,22 @@
       -webkit-print-color-adjust: exact;
     }
     img {
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: high-quality;
+      image-rendering: auto;
+    }
+
+    /* On screen (PC + mobile via QR): lift mm height caps so images
+       render at full resolution. !important overrides inline styles. */
+    @media screen {
+      .panel-section-img img,
+      .panel-section-single img,
+      .panel-wrap img,
+      .page div[style*="text-align:center"] img,
+      .page div[style*="text-align: center"] img {
+        max-height: none !important;
+        max-width: 100% !important;
+        width: auto !important;
+        height: auto !important;
+      }
     }
 
     /* ============================================================
@@ -108,7 +122,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1.5px solid #1a1a1a;
+      border-bottom: 1px solid #ddd;
       padding-bottom: 2.5mm;
       margin-bottom: 5mm;
     }
@@ -117,11 +131,17 @@
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: #1a1a1a;
+      color: #999;
+    }
+    .ph-logo-tripmod {
+      height: 4.5mm;
+      width: auto;
+      display: block;
+      filter: grayscale(100%) opacity(35%);
     }
     .ph-section {
       font-size: 7.5pt;
-      color: #666;
+      color: #aaa;
       letter-spacing: 0.5px;
     }
 
@@ -133,10 +153,10 @@
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      border-top: 1px solid #ccc;
+      border-top: 1px solid #ddd;
       padding-top: 2mm;
       font-size: 7pt;
-      color: #aaa;
+      color: #bbb;
     }
     .footer-logo-rgr {
       height: 5.5mm;
@@ -559,70 +579,109 @@
       font-size: 8pt;
       font-family: inherit;
     }
+
+    /* TOC tables use display:table (not block) when visible */
+    body.lang-es table.toc-table.es { display: table; }
+    body.lang-en table.toc-table.en { display: table; }
+    /* Images lang visibility — block elements shown as block */
+    body.lang-es img.es { display: block; }
+    body.lang-en img.en { display: block; }
+    img.es, img.en { display: none; }
   </style>
 </head>
 <body class="lang-es">
 
+<button class="lang-btn no-print" onclick="toggleLang()">EN / ES</button>
+
 <script>
-(function(){
-  var s=localStorage.getItem('tripmod-lang');
-  var l=s||((navigator.language||'es').toLowerCase().startsWith('en')?'en':'es');
-  document.body.className='lang-'+l;
-})();
-</script>
-<button id="lang-btn" class="lang-btn no-print" onclick="toggleLang()">EN</button>
-<script>
-(function(){
-  var btn=document.getElementById('lang-btn');
-  if(btn) btn.textContent=document.body.classList.contains('lang-es')?'EN':'ES';
-})();
-window.toggleLang=function(){
-  var n=document.body.classList.contains('lang-es')?'en':'es';
-  document.body.classList.remove('lang-es','lang-en');
-  document.body.classList.add('lang-'+n);
-  localStorage.setItem('tripmod-lang',n);
-  var btn=document.getElementById('lang-btn');
-  if(btn) btn.textContent=n==='es'?'EN':'ES';
-};
+  function toggleLang() {
+    document.body.classList.toggle('lang-es');
+    document.body.classList.toggle('lang-en');
+  }
 </script>
 
 <!-- ============================================================
      PÁGINA 1 — PORTADA / COVER
 ============================================================ -->
+<div class="page" style="padding:0; overflow:hidden;">
+  <img src="assets/caratula.png" alt="TripMod — Manual de Usuario / User Manual"
+       style="width:100%; height:297mm; object-fit:cover; display:block;">
+</div>
+
+<!-- ============================================================
+     PÁGINA 2 — ÍNDICE / TABLE OF CONTENTS
+============================================================ -->
 <div class="page">
-  <div class="cover-page">
+  <div class="page-header">
+    <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
+    <span class="ph-section es">Índice</span>
+    <span class="ph-section en">Table of Contents</span>
+  </div>
 
-    <!-- TOP: TripMod logo + PH-FL-TR Analog Effects -->
-    <div class="cover-top-block">
-      <img src="assets/logotipo-tripmod.png" alt="TripMod" class="cover-logo-tripmod">
-      <img src="assets/ph-fl-tr-analog-effects.png" alt="Phaser · Flanger · Tremolo Analog Effects" class="cover-logo-phfx">
-    </div>
+  <h2 class="sec-front es">Índice</h2>
+  <h2 class="sec-front en">Table of Contents</h2>
 
-    <!-- MIDDLE: foto full-bleed con overlay lila -->
-    <div class="cover-photo-wrap">
-      <img src="assets/foto-portada-1.png" alt="">
-      <div class="cover-photo-overlay"></div>
-    </div>
+  <style>
+    .toc-table { width:100%; border-collapse:collapse; margin-top:3mm; }
+    .toc-table tr td { padding: 1.6mm 0; font-size:9pt; border:none; }
+    .toc-table tr td:first-child { width:8mm; color:#888; font-size:8pt; }
+    .toc-table tr td:nth-child(2) { padding-left:1mm; }
+    .toc-table tr td:last-child { text-align:right; color:#888; font-size:8.5pt; width:10mm; }
+    .toc-dots { flex:1; border-bottom:1px dotted #ccc; margin:0 2mm; display:inline-block; min-width:5mm; }
+    .toc-row-front { color:#444; }
+    .toc-row-sec { color:#1a1a1a; font-weight:600; }
+    .toc-row td { display:flex; align-items:baseline; }
+  </style>
 
-    <!-- BOTTOM: Manual de Usuario + logo RGR + Effects -->
-    <div class="cover-bottom-block">
-      <div class="cover-subtitle-bottom es">Manual de Usuario — v1.0</div>
-      <div class="cover-subtitle-bottom en">User Manual — v1.0</div>
-      <div class="cover-rgr-wrap">
-        <img src="assets/logo-rgr.png" alt="RGR" class="cover-logo-rgr-bottom">
-        <span class="cover-rgr-effects">Effects</span>
-      </div>
-    </div>
+  <table class="toc-table es">
+    <tr><td></td><td><span>Precauciones de Seguridad</span><span class="toc-dots"></span></td><td>3</td></tr>
+    <tr><td><strong>1.</strong></td><td><span>Panel Frontal</span><span class="toc-dots"></span></td><td>4</td></tr>
+    <tr><td><strong>2.</strong></td><td><span>Panel Trasero</span><span class="toc-dots"></span></td><td>6</td></tr>
+    <tr><td><strong>3.</strong></td><td><span>Arquitectura del Sistema</span><span class="toc-dots"></span></td><td>7</td></tr>
+    <tr><td><strong>4.</strong></td><td><span>Operación Básica</span><span class="toc-dots"></span></td><td>8</td></tr>
+    <tr><td><strong>5.</strong></td><td><span>Formas de Onda LFO</span><span class="toc-dots"></span></td><td>9</td></tr>
+    <tr><td><strong>6.</strong></td><td><span>Footswitch Externo — CTRL R</span><span class="toc-dots"></span></td><td>10</td></tr>
+    <tr><td><strong>7.</strong></td><td><span>Pedal de Expresión — CTRL R</span><span class="toc-dots"></span></td><td>11</td></tr>
+    <tr><td><strong>8.</strong></td><td><span>Menú Dispositivo Externo</span><span class="toc-dots"></span></td><td>12</td></tr>
+    <tr><td><strong>9.</strong></td><td><span>Control MIDI — Program Changes</span><span class="toc-dots"></span></td><td>13</td></tr>
+    <tr><td><strong>10.</strong></td><td><span>Control MIDI — Control Changes</span><span class="toc-dots"></span></td><td>14</td></tr>
+    <tr><td><strong>11.</strong></td><td><span>Menú Canal MIDI</span><span class="toc-dots"></span></td><td>15</td></tr>
+    <tr><td><strong>12.</strong></td><td><span>Reseteo de Fábrica</span><span class="toc-dots"></span></td><td>16</td></tr>
+    <tr><td><strong>13.</strong></td><td><span>Especificaciones Técnicas</span><span class="toc-dots"></span></td><td>17</td></tr>
+    <tr><td><strong>14.</strong></td><td><span>Garantía y Contacto</span><span class="toc-dots"></span></td><td>18</td></tr>
+  </table>
 
+  <table class="toc-table en">
+    <tr><td></td><td><span>Safety Instructions</span><span class="toc-dots"></span></td><td>3</td></tr>
+    <tr><td><strong>1.</strong></td><td><span>Front Panel</span><span class="toc-dots"></span></td><td>4</td></tr>
+    <tr><td><strong>2.</strong></td><td><span>Rear Panel</span><span class="toc-dots"></span></td><td>6</td></tr>
+    <tr><td><strong>3.</strong></td><td><span>System Architecture</span><span class="toc-dots"></span></td><td>7</td></tr>
+    <tr><td><strong>4.</strong></td><td><span>Basic Operation</span><span class="toc-dots"></span></td><td>8</td></tr>
+    <tr><td><strong>5.</strong></td><td><span>LFO Waveforms</span><span class="toc-dots"></span></td><td>9</td></tr>
+    <tr><td><strong>6.</strong></td><td><span>External Footswitch — CTRL R</span><span class="toc-dots"></span></td><td>10</td></tr>
+    <tr><td><strong>7.</strong></td><td><span>Expression Pedal — CTRL R</span><span class="toc-dots"></span></td><td>11</td></tr>
+    <tr><td><strong>8.</strong></td><td><span>External Device Menu</span><span class="toc-dots"></span></td><td>12</td></tr>
+    <tr><td><strong>9.</strong></td><td><span>MIDI Control — Program Changes</span><span class="toc-dots"></span></td><td>13</td></tr>
+    <tr><td><strong>10.</strong></td><td><span>MIDI Control — Control Changes</span><span class="toc-dots"></span></td><td>14</td></tr>
+    <tr><td><strong>11.</strong></td><td><span>MIDI Channel Menu</span><span class="toc-dots"></span></td><td>15</td></tr>
+    <tr><td><strong>12.</strong></td><td><span>Factory Reset</span><span class="toc-dots"></span></td><td>16</td></tr>
+    <tr><td><strong>13.</strong></td><td><span>Technical Specifications</span><span class="toc-dots"></span></td><td>17</td></tr>
+    <tr><td><strong>14.</strong></td><td><span>Warranty &amp; Contact</span><span class="toc-dots"></span></td><td>18</td></tr>
+  </table>
+
+  <div class="page-footer">
+    <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">2</span>
+    <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 2 — PRECAUCIONES / SAFETY
+     PÁGINA 3 — PRECAUCIONES / SAFETY
 ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span class="ph-brand">TripMod</span>
+    <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Precauciones</span>
     <span class="ph-section en">Safety</span>
   </div>
@@ -631,8 +690,8 @@ window.toggleLang=function(){
   <div class="safety-intro">
     <p class="es"><strong>Gracias por adquirir el TripMod.</strong> Este manual te guiará a través de todas las funciones del pedal. Léelo completo antes de comenzar a usarlo para garantizar un uso correcto y seguro. ¡Que disfrutes el sonido!</p>
     <p class="en"><strong>Thank you for purchasing the TripMod.</strong> This manual will guide you through all the pedal's functions. Read it completely before use to ensure correct and safe operation. Enjoy the sound!</p>
-    <p class="es small">— Reinaldo González Reyes, RGR Effects &amp; Electronic Engineering</p>
-    <p class="en small">— Reinaldo González Reyes, RGR Effects &amp; Electronic Engineering</p>
+    <p class="es small">— Reinaldo González Reyes, RGR Audio Electronic Engineering</p>
+    <p class="en small">— Reinaldo González Reyes, RGR Audio Electronic Engineering</p>
   </div>
 
   <hr class="dash">
@@ -645,10 +704,9 @@ window.toggleLang=function(){
     <li>Limpiar únicamente con un paño suave y seco. No utilizar disolventes ni limpiadores abrasivos. Desconectar todos los cables antes de limpiar.</li>
     <li>No abrir la carcasa. No hay partes reparables por el usuario en el interior. Confiar cualquier reparación a personal técnico calificado.</li>
     <li>Colocar el pedal sobre una superficie estable antes de su uso.</li>
-    <li>Utilizar únicamente una fuente de alimentación de 9V a 12V DC, centro positivo, mínimo 250mA. No superar los límites indicados en las especificaciones técnicas.</li>
+    <li>Utilizar únicamente una fuente de alimentación de 9V a 12V DC, centro negativo, mínimo 250mA (estándar pedal). No superar los límites indicados en las especificaciones técnicas.</li>
     <li>Desconectar la alimentación durante tormentas eléctricas o cuando no se use durante un período prolongado.</li>
     <li>No exponer el equipo a fuentes de calor intenso (radiadores, amplificadores, etc.).</li>
-    <li>Este producto, en combinación con un amplificador, altavoces o auriculares, puede generar niveles de sonido capaces de causar pérdida auditiva permanente. No operar a volumen alto durante períodos prolongados ni a niveles incómodos.</li>
   </ol>
 
   <ol class="safety-list en">
@@ -656,10 +714,9 @@ window.toggleLang=function(){
     <li>Clean only with a soft, dry cloth. Do not use solvents or abrasive cleaners. Disconnect all cables before cleaning.</li>
     <li>Do not open the casing. There are no user-serviceable parts inside. Refer all repairs to qualified service personnel.</li>
     <li>Place the unit on a stable surface before use.</li>
-    <li>Use only a 9V to 12V DC, center-positive power supply, minimum 250mA. Do not exceed the limits specified in the technical specifications.</li>
+    <li>Use only a 9V to 12V DC, center-negative power supply, minimum 250mA (standard pedal). Do not exceed the limits specified in the technical specifications.</li>
     <li>Disconnect the power supply during electrical storms or when not in use for an extended period.</li>
     <li>Do not expose the unit to intense heat sources (radiators, amplifiers, etc.).</li>
-    <li>This product, in combination with an amplifier, speakers, or headphones, is capable of producing sound levels that can cause permanent hearing loss. Do not operate at high volume for extended periods or at uncomfortable levels.</li>
   </ol>
 
   <hr class="dash">
@@ -705,7 +762,7 @@ window.toggleLang=function(){
       </tr>
       <tr>
         <td><strong>BBD</strong></td>
-        <td class="es">Bucket Brigade Device — retardo analógico por etapas de condensadores</td>
+        <td class="es">Bucket Brigade Device — retardo analógico por etapas de capacitores</td>
         <td class="en">Bucket Brigade Device — analog delay using cascaded capacitor stages</td>
       </tr>
       <tr>
@@ -724,23 +781,23 @@ window.toggleLang=function(){
   <hr class="dash">
 
   <div class="disclaimer-box">
-    <p class="es" style="margin-bottom:0"><strong>Aviso legal:</strong> La información de este documento está sujeta a cambios sin previo aviso. RGR Effects &amp; Electronic Engineering no asume responsabilidad por errores que puedan aparecer en este documento. Los nombres de producto y marcas son propiedad de sus respectivos titulares. <em>TripMod User Manual v1.0</em> © 2026 RGR Effects &amp; Electronic Engineering. Reproducción sin autorización escrita estrictamente prohibida.</p>
-    <p class="en" style="margin-bottom:0"><strong>Legal disclaimer:</strong> The information in this document is subject to change without notice. RGR Effects &amp; Electronic Engineering assumes no responsibility for any errors that may appear in this document. Product names and trademarks are the property of their respective owners. <em>TripMod User Manual v1.0</em> © 2026 RGR Effects &amp; Electronic Engineering. Reproduction without written authorization is strictly prohibited.</p>
+    <p class="es" style="margin-bottom:0"><strong>Aviso legal:</strong> La información de este documento está sujeta a cambios sin previo aviso. RGR Audio Electronic Engineering no asume responsabilidad por errores que puedan aparecer en este documento. Los nombres de producto y marcas son propiedad de sus respectivos titulares. <em>TripMod User Manual v1.0</em> © 2026 RGR Audio Electronic Engineering. Reproducción sin autorización escrita estrictamente prohibida.</p>
+    <p class="en" style="margin-bottom:0"><strong>Legal disclaimer:</strong> The information in this document is subject to change without notice. RGR Audio Electronic Engineering assumes no responsibility for any errors that may appear in this document. Product names and trademarks are the property of their respective owners. <em>TripMod User Manual v1.0</em> © 2026 RGR Audio Electronic Engineering. Reproduction without written authorization is strictly prohibited.</p>
   </div>
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">2</span>
+    <span class="footer-page">3</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 3 — PANEL FRONTAL / FRONT PANEL
+     PÁGINA 4 — PANEL FRONTAL / FRONT PANEL
 ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span class="ph-brand">TripMod</span>
+    <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Panel Frontal</span>
     <span class="ph-section en">Front Panel</span>
   </div>
@@ -748,9 +805,11 @@ window.toggleLang=function(){
   <h2 class="sec es">Panel Frontal</h2>
   <h2 class="sec en">Front Panel</h2>
 
-  <!-- PHASER + FLANGER -->
-  <h3 class="sub es">Phaser + Flanger</h3>
-  <h3 class="sub en">Phaser + Flanger</h3>
+  <!-- PHASER Y FLANGER -->
+  <h3 class="sub es">Phaser y Flanger</h3>
+  <h3 class="sub en">Phaser and Flanger</h3>
+  <p class="small es">Los controles RATE A/B son compartidos entre Phaser y Flanger. Ambos efectos pueden usarse simultáneamente.</p>
+  <p class="small en">RATE A/B controls are shared between Phaser and Flanger. Both effects can be used simultaneously.</p>
 
   <div class="panel-sections-wrap">
     <div class="panel-section-img">
@@ -792,8 +851,8 @@ window.toggleLang=function(){
       </tr>
       <tr>
         <td><strong>DEPTH</strong></td>
-        <td class="es">Profundidad LFO</td><td class="en">LFO depth</td>
-        <td class="es">Profundidad LFO</td><td class="en">LFO depth</td>
+        <td class="es">Profundidad del Efecto</td><td class="en">Effect Depth</td>
+        <td class="es">Profundidad del Efecto</td><td class="en">Effect Depth</td>
       </tr>
       <tr>
         <td><strong>RATE A</strong></td>
@@ -810,17 +869,17 @@ window.toggleLang=function(){
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">3</span>
+    <span class="footer-page">4</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 4 — PANEL FRONTAL (cont.) — TREMOLO + FOOTSWITCHES
+     PÁGINA 5 — PANEL FRONTAL (cont.) — TREMOLO + FOOTSWITCHES
 ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span class="ph-brand">TripMod</span>
+    <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Panel Frontal</span>
     <span class="ph-section en">Front Panel</span>
   </div>
@@ -848,8 +907,8 @@ window.toggleLang=function(){
       <tr>
         <td><strong>DEPTH</strong></td>
         <td class="es">Perilla</td><td class="en">Knob</td>
-        <td class="es">Profundidad del LFO — magnitud de la variación de volumen</td>
-        <td class="en">LFO depth — magnitude of volume variation</td>
+        <td class="es">Profundidad del Efecto — magnitud de la variación de volumen</td>
+        <td class="en">Effect Depth — magnitude of volume variation</td>
       </tr>
       <tr>
         <td><strong>SHAPE</strong></td>
@@ -892,33 +951,33 @@ window.toggleLang=function(){
         <td class="en"><strong>Left</strong></td>
         <td class="es">Activar / bypass Tremolo (función por defecto)</td>
         <td class="en">Activate / bypass Tremolo (default function)</td>
-        <td class="es">Cambiar modo de función del footswitch izquierdo (ver pág. 7)</td>
-        <td class="en">Change left footswitch function mode (see p. 7)</td>
+        <td class="es">Cambiar modo de función del footswitch izquierdo (ver sección 4)</td>
+        <td class="en">Change left footswitch function mode (see section 4)</td>
       </tr>
       <tr>
         <td class="es"><strong>Derecho</strong></td>
         <td class="en"><strong>Right</strong></td>
         <td class="es">Activar / bypass Phaser (PH), Flanger (FL) o PH+FL</td>
         <td class="en">Activate / bypass Phaser (PH), Flanger (FL) or PH+FL</td>
-        <td class="es">Menú de selección de efecto: PH / FL / PH+FL / Rate A/B Tremolo (ver pág. 7)</td>
-        <td class="en">Effect selection menu: PH / FL / PH+FL / Rate A/B Tremolo (see p. 7)</td>
+        <td class="es">Menú de selección de efecto: PH / FL / PH+FL / Rate A/B Tremolo (ver sección 4)</td>
+        <td class="en">Effect selection menu: PH / FL / PH+FL / Rate A/B Tremolo (see section 4)</td>
       </tr>
     </tbody>
   </table>
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">4</span>
+    <span class="footer-page">5</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 5 — PANEL TRASERO / REAR PANEL
+     PÁGINA 6 — PANEL TRASERO / REAR PANEL
 ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span class="ph-brand">TripMod</span>
+    <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Panel Trasero</span>
     <span class="ph-section en">Rear Panel</span>
   </div>
@@ -943,13 +1002,13 @@ window.toggleLang=function(){
     <tbody>
       <tr>
         <td><strong>IN</strong></td>
-        <td class="es">Jack 1/4" mono (TS)</td><td class="en">1/4" mono jack (TS)</td>
+        <td class="es">Jack 6.35mm (1/4") mono (TS)</td><td class="en">6.35mm (1/4") mono jack (TS)</td>
         <td class="es">Entrada de audio — instrumento o fuente de señal</td>
         <td class="en">Audio input — instrument or signal source</td>
       </tr>
       <tr>
         <td><strong>CTRL R</strong></td>
-        <td class="es">Jack 1/4" estéreo (TRS)</td><td class="en">1/4" stereo jack (TRS)</td>
+        <td class="es">Jack 6.35mm (1/4") (TS/TRS)</td><td class="en">6.35mm (1/4") jack (TS/TRS)</td>
         <td class="es">Control externo derecho: footswitch (1, 2 ó 3 switches), pedal de expresión o señal CV. Detectado automáticamente según tipo de plug (TS/TRS). Ver secciones 6 y 7 para configuración.</td>
         <td class="en">Right external control: footswitch (1, 2 or 3 switches), expression pedal, or CV signal. Automatically detected based on plug type (TS/TRS). See sections 6 and 7 for setup.</td>
       </tr>
@@ -961,13 +1020,13 @@ window.toggleLang=function(){
       </tr>
       <tr>
         <td><strong>CTRL L MIDI</strong></td>
-        <td class="es">Jack 1/4" estéreo (TRS)</td><td class="en">1/4" stereo jack (TRS)</td>
+        <td class="es">Jack 6.35mm (1/4") estéreo (TRS)</td><td class="en">6.35mm (1/4") stereo jack (TRS)</td>
         <td class="es">Entrada MIDI IN exclusiva. Estándar MIDI TRS Tipo A.</td>
         <td class="en">Exclusive MIDI IN input. MIDI TRS Type A standard.</td>
       </tr>
       <tr>
         <td><strong>OUT</strong></td>
-        <td class="es">Jack 1/4" mono (TS)</td><td class="en">1/4" mono jack (TS)</td>
+        <td class="es">Jack 6.35mm (1/4") mono (TS)</td><td class="en">6.35mm (1/4") mono jack (TS)</td>
         <td class="es">Salida de audio — hacia amplificador o siguiente efecto</td>
         <td class="en">Audio output — to amplifier or next effect</td>
       </tr>
@@ -976,17 +1035,17 @@ window.toggleLang=function(){
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">5</span>
+    <span class="footer-page">6</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 5 — SIGNAL PATH / ARQUITECTURA DEL SISTEMA
+     PÁGINA 7 — SIGNAL PATH / ARQUITECTURA DEL SISTEMA
 ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span class="ph-brand">TripMod</span>
+    <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Arquitectura del Sistema</span>
     <span class="ph-section en">System Architecture</span>
   </div>
@@ -1015,17 +1074,17 @@ window.toggleLang=function(){
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">6</span>
+    <span class="footer-page">7</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 6 — OPERACIÓN BÁSICA / BASIC OPERATION
+     PÁGINA 8 — OPERACIÓN BÁSICA / BASIC OPERATION
 ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span class="ph-brand">TripMod</span>
+    <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Operación Básica</span>
     <span class="ph-section en">Basic Operation</span>
   </div>
@@ -1066,7 +1125,7 @@ window.toggleLang=function(){
         <td class="en">Hold (≥ 2 s)</td>
         <td class="es">Cambia modo: <strong>Effect Toggle ↔ Rate Select</strong></td>
         <td class="en">Switches mode: <strong>Effect Toggle ↔ Rate Select</strong></td>
-        <td><span class="leds"><span class="led led-green"></span></span> × 3</td>
+        <td><span class="leds"><span class="led led-green"></span></span> × 3 <span class="es">parpadeos</span><span class="en">blinks</span></td>
       </tr>
     </tbody>
   </table>
@@ -1158,17 +1217,17 @@ window.toggleLang=function(){
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">7</span>
+    <span class="footer-page">8</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 5 — FORMAS DE ONDA LFO / LFO WAVEFORMS
+     PÁGINA 9 — FORMAS DE ONDA LFO / LFO WAVEFORMS
 ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span class="ph-brand">TripMod</span>
+    <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Formas de Onda LFO</span>
     <span class="ph-section en">LFO Waveforms</span>
   </div>
@@ -1184,25 +1243,25 @@ window.toggleLang=function(){
     <!-- 1. Triangular Orgánica — blue, rounded peaks (bezier) -->
     <div class="wave-card">
       <svg viewBox="0 0 80 40" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 0,38 C 8,38 12,2 20,2 C 28,2 32,38 40,38 C 48,38 52,2 60,2 C 68,2 72,38 80,38" fill="none" stroke="#1a7eff" stroke-width="2.5"/>
+        <path d="M 0,38 C 8,38 12,2 20,2 C 28,2 32,38 40,38 C 48,38 52,2 60,2 C 68,2 72,38 80,38" fill="none" stroke="#1a7eff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       <div class="wave-name">Triangular Orgánica</div>
       <div class="wave-desc es">Oscilador analógico — picos suaves. Toggle T activo.</div>
       <div class="wave-desc en">Analog oscillator — soft peaks. Toggle T active.</div>
     </div>
-    <!-- 2. Cuadrada Orgánica — amber, S-curve transitions -->
+    <!-- 2. Cuadrada Orgánica — amber, curvas hacia afuera en extremos -->
     <div class="wave-card">
-      <svg viewBox="0 0 80 40" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 6,38 Q 0,38 0,32 L 0,8 Q 0,2 6,2 L 34,2 Q 40,2 40,8 L 40,32 Q 40,38 46,38 L 74,38 Q 80,38 80,32 L 80,8 Q 80,2 74,2" fill="none" stroke="#ff9500" stroke-width="2.5"/>
+      <svg viewBox="0 -6 80 52" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 6,38 Q 0,44 0,32 L 0,8 Q 0,-4 6,2 L 34,2 Q 40,-4 40,8 L 40,32 Q 40,44 46,38 L 74,38 Q 80,44 80,32 L 80,8 Q 80,-4 74,2" fill="none" stroke="#ff9500" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       <div class="wave-name">Cuadrada Orgánica</div>
-      <div class="wave-desc es">Variante orgánica — transiciones suaves. Seleccionada con Toggle T.</div>
-      <div class="wave-desc en">Organic variant — smooth transitions. Selected with Toggle T.</div>
+      <div class="wave-desc es">Variante orgánica — transiciones con curva exterior. Seleccionada con Toggle T.</div>
+      <div class="wave-desc en">Organic variant — outward-curved transitions. Selected with Toggle T.</div>
     </div>
     <!-- 3. Rampa Ascendente — green -->
     <div class="wave-card">
       <svg viewBox="0 0 80 40" xmlns="http://www.w3.org/2000/svg">
-        <polyline points="0,38 40,2 40,38 80,2" fill="none" stroke="#18c44a" stroke-width="2.5" stroke-linejoin="round"/>
+        <polyline points="0,38 40,2 40,38 80,2" fill="none" stroke="#18c44a" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
       </svg>
       <div class="wave-name">Rampa Ascendente</div>
       <div class="wave-desc es">Sube gradual, cae en corte.</div>
@@ -1211,7 +1270,7 @@ window.toggleLang=function(){
     <!-- 4. Rampa Descendente — purple -->
     <div class="wave-card">
       <svg viewBox="0 0 80 40" xmlns="http://www.w3.org/2000/svg">
-        <polyline points="0,2 40,38 40,2 80,38" fill="none" stroke="#9b30ff" stroke-width="2.5" stroke-linejoin="round"/>
+        <polyline points="0,2 40,38 40,2 80,38" fill="none" stroke="#9b30ff" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
       </svg>
       <div class="wave-name">Rampa Descendente</div>
       <div class="wave-desc es">Cae gradual, sube en corte.</div>
@@ -1220,7 +1279,7 @@ window.toggleLang=function(){
     <!-- 5. Onda Cuadrada — pink -->
     <div class="wave-card">
       <svg viewBox="0 0 80 40" xmlns="http://www.w3.org/2000/svg">
-        <polyline points="0,38 0,2 40,2 40,38 80,38 80,2" fill="none" stroke="#e0198c" stroke-width="2.5" stroke-linejoin="round"/>
+        <polyline points="0,38 0,2 40,2 40,38 80,38 80,2" fill="none" stroke="#e0198c" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
       </svg>
       <div class="wave-name">Onda Cuadrada</div>
       <div class="wave-desc es">Corte abrupto — máximo a mínimo.</div>
@@ -1229,7 +1288,7 @@ window.toggleLang=function(){
     <!-- 6. Aleatoria — red -->
     <div class="wave-card">
       <svg viewBox="0 0 80 40" xmlns="http://www.w3.org/2000/svg">
-        <polyline points="0,10 20,10 20,32 36,32 36,6 52,6 52,28 68,28 68,16 80,16" fill="none" stroke="#ff3b30" stroke-width="2.5" stroke-linejoin="round"/>
+        <polyline points="0,10 20,10 20,32 36,32 36,6 52,6 52,28 68,28 68,16 80,16" fill="none" stroke="#ff3b30" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
       </svg>
       <div class="wave-name">Aleatoria</div>
       <div class="wave-desc es">Sample &amp; Hold — saltos aleatorios a cada ciclo.</div>
@@ -1314,8 +1373,8 @@ window.toggleLang=function(){
   <p class="small en">The selection is saved to internal memory and persists after power-off.</p>
 
   <div class="box note">
-    <span class="es"><strong>Durante el menú:</strong> Los controles RATE y DEPTH moldean la forma de onda en tiempo real — útil para escuchar la diferencia antes de confirmar. En modos no orgánicos, cambiar RATE o DEPTH lentamente para no perder la sincronía del LFO generado por la Unidad de Control. Si se pierde, aumentar DEPTH o esperar al siguiente ciclo.</span>
-    <span class="en"><strong>During the menu:</strong> RATE and DEPTH controls shape the waveform in real time — useful for hearing the difference before confirming. In non-organic modes, change RATE or DEPTH slowly to avoid losing LFO sync. If sync is lost, increase DEPTH or wait for the next cycle.</span>
+    <span class="es"><strong>Durante el menú:</strong> Los controles RATE y DEPTH moldean la forma de onda en tiempo real — útil para escuchar la diferencia antes de confirmar. En modos no orgánicos, cambiar RATE o DEPTH lentamente para no perder la sincronía del LFO. Si se pierde, aumentar DEPTH y RATE para sincronizar, luego bajarlos lentamente al valor deseado.</span>
+    <span class="en"><strong>During the menu:</strong> RATE and DEPTH controls shape the waveform in real time — useful for hearing the difference before confirming. In non-organic modes, change RATE or DEPTH slowly to avoid losing LFO sync. If sync is lost, increase DEPTH and RATE to synchronize, then slowly lower them to the desired value.</span>
   </div>
 
   <div class="box note">
@@ -1336,17 +1395,17 @@ window.toggleLang=function(){
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">8</span>
+    <span class="footer-page">9</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 6 — FOOTSWITCH EXTERNO / EXTERNAL FOOTSWITCH
+     PÁGINA 10 — FOOTSWITCH EXTERNO / EXTERNAL FOOTSWITCH
 ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span class="ph-brand">TripMod</span>
+    <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Footswitch Externo (CTRL R)</span>
     <span class="ph-section en">External Footswitch (CTRL R)</span>
   </div>
@@ -1359,6 +1418,14 @@ window.toggleLang=function(){
 
   <h3 class="sub es">Tipos de conexión</h3>
   <h3 class="sub en">Connection types</h3>
+
+  <div style="text-align:center; margin: 2mm 0 3mm 0;">
+    <img src="assets/footswitch-trs-plug-es.png" alt="Conexión Footswitch TRS" class="es"
+         style="max-width:100%; max-height:60mm; object-fit:contain;">
+    <img src="assets/footswitch-trs-plug-en.png" alt="Footswitch TRS Connection" class="en"
+         style="max-width:100%; max-height:60mm; object-fit:contain;">
+  </div>
+
   <table>
     <thead><tr>
       <th class="es">Plug</th><th class="en">Plug</th>
@@ -1489,17 +1556,17 @@ window.toggleLang=function(){
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">9</span>
+    <span class="footer-page">10</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 7 — PEDAL DE EXPRESIÓN / EXPRESSION PEDAL
+     PÁGINA 11 — PEDAL DE EXPRESIÓN / EXPRESSION PEDAL
 ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span class="ph-brand">TripMod</span>
+    <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Pedal de Expresión</span>
     <span class="ph-section en">Expression Pedal</span>
   </div>
@@ -1507,8 +1574,15 @@ window.toggleLang=function(){
   <h2 class="sec es">Pedal de Expresión — CTRL R</h2>
   <h2 class="sec en">Expression Pedal — CTRL R</h2>
 
-  <p class="es">Un pedal de expresión TRS estándar se conecta en <strong>CTRL R</strong>. El modo de operación se selecciona en el Menú Dispositivo Externo (ver pág. 11).</p>
-  <p class="en">A standard TRS expression pedal connects to <strong>CTRL R</strong>. The operating mode is selected in the External Device Menu (see p. 11).</p>
+  <p class="es">Un pedal de expresión TRS estándar se conecta en <strong>CTRL R</strong>. El modo de operación se selecciona en el Menú Dispositivo Externo (ver sección 8).</p>
+  <p class="en">A standard TRS expression pedal connects to <strong>CTRL R</strong>. The operating mode is selected in the External Device Menu (see section 8).</p>
+
+  <div style="text-align:center; margin: 2mm 0 3mm 0;">
+    <img src="assets/exp-pedal-trs-plug-es.png" alt="Conexión Pedal de Expresión TRS" class="es"
+         style="max-width:100%; max-height:55mm; object-fit:contain;">
+    <img src="assets/exp-pedal-trs-plug-en.png" alt="Expression Pedal TRS Connection" class="en"
+         style="max-width:100%; max-height:55mm; object-fit:contain;">
+  </div>
 
   <h3 class="sub es">Modos de expresión</h3>
   <h3 class="sub en">Expression modes</h3>
@@ -1525,13 +1599,13 @@ window.toggleLang=function(){
       </tr>
       <tr>
         <td class="es"><strong>Depth Phaser</strong></td><td class="en"><strong>Depth Phaser</strong></td>
-        <td class="es">Controla la profundidad del LFO de Phaser</td>
-        <td class="en">Controls Phaser LFO depth</td>
+        <td class="es">Profundidad del Efecto Phaser: talón = centro fijo (sin modulación), punta = profundidad máxima del knob DEPTH</td>
+        <td class="en">Phaser Effect Depth: heel = fixed center (no modulation), toe = maximum depth set by DEPTH knob</td>
       </tr>
       <tr>
-        <td class="es"><strong>Wah / Phaser</strong></td><td class="en"><strong>Wah / Phaser</strong></td>
-        <td class="es">Modo Wah: controla directamente la frecuencia del filtro Phaser. El pedal reemplaza al oscilador (efecto tipo wah estático).</td>
-        <td class="en">Wah mode: directly controls the Phaser filter frequency. The pedal replaces the oscillator (static wah-type effect).</td>
+        <td class="es"><strong>Modo Phaser/Wah</strong></td><td class="en"><strong>Modo Phaser/Wah</strong></td>
+        <td class="es">WAH/Phaser modulado por Pedal de Expresión: controla directamente la frecuencia del filtro Phaser. El pedal reemplaza al oscilador (efecto tipo wah estático).</td>
+        <td class="en">WAH/Phaser modulated by Expression Pedal: directly controls the Phaser filter frequency. The pedal replaces the oscillator (static wah-type effect).</td>
       </tr>
       <tr>
         <td class="es"><strong>Rate Tremolo</strong></td><td class="en"><strong>Rate Tremolo</strong></td>
@@ -1540,8 +1614,8 @@ window.toggleLang=function(){
       </tr>
       <tr>
         <td class="es"><strong>Depth Tremolo</strong></td><td class="en"><strong>Depth Tremolo</strong></td>
-        <td class="es">Controla la profundidad del LFO de Tremolo</td>
-        <td class="en">Controls Tremolo LFO depth</td>
+        <td class="es">Profundidad del Efecto Tremolo: talón = silencio completo (VCA cerrado), punta = profundidad máxima del knob DEPTH</td>
+        <td class="en">Tremolo Effect Depth: heel = complete silence (VCA closed), toe = maximum depth set by DEPTH knob</td>
       </tr>
     </tbody>
   </table>
@@ -1570,8 +1644,8 @@ window.toggleLang=function(){
   </div>
 
   <div class="box note">
-    <span class="es"><strong>Modo Wah:</strong> El rango de respuesta se ajusta automáticamente al recorrido del pedal. En los primeros usos, hacer un recorrido completo (talón → punta) ayuda al sistema a aprender el rango de voltaje del pedal conectado.</span>
-    <span class="en"><strong>Wah mode:</strong> The response range adjusts automatically to the pedal's travel. On first use, a full sweep (heel → toe) helps the system learn the voltage range of the connected pedal.</span>
+    <span class="es"><strong>Modo Phaser/Wah:</strong> El rango de respuesta se ajusta automáticamente al recorrido del pedal. En los primeros usos, hacer un recorrido completo (talón → punta) ayuda al sistema a aprender el rango de voltaje del pedal conectado.</span>
+    <span class="en"><strong>Modo Phaser/Wah:</strong> The response range adjusts automatically to the pedal's travel. On first use, a full sweep (heel → toe) helps the system learn the voltage range of the connected pedal.</span>
   </div>
 
   <h3 class="sub es">Compatibilidad</h3>
@@ -1581,17 +1655,17 @@ window.toggleLang=function(){
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">10</span>
+    <span class="footer-page">11</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 8 — MENÚ DISPOSITIVO EXTERNO / EXTERNAL DEVICE MENU
+     PÁGINA 12 — MENÚ DISPOSITIVO EXTERNO / EXTERNAL DEVICE MENU
 ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span class="ph-brand">TripMod</span>
+    <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Menú Dispositivo Externo</span>
     <span class="ph-section en">External Device Menu</span>
   </div>
@@ -1663,10 +1737,10 @@ window.toggleLang=function(){
       </tr>
       <tr>
         <td>3</td>
-        <td class="es">Wah / Phaser</td><td class="en">Wah / Phaser</td>
+        <td class="es">Modo Phaser/Wah</td><td class="en">Modo Phaser/Wah</td>
         <td><span class="leds"><span class="led led-off"></span><span class="led led-off"></span><span class="led led-blue"></span></span> <span style="font-size:7pt">↔</span> <span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-off"></span></span></td>
-        <td class="es">Azul y Rosa <em>alternados</em>. Modo Wah: pedal mueve directamente el filtro Phaser</td>
-        <td class="en">Blue and Pink <em>alternating</em>. Wah mode: pedal moves the Phaser filter directly</td>
+        <td class="es">Azul y Rosa <em>alternados</em>. WAH/Phaser modulado por Pedal de Expresión: el pedal mueve directamente el filtro Phaser</td>
+        <td class="en">Blue and Pink <em>alternating</em>. WAH/Phaser modulated by Expression Pedal: pedal moves the Phaser filter directly</td>
       </tr>
       <tr>
         <td>4</td>
@@ -1699,17 +1773,17 @@ window.toggleLang=function(){
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">11</span>
+    <span class="footer-page">12</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 9 — MIDI: PROGRAM CHANGES
+     PÁGINA 13 — MIDI: PROGRAM CHANGES
 ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span class="ph-brand">TripMod</span>
+    <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">MIDI — Program Changes</span>
     <span class="ph-section en">MIDI — Program Changes</span>
   </div>
@@ -1778,17 +1852,17 @@ window.toggleLang=function(){
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">12</span>
+    <span class="footer-page">13</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 10 — MIDI: CONTROL CHANGES
+     PÁGINA 14 — MIDI: CONTROL CHANGES
 ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span class="ph-brand">TripMod</span>
+    <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">MIDI — Control Changes</span>
     <span class="ph-section en">MIDI — Control Changes</span>
   </div>
@@ -1901,25 +1975,25 @@ window.toggleLang=function(){
       </tr>
       <tr>
         <td class="es">CC Rate → Expression</td><td class="en">CC Rate → Expression</td>
-        <td class="es">El pedal de expresión <em>no</em> cancela automáticamente el CC (ver pág. 10 — Pedal de Expresión). Usar PC 25 o mover la perilla &gt;20% para liberar.</td>
-        <td class="en">The expression pedal does <em>not</em> automatically cancel CC (see p. 10 — Expression Pedal). Use PC 25 or move the knob &gt;20% to release.</td>
+        <td class="es">El pedal de expresión <em>no</em> cancela automáticamente el CC (ver sección 7 — Pedal de Expresión). Usar PC 25 o mover la perilla &gt;20% para liberar.</td>
+        <td class="en">The expression pedal does <em>not</em> automatically cancel CC (see section 7 — Expression Pedal). Use PC 25 or move the knob &gt;20% to release.</td>
       </tr>
     </tbody>
   </table>
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">13</span>
+    <span class="footer-page">14</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 11 — MENÚ CANAL MIDI / MIDI CHANNEL MENU
+     PÁGINA 15 — MENÚ CANAL MIDI / MIDI CHANNEL MENU
 ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span class="ph-brand">TripMod</span>
+    <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Menú Canal MIDI</span>
     <span class="ph-section en">MIDI Channel Menu</span>
   </div>
@@ -1927,16 +2001,16 @@ window.toggleLang=function(){
   <h2 class="sec es">Menú Canal MIDI</h2>
   <h2 class="sec en">MIDI Channel Menu</h2>
 
-  <p class="es">El canal MIDI se configura al encender el pedal. El canal seleccionado se guarda en memoria y persiste al apagar.</p>
-  <p class="en">The MIDI channel is configured at power-on. The selected channel is saved to memory and persists after power-off.</p>
+  <p class="es">El canal MIDI se configura al conectar la alimentación del pedal. El canal seleccionado se guarda en memoria y persiste al desconectar.</p>
+  <p class="en">The MIDI channel is configured when connecting power to the pedal. The selected channel is saved to memory and persists after disconnecting power.</p>
 
   <h3 class="sub es">Procedimiento</h3>
   <h3 class="sub en">Procedure</h3>
 
   <ol class="steps">
     <li><span class="sn">1</span>
-      <span class="es">Mantener presionado el <strong>footswitch derecho del panel</strong> mientras se enciende el pedal.</span>
-      <span class="en">Hold the <strong>right panel footswitch</strong> while powering on the pedal.</span>
+      <span class="es">Con el pedal desconectado de la alimentación, mantener presionado el <strong>footswitch derecho del panel</strong> mientras se reconecta la alimentación.</span>
+      <span class="en">With the pedal disconnected from power, hold the <strong>right panel footswitch</strong> while reconnecting the power supply.</span>
     </li>
     <li><span class="sn">2</span>
       <span class="es">El LED rosa (Flanger) parpadea por 2 segundos. <strong>Mantener presionado</strong> hasta que parpadee 5 veces rápido alternando colores — confirmación de entrada al menú.</span>
@@ -1997,25 +2071,25 @@ window.toggleLang=function(){
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">14</span>
+    <span class="footer-page">15</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 12 — FACTORY RESET
+     PÁGINA 16 — FACTORY RESET / RESETEO DE FÁBRICA
 ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span class="ph-brand">TripMod</span>
-    <span class="ph-section es">Factory Reset</span>
+    <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
+    <span class="ph-section es">Reseteo de Fábrica</span>
     <span class="ph-section en">Factory Reset</span>
   </div>
 
-  <h2 class="sec es">Factory Reset</h2>
+  <h2 class="sec es">Reseteo de Fábrica</h2>
   <h2 class="sec en">Factory Reset</h2>
 
-  <p class="es">El Factory Reset restaura todos los parámetros guardados a los valores de fábrica. No afecta al firmware.</p>
+  <p class="es">El Reseteo de Fábrica restaura todos los parámetros guardados a los valores de fábrica. No afecta al firmware.</p>
   <p class="en">Factory Reset restores all saved parameters to factory defaults. It does not affect the firmware.</p>
 
   <h3 class="sub es">Procedimiento</h3>
@@ -2023,8 +2097,8 @@ window.toggleLang=function(){
 
   <ol class="steps">
     <li><span class="sn">1</span>
-      <span class="es">Mantener presionado el <strong>footswitch izquierdo del panel</strong> mientras se enciende el pedal.</span>
-      <span class="en">Hold the <strong>left panel footswitch</strong> while powering on the pedal.</span>
+      <span class="es">Con el pedal desconectado de la alimentación, mantener presionado el <strong>footswitch izquierdo del panel</strong> mientras se reconecta la alimentación.</span>
+      <span class="en">With the pedal disconnected from power, hold the <strong>left panel footswitch</strong> while reconnecting the power supply.</span>
     </li>
     <li><span class="sn">2</span>
       <span class="es">Mantener presionado durante <strong>más de 3 segundos</strong>, luego <strong>soltar</strong> el footswitch.</span>
@@ -2097,17 +2171,17 @@ window.toggleLang=function(){
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">15</span>
+    <span class="footer-page">16</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 13 — ESPECIFICACIONES TÉCNICAS / TECHNICAL SPECS
+     PÁGINA 17 — ESPECIFICACIONES TÉCNICAS / TECHNICAL SPECS
 ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span class="ph-brand">TripMod</span>
+    <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Especificaciones Técnicas</span>
     <span class="ph-section en">Technical Specifications</span>
   </div>
@@ -2238,17 +2312,17 @@ window.toggleLang=function(){
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">16</span>
+    <span class="footer-page">17</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 14 — GARANTÍA Y CONTACTO / WARRANTY AND CONTACT
+     PÁGINA 18 — GARANTÍA Y CONTACTO / WARRANTY AND CONTACT
 ============================================================ -->
 <div class="page">
   <div class="page-header">
-    <span class="ph-brand">TripMod</span>
+    <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Garantía y Contacto</span>
     <span class="ph-section en">Warranty and Contact</span>
   </div>
@@ -2257,12 +2331,12 @@ window.toggleLang=function(){
   <h2 class="sec en">Warranty</h2>
 
   <div class="es">
-    <p>RGR Effects &amp; RGR Electronic Engineering garantiza este producto contra defectos de materiales y mano de obra bajo uso normal por un período de <strong>[duración a definir]</strong> desde la fecha de compra original.</p>
+    <p>RGR Audio Electronic Engineering garantiza este producto contra defectos de materiales y mano de obra bajo uso normal por un período de <strong>[duración a definir]</strong> desde la fecha de compra original.</p>
     <p>Esta garantía cubre únicamente defectos de fabricación. No cubre daños causados por uso inapropiado, accidentes, modificaciones no autorizadas, desgaste normal, o daños por agua o electricidad.</p>
     <p>Para hacer válida la garantía, el producto debe ser retornado a RGR en su embalaje original o equivalente, con prueba de compra.</p>
   </div>
   <div class="en">
-    <p>RGR Effects &amp; RGR Electronic Engineering warrants this product against defects in materials and workmanship under normal use for a period of <strong>[duration to be defined]</strong> from the date of original purchase.</p>
+    <p>RGR Audio Electronic Engineering warrants this product against defects in materials and workmanship under normal use for a period of <strong>[duration to be defined]</strong> from the date of original purchase.</p>
     <p>This warranty covers manufacturing defects only. It does not cover damage caused by misuse, accidents, unauthorized modifications, normal wear, or water/electrical damage.</p>
     <p>To make a warranty claim, the product must be returned to RGR in its original or equivalent packaging, with proof of purchase.</p>
   </div>
@@ -2290,8 +2364,8 @@ window.toggleLang=function(){
   <div style="text-align:center; margin-top:6mm;">
     <img src="assets/logo-rgr.png" alt="RGR" style="height:14mm; width:auto; display:inline-block;">
     <div style="font-size:8pt; color:#666; margin-top:2mm; letter-spacing:1px; text-transform:uppercase;">
-      <span class="es">Effects &amp; Electronic Engineering</span>
-      <span class="en">Effects &amp; Electronic Engineering</span>
+      <span class="es">Audio Electronic Engineering</span>
+      <span class="en">Audio Electronic Engineering</span>
     </div>
   </div>
 
@@ -2302,10 +2376,12 @@ window.toggleLang=function(){
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">17</span>
+    <span class="footer-page">18</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 </body>
 </html>
+
+
