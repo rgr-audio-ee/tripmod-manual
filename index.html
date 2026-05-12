@@ -114,6 +114,8 @@
         width: auto !important;
         height: auto !important;
       }
+      /* Reducir padding superior en pantalla (el de 16mm es solo para impresión) */
+      .page { padding-top: 6mm; }
     }
 
     @media screen and (max-width: 750px) {
@@ -634,7 +636,7 @@
 <!-- ============================================================
      PÁGINA 1 — PORTADA / COVER
 ============================================================ -->
-<div class="page" style="padding:0; overflow:hidden; min-height:auto; border-radius:8mm; background:#d0d0d0;">
+<div class="page" style="padding:0; overflow:hidden; min-height:auto; border-radius:0; background:transparent; box-shadow:none;">
   <img src="assets/caratula-es.png" alt="TripMod — Manual de Usuario" class="es"
        style="width:100%; height:auto;">
   <img src="assets/caratula-en.png" alt="TripMod — User Manual" class="en"
