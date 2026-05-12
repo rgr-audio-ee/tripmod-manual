@@ -634,7 +634,7 @@
 <!-- ============================================================
      PÁGINA 1 — PORTADA / COVER
 ============================================================ -->
-<div class="page" style="padding:0; overflow:hidden; min-height:auto; border-radius:8mm; background:transparent; box-shadow:none;">
+<div class="page" style="padding:0; overflow:hidden; min-height:auto; border-radius:8mm; background:#d0d0d0;">
   <img src="assets/caratula-es.png" alt="TripMod — Manual de Usuario" class="es"
        style="width:100%; height:auto;">
   <img src="assets/caratula-en.png" alt="TripMod — User Manual" class="en"
@@ -664,42 +664,44 @@
     .toc-row-front { color:#444; }
     .toc-row-sec { color:#1a1a1a; font-weight:600; }
     .toc-row td { display:flex; align-items:baseline; }
+    .toc-table a { color:inherit; text-decoration:none; cursor:pointer; }
+    .toc-table a:hover { color:#1a7eff; text-decoration:underline; }
   </style>
 
   <table class="toc-table es">
-    <tr><td></td><td><span>Precauciones de Seguridad</span><span class="toc-dots"></span></td><td>3</td></tr>
-    <tr><td><strong>1.</strong></td><td><span>Panel Frontal</span><span class="toc-dots"></span></td><td>4</td></tr>
-    <tr><td><strong>2.</strong></td><td><span>Panel Trasero</span><span class="toc-dots"></span></td><td>6</td></tr>
-    <tr><td><strong>3.</strong></td><td><span>Arquitectura del Sistema</span><span class="toc-dots"></span></td><td>7</td></tr>
-    <tr><td><strong>4.</strong></td><td><span>Operación Básica</span><span class="toc-dots"></span></td><td>8</td></tr>
-    <tr><td><strong>5.</strong></td><td><span>Formas de Onda LFO</span><span class="toc-dots"></span></td><td>9</td></tr>
-    <tr><td><strong>6.</strong></td><td><span>Footswitch Externo — CTRL R</span><span class="toc-dots"></span></td><td>10</td></tr>
-    <tr><td><strong>7.</strong></td><td><span>Pedal de Expresión — CTRL R</span><span class="toc-dots"></span></td><td>11</td></tr>
-    <tr><td><strong>8.</strong></td><td><span>Menú Dispositivo Externo</span><span class="toc-dots"></span></td><td>12</td></tr>
-    <tr><td><strong>9.</strong></td><td><span>Control MIDI — Program Changes</span><span class="toc-dots"></span></td><td>13</td></tr>
-    <tr><td><strong>10.</strong></td><td><span>Control MIDI — Control Changes</span><span class="toc-dots"></span></td><td>14</td></tr>
-    <tr><td><strong>11.</strong></td><td><span>Menú Canal MIDI</span><span class="toc-dots"></span></td><td>15</td></tr>
-    <tr><td><strong>12.</strong></td><td><span>Reseteo de Fábrica</span><span class="toc-dots"></span></td><td>16</td></tr>
-    <tr><td><strong>13.</strong></td><td><span>Especificaciones Técnicas</span><span class="toc-dots"></span></td><td>17</td></tr>
-    <tr><td><strong>14.</strong></td><td><span>Garantía y Contacto</span><span class="toc-dots"></span></td><td>18</td></tr>
+    <tr><td></td><td><a href="#sec-safety"><span>Precauciones de Seguridad</span></a></td><td>3</td></tr>
+    <tr><td><strong>1.</strong></td><td><a href="#sec-panel-frontal"><span>Panel Frontal</span></a></td><td>4</td></tr>
+    <tr><td><strong>2.</strong></td><td><a href="#sec-panel-trasero"><span>Panel Trasero</span></a></td><td>6</td></tr>
+    <tr><td><strong>3.</strong></td><td><a href="#sec-arquitectura"><span>Arquitectura del Sistema</span></a></td><td>7</td></tr>
+    <tr><td><strong>4.</strong></td><td><a href="#sec-operacion"><span>Operación Básica</span></a></td><td>8</td></tr>
+    <tr><td><strong>5.</strong></td><td><a href="#sec-waveforms"><span>Formas de Onda LFO</span></a></td><td>9</td></tr>
+    <tr><td><strong>6.</strong></td><td><a href="#sec-footswitch"><span>Footswitch Externo — CTRL R</span></a></td><td>10</td></tr>
+    <tr><td><strong>7.</strong></td><td><a href="#sec-expresion"><span>Pedal de Expresión — CTRL R</span></a></td><td>11</td></tr>
+    <tr><td><strong>8.</strong></td><td><a href="#sec-menu-dispositivo"><span>Menú Dispositivo Externo</span></a></td><td>12</td></tr>
+    <tr><td><strong>9.</strong></td><td><a href="#sec-midi-pc"><span>Control MIDI — Program Changes</span></a></td><td>13</td></tr>
+    <tr><td><strong>10.</strong></td><td><a href="#sec-midi-cc"><span>Control MIDI — Control Changes</span></a></td><td>14</td></tr>
+    <tr><td><strong>11.</strong></td><td><a href="#sec-midi-canal"><span>Menú Canal MIDI</span></a></td><td>15</td></tr>
+    <tr><td><strong>12.</strong></td><td><a href="#sec-reset"><span>Reseteo de Fábrica</span></a></td><td>16</td></tr>
+    <tr><td><strong>13.</strong></td><td><a href="#sec-specs"><span>Especificaciones Técnicas</span></a></td><td>17</td></tr>
+    <tr><td><strong>14.</strong></td><td><a href="#sec-garantia"><span>Garantía y Contacto</span></a></td><td>18</td></tr>
   </table>
 
   <table class="toc-table en">
-    <tr><td></td><td><span>Safety Instructions</span><span class="toc-dots"></span></td><td>3</td></tr>
-    <tr><td><strong>1.</strong></td><td><span>Front Panel</span><span class="toc-dots"></span></td><td>4</td></tr>
-    <tr><td><strong>2.</strong></td><td><span>Rear Panel</span><span class="toc-dots"></span></td><td>6</td></tr>
-    <tr><td><strong>3.</strong></td><td><span>System Architecture</span><span class="toc-dots"></span></td><td>7</td></tr>
-    <tr><td><strong>4.</strong></td><td><span>Basic Operation</span><span class="toc-dots"></span></td><td>8</td></tr>
-    <tr><td><strong>5.</strong></td><td><span>LFO Waveforms</span><span class="toc-dots"></span></td><td>9</td></tr>
-    <tr><td><strong>6.</strong></td><td><span>External Footswitch — CTRL R</span><span class="toc-dots"></span></td><td>10</td></tr>
-    <tr><td><strong>7.</strong></td><td><span>Expression Pedal — CTRL R</span><span class="toc-dots"></span></td><td>11</td></tr>
-    <tr><td><strong>8.</strong></td><td><span>External Device Menu</span><span class="toc-dots"></span></td><td>12</td></tr>
-    <tr><td><strong>9.</strong></td><td><span>MIDI Control — Program Changes</span><span class="toc-dots"></span></td><td>13</td></tr>
-    <tr><td><strong>10.</strong></td><td><span>MIDI Control — Control Changes</span><span class="toc-dots"></span></td><td>14</td></tr>
-    <tr><td><strong>11.</strong></td><td><span>MIDI Channel Menu</span><span class="toc-dots"></span></td><td>15</td></tr>
-    <tr><td><strong>12.</strong></td><td><span>Factory Reset</span><span class="toc-dots"></span></td><td>16</td></tr>
-    <tr><td><strong>13.</strong></td><td><span>Technical Specifications</span><span class="toc-dots"></span></td><td>17</td></tr>
-    <tr><td><strong>14.</strong></td><td><span>Warranty &amp; Contact</span><span class="toc-dots"></span></td><td>18</td></tr>
+    <tr><td></td><td><a href="#sec-safety"><span>Safety Instructions</span></a></td><td>3</td></tr>
+    <tr><td><strong>1.</strong></td><td><a href="#sec-panel-frontal"><span>Front Panel</span></a></td><td>4</td></tr>
+    <tr><td><strong>2.</strong></td><td><a href="#sec-panel-trasero"><span>Rear Panel</span></a></td><td>6</td></tr>
+    <tr><td><strong>3.</strong></td><td><a href="#sec-arquitectura"><span>System Architecture</span></a></td><td>7</td></tr>
+    <tr><td><strong>4.</strong></td><td><a href="#sec-operacion"><span>Basic Operation</span></a></td><td>8</td></tr>
+    <tr><td><strong>5.</strong></td><td><a href="#sec-waveforms"><span>LFO Waveforms</span></a></td><td>9</td></tr>
+    <tr><td><strong>6.</strong></td><td><a href="#sec-footswitch"><span>External Footswitch — CTRL R</span></a></td><td>10</td></tr>
+    <tr><td><strong>7.</strong></td><td><a href="#sec-expresion"><span>Expression Pedal — CTRL R</span></a></td><td>11</td></tr>
+    <tr><td><strong>8.</strong></td><td><a href="#sec-menu-dispositivo"><span>External Device Menu</span></a></td><td>12</td></tr>
+    <tr><td><strong>9.</strong></td><td><a href="#sec-midi-pc"><span>MIDI Control — Program Changes</span></a></td><td>13</td></tr>
+    <tr><td><strong>10.</strong></td><td><a href="#sec-midi-cc"><span>MIDI Control — Control Changes</span></a></td><td>14</td></tr>
+    <tr><td><strong>11.</strong></td><td><a href="#sec-midi-canal"><span>MIDI Channel Menu</span></a></td><td>15</td></tr>
+    <tr><td><strong>12.</strong></td><td><a href="#sec-reset"><span>Factory Reset</span></a></td><td>16</td></tr>
+    <tr><td><strong>13.</strong></td><td><a href="#sec-specs"><span>Technical Specifications</span></a></td><td>17</td></tr>
+    <tr><td><strong>14.</strong></td><td><a href="#sec-garantia"><span>Warranty &amp; Contact</span></a></td><td>18</td></tr>
   </table>
 
   <div class="page-footer">
@@ -712,7 +714,7 @@
 <!-- ============================================================
      PÁGINA 3 — PRECAUCIONES / SAFETY
 ============================================================ -->
-<div class="page">
+<div class="page" id="sec-safety">
   <div class="page-header">
     <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Precauciones</span>
@@ -828,7 +830,7 @@
 <!-- ============================================================
      PÁGINA 4 — PANEL FRONTAL / FRONT PANEL
 ============================================================ -->
-<div class="page">
+<div class="page" id="sec-panel-frontal">
   <div class="page-header">
     <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Panel Frontal</span>
@@ -1017,7 +1019,7 @@
 <!-- ============================================================
      PÁGINA 6 — PANEL TRASERO / REAR PANEL
 ============================================================ -->
-<div class="page">
+<div class="page" id="sec-panel-trasero">
   <div class="page-header">
     <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Panel Trasero</span>
@@ -1085,7 +1087,7 @@
 <!-- ============================================================
      PÁGINA 7 — SIGNAL PATH / ARQUITECTURA DEL SISTEMA
 ============================================================ -->
-<div class="page">
+<div class="page" id="sec-arquitectura">
   <div class="page-header">
     <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Arquitectura del Sistema</span>
@@ -1124,7 +1126,7 @@
 <!-- ============================================================
      PÁGINA 8 — OPERACIÓN BÁSICA / BASIC OPERATION
 ============================================================ -->
-<div class="page">
+<div class="page" id="sec-operacion">
   <div class="page-header">
     <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Operación Básica</span>
@@ -1267,7 +1269,7 @@
 <!-- ============================================================
      PÁGINA 9 — FORMAS DE ONDA LFO / LFO WAVEFORMS
 ============================================================ -->
-<div class="page">
+<div class="page" id="sec-waveforms">
   <div class="page-header">
     <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Formas de Onda LFO</span>
@@ -1445,7 +1447,7 @@
 <!-- ============================================================
      PÁGINA 10 — FOOTSWITCH EXTERNO / EXTERNAL FOOTSWITCH
 ============================================================ -->
-<div class="page">
+<div class="page" id="sec-footswitch">
   <div class="page-header">
     <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Footswitch Externo (CTRL R)</span>
@@ -1611,7 +1613,7 @@
 <!-- ============================================================
      PÁGINA 11 — PEDAL DE EXPRESIÓN / EXPRESSION PEDAL
 ============================================================ -->
-<div class="page">
+<div class="page" id="sec-expresion">
   <div class="page-header">
     <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Pedal de Expresión</span>
@@ -1710,7 +1712,7 @@
 <!-- ============================================================
      PÁGINA 12 — MENÚ DISPOSITIVO EXTERNO / EXTERNAL DEVICE MENU
 ============================================================ -->
-<div class="page">
+<div class="page" id="sec-menu-dispositivo">
   <div class="page-header">
     <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Menú Dispositivo Externo</span>
@@ -1828,7 +1830,7 @@
 <!-- ============================================================
      PÁGINA 13 — MIDI: PROGRAM CHANGES
 ============================================================ -->
-<div class="page">
+<div class="page" id="sec-midi-pc">
   <div class="page-header">
     <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">MIDI — Program Changes</span>
@@ -1907,7 +1909,7 @@
 <!-- ============================================================
      PÁGINA 14 — MIDI: CONTROL CHANGES
 ============================================================ -->
-<div class="page">
+<div class="page" id="sec-midi-cc">
   <div class="page-header">
     <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">MIDI — Control Changes</span>
@@ -2038,7 +2040,7 @@
 <!-- ============================================================
      PÁGINA 15 — MENÚ CANAL MIDI / MIDI CHANNEL MENU
 ============================================================ -->
-<div class="page">
+<div class="page" id="sec-midi-canal">
   <div class="page-header">
     <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Menú Canal MIDI</span>
@@ -2126,7 +2128,7 @@
 <!-- ============================================================
      PÁGINA 16 — FACTORY RESET / RESETEO DE FÁBRICA
 ============================================================ -->
-<div class="page">
+<div class="page" id="sec-reset">
   <div class="page-header">
     <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Reseteo de Fábrica</span>
@@ -2226,7 +2228,7 @@
 <!-- ============================================================
      PÁGINA 17 — ESPECIFICACIONES TÉCNICAS / TECHNICAL SPECS
 ============================================================ -->
-<div class="page">
+<div class="page" id="sec-specs">
   <div class="page-header">
     <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Especificaciones Técnicas</span>
@@ -2367,7 +2369,7 @@
 <!-- ============================================================
      PÁGINA 18 — GARANTÍA Y CONTACTO / WARRANTY AND CONTACT
 ============================================================ -->
-<div class="page">
+<div class="page" id="sec-garantia">
   <div class="page-header">
     <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Garantía y Contacto</span>
