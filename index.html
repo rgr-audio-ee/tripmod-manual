@@ -1805,9 +1805,9 @@
 
   <div style="text-align:center; margin: 2mm 0 3mm 0;">
     <img src="assets/cv-plug-es.png" alt="Conexión CV" class="es"
-         style="max-width:100%; max-height:44mm; object-fit:contain;">
+         style="max-width:100%; max-height:35mm; object-fit:contain;">
     <img src="assets/cv-plug-en.png" alt="CV Connection" class="en"
-         style="max-width:100%; max-height:44mm; object-fit:contain;">
+         style="max-width:100%; max-height:35mm; object-fit:contain;">
   </div>
 
   <h3 class="sub es">Especificaciones de la señal CV</h3>
@@ -1920,49 +1920,49 @@
     </tr></thead>
     <tbody>
       <tr>
-        <td>0</td>
+        <td>1</td>
         <td class="es">Footswitch</td><td class="en">Footswitch</td>
         <td><span class="leds"><span class="led led-off"></span><span class="led led-off"></span><span class="led led-blue"></span></span></td>
         <td class="es">CTRL R actúa como footswitch (1/2/3 botones).</td>
         <td class="en">CTRL R acts as footswitch (1/2/3 buttons).</td>
       </tr>
       <tr>
-        <td>1</td>
+        <td>2</td>
         <td class="es">Rate Phaser</td><td class="en">Rate Phaser</td>
         <td><span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-off"></span></span></td>
         <td class="es">Pedal de expresión controla Rate de Phaser</td>
         <td class="en">Expression pedal controls Phaser Rate</td>
       </tr>
       <tr>
-        <td>2</td>
+        <td>3</td>
         <td class="es">Depth Phaser</td><td class="en">Depth Phaser</td>
         <td><span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-blue"></span></span></td>
         <td class="es">Pedal de expresión controla Depth de Phaser</td>
         <td class="en">Expression pedal controls Phaser Depth</td>
       </tr>
       <tr>
-        <td>3</td>
+        <td>4</td>
         <td class="es">Modo Phaser/Wah</td><td class="en">Modo Phaser/Wah</td>
         <td><span class="leds"><span class="led led-off"></span><span class="led led-off"></span><span class="led led-blue"></span></span> <span style="font-size:7pt">↔</span> <span class="leds"><span class="led led-off"></span><span class="led led-pink"></span><span class="led led-off"></span></span></td>
         <td class="es">Azul y Rosa <em>alternados</em>. WAH/Phaser modulado por Pedal de Expresión: el pedal mueve directamente el filtro Phaser</td>
         <td class="en">Blue and Pink <em>alternating</em>. WAH/Phaser modulated by Expression Pedal: pedal moves the Phaser filter directly</td>
       </tr>
       <tr>
-        <td>4</td>
+        <td>5</td>
         <td class="es">Rate Tremolo</td><td class="en">Rate Tremolo</td>
         <td><span class="leds"><span class="led led-green"></span><span class="led led-off"></span><span class="led led-off"></span></span></td>
         <td class="es">Pedal de expresión controla Rate de Tremolo</td>
         <td class="en">Expression pedal controls Tremolo Rate</td>
       </tr>
       <tr>
-        <td>5</td>
+        <td>6</td>
         <td class="es">Depth Tremolo</td><td class="en">Depth Tremolo</td>
         <td><span class="leds"><span class="led led-green"></span><span class="led led-pink"></span><span class="led led-off"></span></span></td>
         <td class="es">Pedal de expresión controla Depth de Tremolo</td>
         <td class="en">Expression pedal controls Tremolo Depth</td>
       </tr>
       <tr>
-        <td>6</td>
+        <td>7</td>
         <td class="es">Disabled</td><td class="en">Disabled</td>
         <td><span class="leds"><span class="led led-green"></span><span class="led led-pink"></span><span class="led led-blue"></span></span></td>
         <td class="es">Los tres parpadean juntos. CTRL R ignorado — los knobs del panel tienen control total.</td>
@@ -2104,8 +2104,8 @@
         <td><strong>CC 22</strong></td>
         <td class="es">Wah / Expresión</td><td class="en">Wah / Expression</td>
         <td>0–127</td>
-        <td class="es">Controla directamente la frecuencia del filtro Phaser (modo Wah MIDI)</td>
-        <td class="en">Directly controls Phaser filter frequency (MIDI Wah mode)</td>
+        <td class="es">Controla directamente la frecuencia del filtro Phaser (modo Wah/Phaser)</td>
+        <td class="en">Directly controls Phaser filter frequency (Wah/Phaser mode)</td>
       </tr>
       <tr>
         <td><strong>CC 23</strong></td>
@@ -2400,8 +2400,8 @@
   <h3 class="sub es">Audio</h3>
   <h3 class="sub en">Audio</h3>
 
-  <p class="es" style="font-size:9pt; margin-bottom:3mm;">Cada efecto dispone de un relé electromecánico de audio independiente que conmuta la señal en modo bypass (True Bypass). El circuito Anti-Pop elimina los transitorios audibles durante la conmutación.</p>
-  <p class="en" style="font-size:9pt; margin-bottom:3mm;">Each effect features an independent electromechanical audio relay that routes the signal directly in bypass mode (True Bypass). The Anti-Pop circuit eliminates audible transients during switching.</p>
+  <p class="es" style="font-size:9pt; margin-bottom:3mm;">Cada efecto dispone de un relé electromecánico de audio independiente que conmuta la señal en modo bypass (True Bypass). El circuito Anti-Pop atenúa los transitorios audibles durante la conmutación.</p>
+  <p class="en" style="font-size:9pt; margin-bottom:3mm;">Each effect features an independent electromechanical audio relay that routes the signal directly in bypass mode (True Bypass). The Anti-Pop circuit attenuates audible transients during switching.</p>
 
   <table>
     <thead><tr>
