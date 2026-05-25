@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TripMod — Manual de Usuario v1.0 / User Manual v1.0</title>
+  <title>TripMod — Manual de Usuario / User Manual — Rev. 1.2</title>
   <style>
     /* ============================================================
        RESET & BASE
@@ -353,6 +353,7 @@
     .box.note  { border-color: #1a7eff; background: #f0f6ff; }
     .box.warn  { border-color: #cc4400; background: #fff5f0; }
     .box.tip   { border-color: #18c44a; background: #f0fff5; }
+    .modintro-lead { font-size: 9pt; font-weight: 600; color: #1a1a1a; margin-bottom: 2.5mm; }
 
     /* ============================================================
        PANEL SECTION IMAGES (side-by-side + single)
@@ -684,38 +685,42 @@
 
   <table class="toc-table es">
     <tr><td></td><td><a href="#sec-safety"><span>Precauciones de Seguridad</span></a></td><td>3</td></tr>
-    <tr><td><strong>1.</strong></td><td><a href="#sec-panel-frontal"><span>Panel Frontal</span></a></td><td>4</td></tr>
-    <tr><td><strong>2.</strong></td><td><a href="#sec-panel-trasero"><span>Panel Trasero</span></a></td><td>6</td></tr>
-    <tr><td><strong>3.</strong></td><td><a href="#sec-arquitectura"><span>Arquitectura del Sistema</span></a></td><td>7</td></tr>
-    <tr><td><strong>4.</strong></td><td><a href="#sec-operacion"><span>Operación Básica</span></a></td><td>8</td></tr>
-    <tr><td><strong>5.</strong></td><td><a href="#sec-waveforms"><span>Formas de Onda LFO</span></a></td><td>9</td></tr>
-    <tr><td><strong>6.</strong></td><td><a href="#sec-footswitch"><span>Footswitch Externo — CTRL R</span></a></td><td>10</td></tr>
-    <tr><td><strong>7.</strong></td><td><a href="#sec-expresion"><span>Pedal de Expresión — CTRL R</span></a></td><td>11</td></tr>
-    <tr><td><strong>8.</strong></td><td><a href="#sec-menu-dispositivo"><span>Menú Dispositivo Externo</span></a></td><td>12</td></tr>
-    <tr><td><strong>9.</strong></td><td><a href="#sec-midi-pc"><span>Control MIDI — Program Changes</span></a></td><td>13</td></tr>
-    <tr><td><strong>10.</strong></td><td><a href="#sec-midi-cc"><span>Control MIDI — Control Changes</span></a></td><td>14</td></tr>
-    <tr><td><strong>11.</strong></td><td><a href="#sec-midi-canal"><span>Menú Canal MIDI</span></a></td><td>15</td></tr>
-    <tr><td><strong>12.</strong></td><td><a href="#sec-reset"><span>Reseteo de Fábrica</span></a></td><td>16</td></tr>
-    <tr><td><strong>13.</strong></td><td><a href="#sec-specs"><span>Especificaciones Técnicas</span></a></td><td>17</td></tr>
-    <tr><td><strong>14.</strong></td><td><a href="#sec-garantia"><span>Garantía y Contacto</span></a></td><td>18</td></tr>
+    <tr><td></td><td><a href="#sec-modulation-intro"><span>Efectos de Modulación</span></a></td><td>4</td></tr>
+    <tr><td><strong>1.</strong></td><td><a href="#sec-panel-frontal"><span>Panel Frontal</span></a></td><td>5</td></tr>
+    <tr><td><strong>2.</strong></td><td><a href="#sec-panel-trasero"><span>Panel Trasero</span></a></td><td>7</td></tr>
+    <tr><td><strong>3.</strong></td><td><a href="#sec-arquitectura"><span>Arquitectura del Sistema</span></a></td><td>8</td></tr>
+    <tr><td><strong>4.</strong></td><td><a href="#sec-operacion"><span>Operación Básica</span></a></td><td>9</td></tr>
+    <tr><td><strong>5.</strong></td><td><a href="#sec-waveforms"><span>Formas de Onda LFO</span></a></td><td>10</td></tr>
+    <tr><td><strong>6.</strong></td><td><a href="#sec-footswitch"><span>Footswitch Externo — CTRL R</span></a></td><td>11</td></tr>
+    <tr><td><strong>7.</strong></td><td><a href="#sec-expresion"><span>Pedal de Expresión — CTRL R</span></a></td><td>12</td></tr>
+    <tr><td><strong>8.</strong></td><td><a href="#sec-cv"><span>Control Voltage (CV) — CTRL R</span></a></td><td>13</td></tr>
+    <tr><td><strong>9.</strong></td><td><a href="#sec-menu-dispositivo"><span>Menú Dispositivo Externo</span></a></td><td>14</td></tr>
+    <tr><td><strong>10.</strong></td><td><a href="#sec-midi-pc"><span>Control MIDI — Program Changes</span></a></td><td>15</td></tr>
+    <tr><td><strong>11.</strong></td><td><a href="#sec-midi-cc"><span>Control MIDI — Control Changes</span></a></td><td>16</td></tr>
+    <tr><td><strong>12.</strong></td><td><a href="#sec-midi-canal"><span>Menú Canal MIDI</span></a></td><td>17</td></tr>
+    <tr><td><strong>13.</strong></td><td><a href="#sec-reset"><span>Reseteo de Fábrica</span></a></td><td>18</td></tr>
+    <tr><td><strong>14.</strong></td><td><a href="#sec-specs"><span>Especificaciones Técnicas</span></a></td><td>19</td></tr>
+    <tr><td><strong>15.</strong></td><td><a href="#sec-garantia"><span>Garantía y Contacto</span></a></td><td>20</td></tr>
   </table>
 
   <table class="toc-table en">
     <tr><td></td><td><a href="#sec-safety"><span>Safety Instructions</span></a></td><td>3</td></tr>
-    <tr><td><strong>1.</strong></td><td><a href="#sec-panel-frontal"><span>Front Panel</span></a></td><td>4</td></tr>
-    <tr><td><strong>2.</strong></td><td><a href="#sec-panel-trasero"><span>Rear Panel</span></a></td><td>6</td></tr>
-    <tr><td><strong>3.</strong></td><td><a href="#sec-arquitectura"><span>System Architecture</span></a></td><td>7</td></tr>
-    <tr><td><strong>4.</strong></td><td><a href="#sec-operacion"><span>Basic Operation</span></a></td><td>8</td></tr>
-    <tr><td><strong>5.</strong></td><td><a href="#sec-waveforms"><span>LFO Waveforms</span></a></td><td>9</td></tr>
-    <tr><td><strong>6.</strong></td><td><a href="#sec-footswitch"><span>External Footswitch — CTRL R</span></a></td><td>10</td></tr>
-    <tr><td><strong>7.</strong></td><td><a href="#sec-expresion"><span>Expression Pedal — CTRL R</span></a></td><td>11</td></tr>
-    <tr><td><strong>8.</strong></td><td><a href="#sec-menu-dispositivo"><span>External Device Menu</span></a></td><td>12</td></tr>
-    <tr><td><strong>9.</strong></td><td><a href="#sec-midi-pc"><span>MIDI Control — Program Changes</span></a></td><td>13</td></tr>
-    <tr><td><strong>10.</strong></td><td><a href="#sec-midi-cc"><span>MIDI Control — Control Changes</span></a></td><td>14</td></tr>
-    <tr><td><strong>11.</strong></td><td><a href="#sec-midi-canal"><span>MIDI Channel Menu</span></a></td><td>15</td></tr>
-    <tr><td><strong>12.</strong></td><td><a href="#sec-reset"><span>Factory Reset</span></a></td><td>16</td></tr>
-    <tr><td><strong>13.</strong></td><td><a href="#sec-specs"><span>Technical Specifications</span></a></td><td>17</td></tr>
-    <tr><td><strong>14.</strong></td><td><a href="#sec-garantia"><span>Warranty &amp; Contact</span></a></td><td>18</td></tr>
+    <tr><td></td><td><a href="#sec-modulation-intro"><span>Modulation Effects</span></a></td><td>4</td></tr>
+    <tr><td><strong>1.</strong></td><td><a href="#sec-panel-frontal"><span>Front Panel</span></a></td><td>5</td></tr>
+    <tr><td><strong>2.</strong></td><td><a href="#sec-panel-trasero"><span>Rear Panel</span></a></td><td>7</td></tr>
+    <tr><td><strong>3.</strong></td><td><a href="#sec-arquitectura"><span>System Architecture</span></a></td><td>8</td></tr>
+    <tr><td><strong>4.</strong></td><td><a href="#sec-operacion"><span>Basic Operation</span></a></td><td>9</td></tr>
+    <tr><td><strong>5.</strong></td><td><a href="#sec-waveforms"><span>LFO Waveforms</span></a></td><td>10</td></tr>
+    <tr><td><strong>6.</strong></td><td><a href="#sec-footswitch"><span>External Footswitch — CTRL R</span></a></td><td>11</td></tr>
+    <tr><td><strong>7.</strong></td><td><a href="#sec-expresion"><span>Expression Pedal — CTRL R</span></a></td><td>12</td></tr>
+    <tr><td><strong>8.</strong></td><td><a href="#sec-cv"><span>Control Voltage (CV) — CTRL R</span></a></td><td>13</td></tr>
+    <tr><td><strong>9.</strong></td><td><a href="#sec-menu-dispositivo"><span>External Device Menu</span></a></td><td>14</td></tr>
+    <tr><td><strong>10.</strong></td><td><a href="#sec-midi-pc"><span>MIDI Control — Program Changes</span></a></td><td>15</td></tr>
+    <tr><td><strong>11.</strong></td><td><a href="#sec-midi-cc"><span>MIDI Control — Control Changes</span></a></td><td>16</td></tr>
+    <tr><td><strong>12.</strong></td><td><a href="#sec-midi-canal"><span>MIDI Channel Menu</span></a></td><td>17</td></tr>
+    <tr><td><strong>13.</strong></td><td><a href="#sec-reset"><span>Factory Reset</span></a></td><td>18</td></tr>
+    <tr><td><strong>14.</strong></td><td><a href="#sec-specs"><span>Technical Specifications</span></a></td><td>19</td></tr>
+    <tr><td><strong>15.</strong></td><td><a href="#sec-garantia"><span>Warranty &amp; Contact</span></a></td><td>20</td></tr>
   </table>
 
   <div class="page-footer">
@@ -830,8 +835,8 @@
   <hr class="dash">
 
   <div class="disclaimer-box">
-    <p class="es" style="margin-bottom:0"><strong>Aviso legal:</strong> La información de este documento está sujeta a cambios sin previo aviso. RGR Audio Electronic Engineering no asume responsabilidad por errores que puedan aparecer en este documento. Los nombres de producto y marcas son propiedad de sus respectivos titulares. <em>TripMod User Manual v1.0</em> © 2026 RGR Audio Electronic Engineering. Reproducción sin autorización escrita estrictamente prohibida.</p>
-    <p class="en" style="margin-bottom:0"><strong>Legal disclaimer:</strong> The information in this document is subject to change without notice. RGR Audio Electronic Engineering assumes no responsibility for any errors that may appear in this document. Product names and trademarks are the property of their respective owners. <em>TripMod User Manual v1.0</em> © 2026 RGR Audio Electronic Engineering. Reproduction without written authorization is strictly prohibited.</p>
+    <p class="es" style="margin-bottom:0"><strong>Aviso legal:</strong> La información de este documento está sujeta a cambios sin previo aviso. RGR Audio Electronic Engineering no asume responsabilidad por errores que puedan aparecer en este documento. Los nombres de producto y marcas son propiedad de sus respectivos titulares. <em>TripMod Bassic v1.0 — Manual Rev. 1.2</em> © 2026 RGR Audio Electronic Engineering. Reproducción sin autorización escrita estrictamente prohibida.</p>
+    <p class="en" style="margin-bottom:0"><strong>Legal disclaimer:</strong> The information in this document is subject to change without notice. RGR Audio Electronic Engineering assumes no responsibility for any errors that may appear in this document. Product names and trademarks are the property of their respective owners. <em>TripMod Bassic v1.0 — Manual Rev. 1.2</em> © 2026 RGR Audio Electronic Engineering. Reproduction without written authorization is strictly prohibited.</p>
   </div>
 
   <div class="page-footer">
@@ -842,7 +847,45 @@
 </div>
 
 <!-- ============================================================
-     PÁGINA 4 — PANEL FRONTAL / FRONT PANEL
+     PÁGINA 4 — EFECTOS DE MODULACIÓN / MODULATION EFFECTS
+============================================================ -->
+<div class="page" id="sec-modulation-intro">
+  <div class="page-header">
+    <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
+    <span class="ph-section es">Efectos de Modulación</span>
+    <span class="ph-section en">Modulation Effects</span>
+  </div>
+
+  <h2 class="sec-front es">¿Qué son los Efectos de Modulación?</h2>
+  <h2 class="sec-front en">What are Modulation Effects?</h2>
+
+  <p class="modintro-lead es">Los efectos de modulación son herramientas fundamentales del músico, en estudio y en vivo. Su historia comienza en los años 50 con los primeros tremolos integrados en amplificadores de guitarra, y continuó evolucionando a lo largo de los 60 y 70 con pedales que redefinieron el sonido del rock, el funk y la psicodelia. En todos ellos, uno o más parámetros del sonido —volumen, tono o fase— varían cíclicamente en el tiempo, controlados por un oscilador de baja frecuencia (LFO).</p>
+  <p class="modintro-lead en">Modulation effects are essential tools in any musician's sonic palette, equally at home in the studio or on stage. Their history begins in the 1950s with the first tremolo circuits built into guitar amplifiers, and continued to evolve through the 1960s and 1970s as pedals redefined the sound of rock, funk, and psychedelia. In all of them, one or more parameters of the sound — volume, pitch, or phase — vary cyclically over time, driven by a low-frequency oscillator (LFO).</p>
+
+  <h3 class="sub es">Phaser</h3>
+  <h3 class="sub en">Phaser</h3>
+  <p class="es">El Phaser divide la señal en dos caminos: uno pasa sin modificar, y el otro atraviesa una cadena de filtros all-pass que desplazan la fase de ciertas frecuencias. Al recombinarse, los puntos de cancelación —llamados <em>notches</em>— se desplazan suavemente a lo largo del espectro, produciendo un barrido vibrante y casi vocal que va desde texturas armónicas sutiles hasta paisajes sonoros hipnóticos cuando se lleva al extremo. Eddie Van Halen lo convirtió en firma de su sonido en <em>Eruption</em> (1978); Pink Floyd lo usaron para envolver las guitarras de <em>Have a Cigar</em> en un halo de movimiento; Shuggie Otis le dio un toque funky y espacial en <em>Strawberry Letter 23</em> (1971).</p>
+  <p class="en">The Phaser splits the signal into two paths: one passes through unaltered, while the other travels through a chain of all-pass filters that shift the phase of certain frequencies. When recombined, the cancellation points — called <em>notches</em> — sweep smoothly across the spectrum, producing a vibrant, almost vocal movement ranging from subtle harmonic textures to hypnotic soundscapes at the extreme. Eddie Van Halen made it a signature of his tone on <em>Eruption</em> (1978); Pink Floyd used it to wrap the guitars of <em>Have a Cigar</em> in a halo of motion; Shuggie Otis gave it a funky, spatial feel on <em>Strawberry Letter 23</em> (1971).</p>
+
+  <h3 class="sub es">Flanger</h3>
+  <h3 class="sub en">Flanger</h3>
+  <p class="es">El Flanger mezcla la señal con una copia retardada muy brevemente (1–20 ms) cuyo tiempo varía con el LFO. Esta combinación genera un filtro de peine que produce el característico <em>whoosh</em> metálico —o el inconfundible efecto de avión a reacción pasando. El nombre proviene de la técnica de grabación de los años 60 en que los ingenieros presionaban físicamente el flange (borde) del carrete de cinta para variar su velocidad y crear el efecto. Jimi Hendrix lo usó con maestría en <em>Bold as Love</em> (1967); Led Zeppelin le dieron una dimensión casi cósmica en <em>Whole Lotta Love</em>; Heart lo desplegaron para crear la apertura explosiva de <em>Barracuda</em> (1977).</p>
+  <p class="en">The Flanger blends the signal with a very slightly delayed copy (1–20 ms) whose delay time is varied by the LFO. This combination creates a comb filter effect that produces the characteristic metallic <em>whoosh</em> — or the unmistakable sound of a jet plane flying by. Its name comes from the 1960s recording technique in which engineers physically pressed the flange (rim) of a tape reel to vary its speed and create the effect. Jimi Hendrix used it masterfully on <em>Bold as Love</em> (1967); Led Zeppelin gave it an almost cosmic sweep on <em>Whole Lotta Love</em>; Heart deployed it for the explosive opening of <em>Barracuda</em> (1977).</p>
+
+  <h3 class="sub es">Tremolo</h3>
+  <h3 class="sub en">Tremolo</h3>
+  <p class="es">El Tremolo es al mismo tiempo el más primitivo y el más universal de los efectos de modulación: modula la amplitud de la señal con el LFO, creando variaciones rítmicas que van desde un pulso sutil hasta un corte pronunciado del volumen. Sus raíces están en los amplificadores Fender y Gibson de los años 50, que ya traían este efecto integrado —fue el sonido definitorio del surf de Dick Dale y The Shadows, y el corazón del blues eléctrico de la época. Décadas después, The Edge lo usó en <em>Pride (In the Name of Love)</em> para crear esa pulsación hipnótica; Radiohead lo incorporaron en <em>The National Anthem</em>; Jack White lo exploró crudo y agresivo a lo largo de su carrera.</p>
+  <p class="en">Tremolo is both the most primitive and the most universal modulation effect: it modulates the amplitude of the signal with the LFO, creating rhythmic variations ranging from a subtle pulse to a pronounced volume cut. Its roots lie in the Fender and Gibson amplifiers of the 1950s, which already had this effect built in — it was the defining sound of Dick Dale's surf music and The Shadows, and the heartbeat of the electric blues of the era. Decades later, The Edge used it on <em>Pride (In the Name of Love)</em> to create that hypnotic pulse; Radiohead incorporated it in <em>The National Anthem</em>; Jack White explored it raw and aggressive throughout his career.</p>
+
+  <div class="page-footer">
+    <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">4</span>
+    <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 5 — PANEL FRONTAL / FRONT PANEL
 ============================================================ -->
 <div class="page" id="sec-panel-frontal">
   <div class="page-header">
@@ -926,13 +969,13 @@
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">4</span>
+    <span class="footer-page">5</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 5 — PANEL FRONTAL (cont.) — TREMOLO + FOOTSWITCHES
+     PÁGINA 6 — PANEL FRONTAL (cont.) — TREMOLO + FOOTSWITCHES
 ============================================================ -->
 <div class="page">
   <div class="page-header">
@@ -1025,13 +1068,13 @@
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">5</span>
+    <span class="footer-page">6</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 6 — PANEL TRASERO / REAR PANEL
+     PÁGINA 7 — PANEL TRASERO / REAR PANEL
 ============================================================ -->
 <div class="page" id="sec-panel-trasero">
   <div class="page-header">
@@ -1067,8 +1110,8 @@
       <tr>
         <td><strong>CTRL R</strong></td>
         <td class="es">Jack 6.35mm (1/4") (TS/TRS)</td><td class="en">6.35mm (1/4") jack (TS/TRS)</td>
-        <td class="es">Control externo derecho: footswitch (1, 2 ó 3 switches), pedal de expresión o señal CV. Detectado automáticamente según tipo de plug (TS/TRS). Ver secciones 6 y 7 para configuración.</td>
-        <td class="en">Right external control: footswitch (1, 2 or 3 switches), expression pedal, or CV signal. Automatically detected based on plug type (TS/TRS). See sections 6 and 7 for setup.</td>
+        <td class="es">Control externo derecho: footswitch (1, 2 ó 3 switches), pedal de expresión o señal CV. Detectado automáticamente según tipo de plug (TS/TRS). Ver secciones 6, 7 y 8 para configuración.</td>
+        <td class="en">Right external control: footswitch (1, 2 or 3 switches), expression pedal, or CV signal. Automatically detected based on plug type (TS/TRS). See sections 6, 7 and 8 for setup.</td>
       </tr>
       <tr>
         <td><strong>9VDC</strong></td>
@@ -1093,13 +1136,13 @@
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">6</span>
+    <span class="footer-page">7</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 7 — SIGNAL PATH / ARQUITECTURA DEL SISTEMA
+     PÁGINA 8 — SIGNAL PATH / ARQUITECTURA DEL SISTEMA
 ============================================================ -->
 <div class="page" id="sec-arquitectura">
   <div class="page-header">
@@ -1132,13 +1175,13 @@
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">7</span>
+    <span class="footer-page">8</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 8 — OPERACIÓN BÁSICA / BASIC OPERATION
+     PÁGINA 9 — OPERACIÓN BÁSICA / BASIC OPERATION
 ============================================================ -->
 <div class="page" id="sec-operacion">
   <div class="page-header">
@@ -1275,13 +1318,13 @@
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">8</span>
+    <span class="footer-page">9</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 9 — FORMAS DE ONDA LFO / LFO WAVEFORMS
+     PÁGINA 10 — FORMAS DE ONDA LFO / LFO WAVEFORMS
 ============================================================ -->
 <div class="page" id="sec-waveforms">
   <div class="page-header">
@@ -1453,13 +1496,13 @@
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">9</span>
+    <span class="footer-page">10</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 10 — FOOTSWITCH EXTERNO / EXTERNAL FOOTSWITCH
+     PÁGINA 11 — FOOTSWITCH EXTERNO / EXTERNAL FOOTSWITCH
 ============================================================ -->
 <div class="page" id="sec-footswitch">
   <div class="page-header">
@@ -1619,13 +1662,13 @@
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">10</span>
+    <span class="footer-page">11</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 11 — PEDAL DE EXPRESIÓN / EXPRESSION PEDAL
+     PÁGINA 12 — PEDAL DE EXPRESIÓN / EXPRESSION PEDAL
 ============================================================ -->
 <div class="page" id="sec-expresion">
   <div class="page-header">
@@ -1637,8 +1680,8 @@
   <h2 class="sec es">Pedal de Expresión — CTRL R</h2>
   <h2 class="sec en">Expression Pedal — CTRL R</h2>
 
-  <p class="es">Un pedal de expresión TRS estándar se conecta en <strong>CTRL R</strong>. El modo de operación se selecciona en el Menú Dispositivo Externo (ver sección 8).</p>
-  <p class="en">A standard TRS expression pedal connects to <strong>CTRL R</strong>. The operating mode is selected in the External Device Menu (see section 8).</p>
+  <p class="es">Un pedal de expresión TRS estándar se conecta en <strong>CTRL R</strong>. El modo de operación se selecciona en el Menú Dispositivo Externo (ver sección 9). Para usar una fuente de Control Voltage (CV) en lugar de un pedal de expresión, ver sección 8.</p>
+  <p class="en">A standard TRS expression pedal connects to <strong>CTRL R</strong>. The operating mode is selected in the External Device Menu (see section 9). To use a Control Voltage (CV) source instead of an expression pedal, see section 8.</p>
 
   <div style="text-align:center; margin: 2mm 0 3mm 0;">
     <img src="assets/exp-pedal-es.png" alt="Conexión Pedal de Expresión TRS" class="es"
@@ -1718,13 +1761,91 @@
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">11</span>
+    <span class="footer-page">12</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 12 — MENÚ DISPOSITIVO EXTERNO / EXTERNAL DEVICE MENU
+     PÁGINA 13 — CONTROL VOLTAGE (CV) / CV INPUT
+============================================================ -->
+<div class="page" id="sec-cv">
+  <div class="page-header">
+    <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
+    <span class="ph-section es">Control Voltage — CTRL R</span>
+    <span class="ph-section en">Control Voltage — CTRL R</span>
+  </div>
+
+  <h2 class="sec es">Control Voltage (CV) — CTRL R</h2>
+  <h2 class="sec en">Control Voltage (CV) — CTRL R</h2>
+
+  <p class="es">Además de un pedal de expresión, el TripMod acepta una señal de <strong>Control Voltage (CV)</strong> directamente en <strong>CTRL R</strong>. Esta entrada permite integrar el pedal con sintetizadores modulares, cajas de ritmo o cualquier fuente de CV estándar, usando exactamente los mismos modos de operación que el pedal de expresión (ver sección 7).</p>
+  <p class="en">In addition to an expression pedal, the TripMod accepts a <strong>Control Voltage (CV)</strong> signal directly at <strong>CTRL R</strong>. This input allows integrating the pedal with modular synthesizers, drum machines, or any standard CV source, using exactly the same operating modes as the expression pedal (see section 7).</p>
+
+  <div style="text-align:center; margin: 2mm 0 3mm 0;">
+    <img src="assets/cv-plug-es.png" alt="Conexión CV" class="es"
+         style="max-width:100%; max-height:55mm; object-fit:contain;">
+    <img src="assets/cv-plug-en.png" alt="CV Connection" class="en"
+         style="max-width:100%; max-height:55mm; object-fit:contain;">
+  </div>
+
+  <h3 class="sub es">Especificaciones de la señal CV</h3>
+  <h3 class="sub en">CV Signal Specifications</h3>
+
+  <table>
+    <thead><tr>
+      <th class="es">Parámetro</th><th class="en">Parameter</th>
+      <th class="es">Valor</th><th class="en">Value</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="es"><strong>Rango de voltaje</strong></td><td class="en"><strong>Voltage range</strong></td>
+        <td class="es">0 V — 5 V DC</td><td class="en">0 V — 5 V DC</td>
+      </tr>
+      <tr>
+        <td class="es"><strong>Voltaje mínimo</strong></td><td class="en"><strong>Minimum voltage</strong></td>
+        <td class="es">0 V (no se admiten voltajes negativos)</td><td class="en">0 V (negative voltages not accepted)</td>
+      </tr>
+      <tr>
+        <td class="es"><strong>Voltaje máximo</strong></td><td class="en"><strong>Maximum voltage</strong></td>
+        <td class="es">5 V máx. — no superar este límite</td><td class="en">5 V max. — do not exceed this limit</td>
+      </tr>
+      <tr>
+        <td class="es"><strong>Referencia</strong></td><td class="en"><strong>Reference</strong></td>
+        <td class="es">GND/chasis común entre fuente CV y pedal</td><td class="en">Common GND/chassis between CV source and pedal</td>
+      </tr>
+      <tr>
+        <td class="es"><strong>Conector</strong></td><td class="en"><strong>Connector</strong></td>
+        <td class="es">Jack 6.35 mm TRS — CV en TIP, GND en SLEEVE</td><td class="en">6.35 mm TRS jack — CV on TIP, GND on SLEEVE</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box warn">
+    <span class="es">⚠ <strong>Precaución:</strong> No conectar señales CV con voltajes negativos ni superiores a 5 V. Hacerlo puede dañar permanentemente la electrónica del pedal. La masa (GND) de la fuente de CV debe estar referenciada a la masa del pedal (chasis). Una fuente flotante o con referencia diferente puede causar funcionamiento incorrecto o daño al equipo.</span>
+    <span class="en">⚠ <strong>Caution:</strong> Do not connect CV signals with negative voltages or voltages above 5 V. Doing so can permanently damage the pedal's electronics. The CV source ground (GND) must be referenced to the pedal's ground (chassis). A floating or differently-referenced source may cause incorrect operation or equipment damage.</span>
+  </div>
+
+  <h3 class="sub es">Conexión y modos de operación</h3>
+  <h3 class="sub en">Connection and operating modes</h3>
+
+  <p class="es">Conectar la fuente de CV en <strong>CTRL R</strong> mediante un cable TRS estándar: la señal CV va en el contacto TIP y la masa en SLEEVE. El pedal detecta automáticamente el tipo de plug y opera en modo Expresión/CV. Los modos disponibles (Rate Phaser, Depth Phaser, Wah, Rate Tremolo, Depth Tremolo) se configuran desde el Menú Dispositivo Externo (ver sección 9).</p>
+  <p class="en">Connect the CV source to <strong>CTRL R</strong> using a standard TRS cable: the CV signal goes to the TIP contact and ground to SLEEVE. The pedal automatically detects the plug type and operates in Expression/CV mode. Available modes (Rate Phaser, Depth Phaser, Wah, Rate Tremolo, Depth Tremolo) are configured from the External Device Menu (see section 9).</p>
+
+  <div class="box note">
+    <span class="es"><strong>Calibración automática:</strong> Al igual que con el pedal de expresión, el TripMod aprende automáticamente el rango de voltaje de la fuente conectada. En los primeros usos, enviar la señal CV desde 0 V hasta 5 V (recorrido completo) ayuda al sistema a optimizar la respuesta al rango exacto de la fuente.</span>
+    <span class="en"><strong>Automatic calibration:</strong> As with the expression pedal, the TripMod automatically learns the voltage range of the connected source. On first use, sweeping the CV signal from 0 V to 5 V (full range) helps the system optimize its response to the source's exact range.</span>
+  </div>
+
+  <div class="page-footer">
+    <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">13</span>
+    <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 14 — MENÚ DISPOSITIVO EXTERNO / EXTERNAL DEVICE MENU
 ============================================================ -->
 <div class="page" id="sec-menu-dispositivo">
   <div class="page-header">
@@ -1836,13 +1957,13 @@
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">12</span>
+    <span class="footer-page">14</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 13 — MIDI: PROGRAM CHANGES
+     PÁGINA 15 — MIDI: PROGRAM CHANGES
 ============================================================ -->
 <div class="page" id="sec-midi-pc">
   <div class="page-header">
@@ -1915,13 +2036,13 @@
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">13</span>
+    <span class="footer-page">15</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 14 — MIDI: CONTROL CHANGES
+     PÁGINA 16 — MIDI: CONTROL CHANGES
 ============================================================ -->
 <div class="page" id="sec-midi-cc">
   <div class="page-header">
@@ -2038,21 +2159,21 @@
       </tr>
       <tr>
         <td class="es">CC Rate → Expression</td><td class="en">CC Rate → Expression</td>
-        <td class="es">El pedal de expresión <em>no</em> cancela automáticamente el CC (ver sección 7 — Pedal de Expresión). Usar PC 25 o mover la perilla &gt;20% para liberar.</td>
-        <td class="en">The expression pedal does <em>not</em> automatically cancel CC (see section 7 — Expression Pedal). Use PC 25 or move the knob &gt;20% to release.</td>
+        <td class="es">El pedal de expresión <em>no</em> cancela automáticamente el CC (ver sección 7 — Pedal de Expresión / sección 8 — CV). Usar PC 25 o mover la perilla &gt;20% para liberar.</td>
+        <td class="en">The expression pedal does <em>not</em> automatically cancel CC (see section 7 — Expression Pedal / section 8 — CV). Use PC 25 or move the knob &gt;20% to release.</td>
       </tr>
     </tbody>
   </table>
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">14</span>
+    <span class="footer-page">16</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 15 — MENÚ CANAL MIDI / MIDI CHANNEL MENU
+     PÁGINA 17 — MENÚ CANAL MIDI / MIDI CHANNEL MENU
 ============================================================ -->
 <div class="page" id="sec-midi-canal">
   <div class="page-header">
@@ -2136,13 +2257,13 @@
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">15</span>
+    <span class="footer-page">17</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 16 — FACTORY RESET / RESETEO DE FÁBRICA
+     PÁGINA 18 — FACTORY RESET / RESETEO DE FÁBRICA
 ============================================================ -->
 <div class="page" id="sec-reset">
   <div class="page-header">
@@ -2236,13 +2357,13 @@
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">16</span>
+    <span class="footer-page">18</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 17 — ESPECIFICACIONES TÉCNICAS / TECHNICAL SPECS
+     PÁGINA 19 — ESPECIFICACIONES TÉCNICAS / TECHNICAL SPECS
 ============================================================ -->
 <div class="page" id="sec-specs">
   <div class="page-header">
@@ -2462,13 +2583,13 @@
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">17</span>
+    <span class="footer-page">19</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
 
 <!-- ============================================================
-     PÁGINA 18 — GARANTÍA Y CONTACTO / WARRANTY AND CONTACT
+     PÁGINA 20 — GARANTÍA Y CONTACTO / WARRANTY AND CONTACT
 ============================================================ -->
 <div class="page" id="sec-garantia">
   <div class="page-header">
@@ -2518,7 +2639,7 @@
 
   <div class="page-footer">
     <img src="assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
-    <span class="footer-page">18</span>
+    <span class="footer-page">20</span>
     <img src="assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
   </div>
 </div>
