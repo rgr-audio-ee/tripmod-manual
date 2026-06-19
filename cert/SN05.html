@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TripMod — Certificado de Calidad TM.PFT-V1.1-26.06-05</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10pt;
+    color: #1a1a1a;
+    background: #d0d0d0;
+    line-height: 1.55;
+  }
+
+  /* Language toggle (same convention as the User Manual) */
+  .lang-btn {
+    position: fixed; top: 12px; right: 12px; z-index: 999;
+    background: #1a1a1a; color: #fff; border: none;
+    padding: 6px 16px; font-size: 10pt; font-weight: 700;
+    letter-spacing: 1px; cursor: pointer; border-radius: 3px;
+  }
+  .lang-btn:hover { background: #444; }
+  .es, .en { display: none; }
+  body.lang-es .es { display: block; }
+  body.lang-en .en { display: block; }
+  span.es, span.en { display: none; }
+  body.lang-es span.es { display: inline; }
+  body.lang-en span.en { display: inline; }
+  td.es, td.en, th.es, th.en { display: none; }
+  body.lang-es td.es, body.lang-es th.es { display: table-cell; }
+  body.lang-en td.en, body.lang-en th.en { display: table-cell; }
+
+  .page {
+    width: 210mm; min-height: 297mm; background: #fff;
+    margin: 10mm auto; padding: 16mm 15mm 20mm 15mm;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+    position: relative; page-break-after: always; border-radius: 6mm;
+  }
+  @page { size: A4; margin: 0; }
+  @media print {
+    body { background: #fff; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .page { margin: 0; box-shadow: none; page-break-after: always; break-after: page;
+            width: 210mm; height: 297mm; overflow: hidden; border-radius: 0; }
+    .lang-btn { display: none; }
+  }
+  * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  img { image-rendering: auto; }
+  @media screen { .page { padding-top: 6mm; } }
+  @media screen and (max-width: 750px) {
+    .page { width: 100% !important; min-height: auto !important; padding: 4mm !important; margin: 2mm auto; }
+    .page-footer { position: relative !important; bottom: auto !important; left: auto !important; right: auto !important; margin-top: 6mm; }
+    table { font-size: 8pt !important; }
+    thead th, tbody td, tr.cat-row td { font-size: 8pt !important; }
+    .two-col { grid-template-columns: 1fr !important; }
+    .three-col { grid-template-columns: 1fr !important; }
+  }
+
+  .page-header {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid #ddd; padding-bottom: 2.5mm; margin-bottom: 5mm;
+  }
+  .ph-brand { font-size: 7.5pt; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #999; }
+  .ph-logo-tripmod { height: 4.5mm; width: auto; display: block; filter: grayscale(100%) opacity(35%); }
+  .ph-section { font-size: 7.5pt; color: #aaa; letter-spacing: 0.5px; }
+
+  .page-footer {
+    position: absolute; bottom: 8mm; left: 15mm; right: 15mm;
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+    border-top: 1px solid #ddd; padding-top: 2mm; font-size: 7pt; color: #bbb;
+  }
+  .footer-logo-rgr { height: 5.5mm; width: auto; display: block; filter: grayscale(100%) opacity(40%); }
+  .footer-logo-effects { height: 5.5mm; width: auto; display: block; margin-left: auto; filter: grayscale(100%) opacity(40%); }
+  .footer-page { text-align: center; font-size: 7pt; color: #aaa; }
+
+  h2.sec-front {
+    font-size: 12.5pt; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;
+    color: #1a1a1a; padding-bottom: 2mm; border-bottom: 2px solid #1a1a1a;
+    margin-bottom: 4mm; margin-top: 0;
+  }
+  h3.sub { font-size: 9.5pt; font-weight: 700; margin-top: 4mm; margin-bottom: 1.5mm; color: #1a1a1a; }
+  p { margin-bottom: 2.5mm; font-size: 9.5pt; text-align: justify; }
+  p.small { font-size: 8.5pt; color: #444; }
+
+  hr.dash { border: none; border-top: 1px dashed #bbb; margin: 4mm 0; }
+
+  table { width: 100%; border-collapse: collapse; margin: 2mm 0 4mm 0; font-size: 8.5pt; }
+  thead th {
+    background: #1a1a1a; color: #fff; padding: 2mm 3mm; text-align: left;
+    font-size: 7.5pt; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
+  }
+  tbody td { padding: 1.8mm 3mm; border-bottom: 1px solid #e8e8e8; vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) td { background: #f7f7f7; }
+  tr.cat-row td {
+    background: #3a3a3a !important; color: #fff; font-weight: 700;
+    font-size: 7.5pt; letter-spacing: 0.8px; text-transform: uppercase; padding: 1.5mm 3mm;
+  }
+  td.result-pass { color: #0a7a1f; font-weight: 700; }
+  td.result-fail { color: #b00020; font-weight: 700; }
+
+  .box { border-left: 3px solid #1a1a1a; background: #f5f5f5; padding: 3mm 4mm; margin: 3mm 0; font-size: 8.5pt; }
+  .box.note { border-color: #1a7eff; background: #f0f6ff; }
+  .box.tip  { border-color: #18c44a; background: #f0fff5; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; }
+
+  .ident-table td { font-size: 9pt; padding: 1.2mm 0; border: none; background: transparent; }
+  .ident-table td:first-child { font-weight: 700; width: 45mm; color: #444; }
+
+  .graph-card { border: 1px solid #ddd; border-radius: 3px; padding: 2mm; text-align: center; }
+  .graph-card img { max-width: 100%; display: block; margin: 0 auto 1mm auto; }
+  .graph-card .cap { font-size: 7.5pt; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .sig-line { margin-top: 10mm; display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; }
+  .sig-line .field { border-top: 1px solid #1a1a1a; padding-top: 1.5mm; font-size: 8.5pt; color: #444; }
+</style>
+</head>
+<body class="lang-es">
+
+<button class="lang-btn no-print" onclick="toggleLang()">EN / ES</button>
+<script>
+  function toggleLang() {
+    document.body.classList.toggle('lang-es');
+    document.body.classList.toggle('lang-en');
+  }
+</script>
+
+<!-- ============================================================
+     PÁGINA 1 — IDENTIFICACIÓN + TEST FIRMWARE + ELÉCTRICO
+============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="ph-brand"><img src="../assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
+    <span class="ph-section es">Certificado de Calidad</span>
+    <span class="ph-section en">Quality Certificate</span>
+  </div>
+
+  <h2 class="sec-front es">Certificado de Calidad</h2>
+  <h2 class="sec-front en">Quality Certificate</h2>
+
+  <table class="ident-table">
+    <tr><td class="es">Número de Serie</td><td class="en">Serial Number</td><td><strong>TM.PFT-V1.1-26.06-05</strong></td></tr>
+    <tr><td class="es">Modelo</td><td class="en">Model</td><td>TripMod v1.1 — Phaser · Flanger · Tremolo</td></tr>
+    <tr><td class="es">Firmware</td><td class="en">Firmware</td><td>Rev. 1.7.7</td></tr>
+    <tr><td class="es">Fecha de fabricación</td><td class="en">Manufacturing date</td><td>—</td></tr>
+    <tr><td class="es">Responsable QC</td><td class="en">QC Responsible</td><td>—</td></tr>
+    <tr><td class="es">Fecha de certificación</td><td class="en">Certification date</td><td>—</td></tr>
+  </table>
+
+  <p class="es">Esta unidad fue inspeccionada y probada de forma individual antes de su envío. A continuación se resumen los resultados de los controles de calidad de firmware y hardware aplicados.</p>
+  <p class="en">This unit was individually inspected and tested before shipping. Below is a summary of the firmware and hardware quality control checks applied.</p>
+
+  <hr class="dash">
+
+  <h3 class="sub es">Test de Firmware (24 verificaciones críticas)</h3>
+  <h3 class="sub en">Firmware Test (24 critical checks)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th class="es">Categoría</th><th class="en">Category</th>
+        <th class="es">Ítems</th><th class="en">Items</th>
+        <th class="es">Resultado</th><th class="en">Result</th>
+        <th class="es">Notas</th><th class="en">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="es">EEPROM / Factory Reset</td><td class="en">EEPROM / Factory Reset</td>
+        <td>QC01-03, QC22-23</td>
+        <td class="">Pendiente / Pending</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="es">Footswitches (debounce HW+FW)</td><td class="en">Footswitches (HW+FW debounce)</td>
+        <td>QC04-07, QC14-17</td>
+        <td class="">Pendiente / Pending</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="es">Relé + Anti-Pop (medido)</td><td class="en">Relay + Anti-Pop (measured)</td>
+        <td>QC08-10</td>
+        <td class="">Pendiente / Pending</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="es">Pedal de Expresión</td><td class="en">Expression Pedal</td>
+        <td>QC11-13</td>
+        <td class="">Pendiente / Pending</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="es">MIDI (Program/Control Change)</td><td class="en">MIDI (Program/Control Change)</td>
+        <td>QC18-19</td>
+        <td class="">Pendiente / Pending</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="es">Power Cycle (stress)</td><td class="en">Power Cycle (stress)</td>
+        <td>QC20-21, QC24</td>
+        <td class="">Pendiente / Pending</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub es">Test Eléctrico — Rieles de Alimentación y LFO Analógico</h3>
+  <h3 class="sub en">Electrical Test — Power Rails and Analog LFO</h3>
+  <div class="two-col">
+    <table>
+      <thead>
+        <tr><th class="es">Riel</th><th class="en">Rail</th><th class="es">Esperado</th><th class="en">Expected</th><th class="es">Medido</th><th class="en">Measured</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>+9.0V Input</td><td>9.0 V ±5%</td><td>—</td></tr>
+        <tr><td class="es">+5.0V Lógica</td><td class="en">+5.0V Logic</td><td>5.0 V ±2%</td><td>—</td></tr>
+        <tr><td>LFO Phaser Bias</td><td>5.1 V ±2%</td><td>—</td></tr>
+        <tr><td>LFO Flanger Bias</td><td>5.66 V ±2%</td><td>—</td></tr>
+        <tr><td>LFO Tremolo Bias</td><td>4.5 V ±2%</td><td>—</td></tr>
+        <tr><td class="es">Corriente en reposo</td><td class="en">Idle current</td><td>~45.8 mA ±20%</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <table>
+      <thead>
+        <tr><th class="es">LFO (DEPTH 100%)</th><th class="en">LFO (DEPTH 100%)</th><th class="es">Amplitud</th><th class="en">Amplitude</th><th class="es">Frecuencia</th><th class="en">Frequency</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Phaser</td><td>—</td><td>—</td></tr>
+        <tr><td>Flanger</td><td>—</td><td>—</td></tr>
+        <tr><td>Tremolo</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="page-footer">
+    <img src="../assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">1</span>
+    <img src="../assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
+  </div>
+</div>
+
+<!-- ============================================================
+     PÁGINA 2 — VALIDACIÓN DE AUDIO + APROBACIÓN
+============================================================ -->
+<div class="page">
+  <div class="page-header">
+    <span class="ph-brand"><img src="../assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
+    <span class="ph-section es">Validación de Audio</span>
+    <span class="ph-section en">Audio Validation</span>
+  </div>
+
+  <h2 class="sec-front es">Validación de Audio</h2>
+  <h2 class="sec-front en">Audio Validation</h2>
+
+  <p class="es">Medición de respuesta en frecuencia, distorsión armónica (THD) y piso de ruido para cada efecto, realizada con REW (Room EQ Wizard). Valores de referencia tomados de la unidad de oro SN01.</p>
+  <p class="en">Frequency response, total harmonic distortion (THD) and noise floor measurements for each effect, performed with REW (Room EQ Wizard). Reference values taken from the golden unit SN01.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="es">Medición</th><th class="en">Measurement</th>
+        <th class="es">Referencia SN01</th><th class="en">SN01 Reference</th>
+        <th class="es">Medido</th><th class="en">Measured</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Phaser — THD @1kHz</td><td>0.10% max</td><td>—</td></tr>
+      <tr><td>Phaser — Noise floor @1kHz</td><td>-108 dBu ±3dB</td><td>—</td></tr>
+      <tr><td>Flanger — THD @1kHz</td><td>0.05% max</td><td>—</td></tr>
+      <tr><td>Flanger — Noise floor @1kHz</td><td>-88.5 dBu ±3dB</td><td>—</td></tr>
+      <tr><td class="es">Flanger — Piso ruido prom. 1k-9.75kHz</td><td class="en">Flanger — Avg. noise floor 1k-9.75kHz</td><td>-92.5 dBu ±3dB</td><td>—</td></tr>
+      <tr><td>Tremolo — THD @1kHz</td><td>0.02% max</td><td>—</td></tr>
+      <tr><td>Tremolo — Noise floor @1kHz</td><td>-95 dBu ±3dB</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <p class="es"><em>Gráficas de respuesta en frecuencia — pendientes de medición.</em></p>
+  <p class="en"><em>Frequency response graphs — pending measurement.</em></p>
+
+  <hr class="dash">
+
+  <div class="box note">
+    <p class="es" style="margin-bottom:0"><strong>En proceso:</strong> esta unidad TripMod TM.PFT-V1.1-26.06-05 se encuentra en proceso de certificación. Este documento se actualizará con los resultados de las pruebas de firmware, hardware y audio antes de la entrega.</p>
+    <p class="en" style="margin-bottom:0"><strong>In progress:</strong> this TripMod unit TM.PFT-V1.1-26.06-05 is currently undergoing certification. This document will be updated with firmware, hardware and audio test results prior to shipment.</p>
+  </div>
+
+  <div class="sig-line">
+    <div class="field es">Responsable QC — —</div>
+    <div class="field en">QC Responsible — —</div>
+    <div class="field es">Fecha — —</div>
+    <div class="field en">Date — —</div>
+  </div>
+
+  <div class="page-footer">
+    <img src="../assets/logo-rgr.png" class="footer-logo-rgr" alt="RGR">
+    <span class="footer-page">2</span>
+    <img src="../assets/ph-fl-tr-analog-effects.png" class="footer-logo-effects" alt="Phaser · Flanger · Tremolo Analog Effects">
+  </div>
+</div>
+
+</body>
+</html>
