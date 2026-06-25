@@ -815,6 +815,16 @@
         <td class="en">Hold down ≥2 s until LED changes</td>
       </tr>
       <tr>
+        <td><strong>LFO</strong></td>
+        <td class="es">Low Frequency Oscillator — oscilador de baja frecuencia que modula algún parámetro de una señal de audio (amplitud, frecuencia, retardo) sin producir audio</td>
+        <td class="en">Low Frequency Oscillator — low-frequency oscillator that modulates a parameter of an audio signal (amplitude, frequency, delay) without producing audio itself</td>
+      </tr>
+      <tr>
+        <td><strong>P</strong> · <strong>F</strong> · <strong>T</strong></td>
+        <td class="es">Letras grabadas en el panel frontal — identifican el área de controles de cada efecto: Phaser (LED azul), Flanger (LED rosado), Tremolo (LED verde)</td>
+        <td class="en">Letters engraved on the front panel — identify each effect's control area: Phaser (blue LED), Flanger (pink LED), Tremolo (green LED)</td>
+      </tr>
+      <tr>
         <td><strong>BBD</strong></td>
         <td class="es">Bucket Brigade Device — retardo analógico por etapas de capacitores</td>
         <td class="en">Bucket Brigade Device — analog delay using cascaded capacitor stages</td>
@@ -828,6 +838,11 @@
         <td><strong>VCA</strong></td>
         <td class="es">Voltage Controlled Amplifier — control de amplitud por voltaje (Tremolo)</td>
         <td class="en">Voltage Controlled Amplifier — amplitude control by voltage (Tremolo)</td>
+      </tr>
+      <tr>
+        <td><strong>CV</strong></td>
+        <td class="es">Control Voltage — señal de control por voltaje, alternativa al pedal de expresión</td>
+        <td class="en">Control Voltage — voltage-based control signal, an alternative to the expression pedal</td>
       </tr>
     </tbody>
   </table>
@@ -943,7 +958,7 @@
       <tr>
         <td><strong>REG / RES</strong></td>
         <td class="es">Perilla</td><td class="en">Knob</td>
-        <td class="es">Resonancia — Q del filtro (VCF)</td><td class="en">Resonance — filter Q (VCF)</td>
+        <td class="es">Factor Q del filtro (VCF)</td><td class="en">Filter Q factor (VCF)</td>
         <td class="es">Regeneración — feedback del delay</td><td class="en">Regeneration — delay feedback</td>
       </tr>
       <tr>
@@ -1030,10 +1045,10 @@
         <td class="en">Speed B — <span class="leds"><span class="led led-orange led-sm"></span></span> orange LED pulses in sync</td>
       </tr>
       <tr>
-        <td><strong>Toggle T</strong></td>
-        <td class="es">Toggle Switch</td><td class="en">Toggle Switch</td>
-        <td class="es">Selecciona la forma Orgánica de Tremolo: <em>Triangular Orgánica</em> o <em>Cuadrada Orgánica</em>. Inactivo en Onda Cuadrada, Rampa Ascendente, Rampa Descendente y Aleatoria.</td>
-        <td class="en">Selects the Tremolo Organic waveform: <em>Organic Triangle</em> or <em>Organic Square</em>. Inactive in Square Wave, Saw Up, Saw Down and Random.</td>
+        <td><strong>Toggle</strong></td>
+        <td class="es">switch Toggle</td><td class="en">switch Toggle</td>
+        <td class="es">Selecciona la forma Orgánica de Tremolo: <em>Triangular Orgánica</em> o <em>Cuadrada Orgánica</em>. Inactivo en Onda Cuadrada, Rampa Ascendente, Rampa Descendente y Aleatoria (ver sección 5).</td>
+        <td class="en">Selects the Tremolo Organic waveform: <em>Organic Triangle</em> or <em>Organic Square</em>. Inactive in Square Wave, Saw Up, Saw Down and Random (see section 5).</td>
       </tr>
     </tbody>
   </table>
@@ -1058,10 +1073,10 @@
       <tr>
         <td class="es"><strong>Derecho</strong></td>
         <td class="en"><strong>Right</strong></td>
-        <td class="es">Activar / bypass Phaser (PH), Flanger (FL) o PH+FL</td>
-        <td class="en">Activate / bypass Phaser (PH), Flanger (FL) or PH+FL</td>
-        <td class="es">Menú de selección de efecto: PH / FL / PH+FL / Rate A/B Tremolo (ver sección 4)</td>
-        <td class="en">Effect selection menu: PH / FL / PH+FL / Rate A/B Tremolo (see section 4)</td>
+        <td class="es">Activar / bypass Phaser (P), Flanger (F) o P+F</td>
+        <td class="en">Activate / bypass Phaser (P), Flanger (F) or P+F</td>
+        <td class="es">Menú de selección de efecto: P / F / P+F / Rate A/B Tremolo (ver sección 4)</td>
+        <td class="en">Effect selection menu: P / F / P+F / Rate A/B Tremolo (see section 4)</td>
       </tr>
     </tbody>
   </table>
@@ -1323,8 +1338,8 @@
   <h3 class="sub es">Velocidades A y B (Rate A / B)</h3>
   <h3 class="sub en">Speeds A and B (Rate A / B)</h3>
 
-  <p class="es">Cada efecto tiene dos velocidades preconfiguradas por sus controles RATE A y RATE B. Para <strong>Tremolo</strong>: controles de la sección T (izquierda). Para <strong>Phaser y Flanger</strong>: controles compartidos de la sección F y P (central/derecha).</p>
-  <p class="en">Each effect has two speeds preset by its RATE A and RATE B controls. For <strong>Tremolo</strong>: T section controls (left). For <strong>Phaser and Flanger</strong>: shared F and P section controls (center/right).</p>
+  <p class="es">Cada efecto tiene dos velocidades preconfiguradas por sus controles RATE A y RATE B. Para <strong>Tremolo</strong>: controles del área de controles de Tremolo. Para <strong>Phaser y Flanger</strong>: control compartido entre las áreas de controles de Phaser y de Flanger.</p>
+  <p class="en">Each effect has two speeds preset by its RATE A and RATE B controls. For <strong>Tremolo</strong>: controls in the Tremolo control area. For <strong>Phaser and Flanger</strong>: shared control between the Phaser and Flanger control areas.</p>
 
   <div class="box note">
     <p class="es"><strong>LEDs de Rate A/B:</strong> Los LEDs de Rate oscilan en sincronía cuando el LFO está controlado desde las perillas RATE A o B del pedal. Cuando la velocidad proviene de un Pedal de Expresión, MIDI CC o Tap Tempo, el efecto responde a esa fuente pero los LEDs continúan reflejando el oscilador local del pedal.</p>
@@ -1351,8 +1366,8 @@
   <h2 class="sec es">Formas de Onda LFO</h2>
   <h2 class="sec en">LFO Waveforms</h2>
 
-  <p class="es">El TripMod ofrece cinco formas de onda LFO seleccionables por menú para <strong>Phaser</strong> y <strong>Tremolo</strong>. Adicionalmente, para Tremolo, cuando se está en modo <em>Triangular Orgánica</em>, el Switch Toggle del panel frontal permite seleccionar la variante <em>Cuadrada Orgánica</em>. La señal <em>Triangular Orgánica</em> es el oscilador analógico del circuito — la Unidad de Control la usa como referencia de amplitud (DEPTH) y frecuencia (RATE) para generar las demás formas. El Flanger siempre usa su oscilador analógico propio.</p>
-  <p class="en">TripMod offers five menu-selectable LFO waveforms for <strong>Phaser</strong> and <strong>Tremolo</strong>. Additionally, for Tremolo, when in <em>Organic Triangle</em> mode, the front panel Switch Toggle allows selecting the <em>Organic Square</em> variant. The <em>Organic Triangle</em> signal is the circuit's analog oscillator — the Control Unit uses it as the amplitude (DEPTH) and frequency (RATE) reference for generating all other waveforms. Flanger always uses its own analog oscillator.</p>
+  <p class="es">El TripMod ofrece cinco formas de onda LFO seleccionables por menú para <strong>Phaser</strong> y <strong>Tremolo</strong>. Adicionalmente, para Tremolo, cuando se está en modo <em>Triangular Orgánica</em>, el switch Toggle del panel frontal permite seleccionar la variante <em>Cuadrada Orgánica</em>. La señal <em>Triangular Orgánica</em> es el oscilador analógico del circuito — la Unidad de Control la usa como referencia de amplitud (DEPTH) y frecuencia (RATE) para generar las demás formas. El Flanger siempre usa su oscilador analógico propio.</p>
+  <p class="en">TripMod offers five menu-selectable LFO waveforms for <strong>Phaser</strong> and <strong>Tremolo</strong>. Additionally, for Tremolo, when in <em>Organic Triangle</em> mode, the front panel switch Toggle allows selecting the <em>Organic Square</em> variant. The <em>Organic Triangle</em> signal is the circuit's analog oscillator — the Control Unit uses it as the amplitude (DEPTH) and frequency (RATE) reference for generating all other waveforms. Flanger always uses its own analog oscillator.</p>
 
   <!-- WAVEFORM CARDS — 3+3 layout, 6 waveforms, all different colors -->
   <div class="three-col" style="margin: 3mm 0;">
@@ -1363,8 +1378,8 @@
       </svg>
       <div class="wave-name es">Triangular Orgánica</div>
       <div class="wave-name en">Organic Triangle</div>
-      <div class="wave-desc es">Oscilador analógico — picos suaves. Toggle T activo.</div>
-      <div class="wave-desc en">Analog oscillator — soft peaks. Toggle T active.</div>
+      <div class="wave-desc es">Oscilador analógico — picos y valles suaves.</div>
+      <div class="wave-desc en">Analog oscillator — soft peaks and valleys.</div>
     </div>
     <!-- 2. Cuadrada Orgánica — amber, S-curves suaves -->
     <div class="wave-card">
@@ -1373,8 +1388,8 @@
       </svg>
       <div class="wave-name es">Cuadrada Orgánica</div>
       <div class="wave-name en">Organic Square</div>
-      <div class="wave-desc es">Variante orgánica — transiciones suaves entre niveles. Seleccionada con Toggle T.</div>
-      <div class="wave-desc en">Organic variant — smooth transitions between levels. Selected with Toggle T.</div>
+      <div class="wave-desc es">Oscilador analógico — transiciones suaves entre niveles. Solo disponible para Tremolo.</div>
+      <div class="wave-desc en">Analog oscillator — smooth transitions between levels. Tremolo only.</div>
     </div>
     <!-- 3. Rampa Ascendente — green -->
     <div class="wave-card">
@@ -1419,8 +1434,8 @@
   </div>
 
   <div class="box note">
-    <span class="es"><strong>Nota:</strong> En modo <em>Triangular Orgánica</em>, el Switch Toggle del panel frontal está activo y selecciona entre <em>Triangular Orgánica</em> y <em>Cuadrada Orgánica</em>. En los demás modos (Onda Cuadrada, Rampa Ascendente, Rampa Descendente, Aleatoria), el Switch Toggle se ignora. El Flanger siempre usa su oscilador analógico propio (triangular orgánica). No participa del menú de formas de onda y no admite cambio de parámetros vía MIDI CC, expresión ni Tap Tempo.</span>
-    <span class="en"><strong>Note:</strong> In <em>Organic Triangle</em> mode, the front panel Switch Toggle is active and selects between <em>Organic Triangle</em> and <em>Organic Square</em>. In the other modes (Square Wave, Saw Up, Saw Down, Random), the Switch Toggle is ignored. Flanger always uses its own analog oscillator (organic triangle). It does not participate in the waveform menu and does not support parameter changes via MIDI CC, expression, or Tap Tempo.</span>
+    <span class="es"><strong>Nota:</strong> En modo <em>Triangular Orgánica</em> del Tremolo, el switch Toggle del panel frontal está activo y selecciona entre <em>Triangular Orgánica</em> y <em>Cuadrada Orgánica</em>. En los demás modos (Onda Cuadrada, Rampa Ascendente, Rampa Descendente, Aleatoria), el switch Toggle se ignora. El Flanger siempre usa su oscilador analógico propio (triangular orgánica). No participa del menú de formas de onda y no admite cambio de parámetros vía MIDI CC, expresión ni Tap Tempo.</span>
+    <span class="en"><strong>Note:</strong> In Tremolo's <em>Organic Triangle</em> mode, the front panel switch Toggle is active and selects between <em>Organic Triangle</em> and <em>Organic Square</em>. In the other modes (Square Wave, Saw Up, Saw Down, Random), the switch Toggle is ignored. Flanger always uses its own analog oscillator (organic triangle). It does not participate in the waveform menu and does not support parameter changes via MIDI CC, expression, or Tap Tempo.</span>
   </div>
 
   <!-- ACCESO AL MENÚ LFO -->
@@ -1500,8 +1515,8 @@
   </div>
 
   <div class="box note">
-    <span class="es"><strong>Tremolo — modo Orgánico:</strong> En <em>Triangular Orgánica</em>, el Tremolo puede sonar Triangular o Cuadrado según la posición del Toggle Switch del panel frontal. Esta selección es independiente del menú de formas de onda.</span>
-    <span class="en"><strong>Tremolo — Organic mode:</strong> In <em>Organic Triangle</em> mode, Tremolo can sound Triangular or Square based on the front panel Toggle Switch position. This selection is independent of the waveform menu.</span>
+    <span class="es"><strong>Tremolo — modo Orgánico:</strong> En <em>Triangular Orgánica</em>, el Tremolo puede sonar Triangular o Cuadrado según la posición del switch Toggle del panel frontal. Esta selección es independiente del menú de formas de onda.</span>
+    <span class="en"><strong>Tremolo — Organic mode:</strong> In <em>Organic Triangle</em> mode, Tremolo can sound Triangular or Square based on the front panel switch Toggle position. This selection is independent of the waveform menu.</span>
   </div>
 
   <div class="box note">
@@ -2350,8 +2365,8 @@
       </tr>
       <tr>
         <td class="es">Función footswitch externo A/B/C</td><td class="en">External footswitch A/B/C function</td>
-        <td class="es">A=Phaser ON/OFF · B=Rate PH+FL · C=Rate TR</td>
-        <td class="en">A=Phaser ON/OFF · B=Rate PH+FL · C=Rate TR</td>
+        <td class="es">A=Phaser ON/OFF · B=Rate P+F · C=Rate T</td>
+        <td class="en">A=Phaser ON/OFF · B=Rate P+F · C=Rate T</td>
       </tr>
       <tr>
         <td class="es">Función footswitch izquierdo</td><td class="en">Left footswitch function</td>
