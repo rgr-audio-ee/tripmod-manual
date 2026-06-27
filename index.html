@@ -39,10 +39,11 @@
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
     }
-    @media (hover: hover) {
+    @media (hover: hover) and (pointer: fine) {
       .lang-btn:hover { background: rgba(26, 26, 26, 0.88); }
     }
-    .lang-btn:active { background: rgba(26, 26, 26, 0.88); }
+    .lang-btn:focus { outline: none; }
+    .lang-btn.is-pressed { background: rgba(26, 26, 26, 0.88); }
 
     .toc-btn {
       position: fixed;
@@ -64,10 +65,11 @@
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
     }
-    @media (hover: hover) {
+    @media (hover: hover) and (pointer: fine) {
       .toc-btn:hover { background: rgba(26, 26, 26, 0.88); }
     }
-    .toc-btn:active { background: rgba(26, 26, 26, 0.88); }
+    .toc-btn:focus { outline: none; }
+    .toc-btn.is-pressed { background: rgba(26, 26, 26, 0.88); }
 
     /* hide/show by language */
     .es, .en { display: none; }
@@ -676,6 +678,17 @@
     document.body.classList.toggle('lang-es');
     document.body.classList.toggle('lang-en');
   }
+
+  document.querySelectorAll('.lang-btn, .toc-btn').forEach(function(el) {
+    el.addEventListener('touchstart', function() {
+      el.classList.add('is-pressed');
+    }, {passive: true});
+    ['touchend', 'touchcancel'].forEach(function(evt) {
+      el.addEventListener(evt, function() {
+        setTimeout(function() { el.classList.remove('is-pressed'); el.blur(); }, 180);
+      });
+    });
+  });
 </script>
 
 <!-- ============================================================
