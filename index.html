@@ -27,7 +27,7 @@
       top: 12px;
       right: 12px;
       z-index: 999;
-      background: #1a1a1a;
+      background: rgba(26, 26, 26, 0.72);
       color: #fff;
       border: none;
       padding: 6px 16px;
@@ -36,15 +36,17 @@
       letter-spacing: 1px;
       cursor: pointer;
       border-radius: 3px;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
     }
-    .lang-btn:hover { background: #444; }
+    .lang-btn:hover { background: rgba(26, 26, 26, 0.92); }
 
     .toc-btn {
       position: fixed;
       bottom: 12px;
-      left: 12px;
+      right: 12px;
       z-index: 999;
-      background: #1a1a1a;
+      background: rgba(26, 26, 26, 0.72);
       color: #fff;
       border: none;
       padding: 6px 16px;
@@ -56,8 +58,10 @@
       text-decoration: none;
       display: inline-block;
       line-height: 1.55;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
     }
-    .toc-btn:hover { background: #444; }
+    .toc-btn:hover { background: rgba(26, 26, 26, 0.92); }
 
     /* hide/show by language */
     .es, .en { display: none; }
