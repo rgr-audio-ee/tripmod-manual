@@ -171,14 +171,14 @@ function toggleLang() {
     </tr>
   </table>
 
-  <p class="es">Esta unidad fue inspeccionada y probada individualmente antes de su envío. Se aplicaron 22 puntos de chequeo de firmware, verificación eléctrica de rieles de alimentación y LFOs analógicos, análisis de audio con REW y calibración individual de efectos.</p>
-  <p class="en">This unit was individually inspected and tested before shipping. Quality control applied: 22 firmware check-points, electrical verification of power rails and analog LFOs, audio analysis with REW, and individual effect calibration.</p>
+  <p class="es">Esta unidad fue inspeccionada y probada individualmente antes de su envío. Se aplicaron puntos de chequeo de firmware, de hardware, calibración individual de efectos y análisis de calidad de audio.</p>
+  <p class="en">This unit was individually inspected and tested before shipping. Quality control applied: firmware check-points, hardware verification, individual effect calibration, and audio quality analysis.</p>
 
   <hr class="dash">
 
   <!-- FW TEST -->
-  <h3 class="sub es">Test de Firmware — 22 puntos de chequeo</h3>
-  <h3 class="sub en">Firmware Test — 22 check-points</h3>
+  <h3 class="sub es">Test de Firmware</h3>
+  <h3 class="sub en">Firmware Test</h3>
 
   <table>
     <thead>
@@ -235,8 +235,8 @@ function toggleLang() {
   <hr class="dash">
 
   <!-- HW TEST ELÉCTRICO -->
-  <h3 class="sub es">Test Eléctrico — Rieles de Alimentación y LFO Analógico</h3>
-  <h3 class="sub en">Electrical Test — Power Rails and Analog LFO</h3>
+  <h3 class="sub es">Test de Hardware — Eléctricos</h3>
+  <h3 class="sub en">Hardware Test — Electrical</h3>
 
   <div class="two-col">
     <!-- Power Check -->
@@ -299,13 +299,34 @@ function toggleLang() {
           </tr>
         </thead>
         <tbody>
-          <tr><td>Phaser</td><td>1170 mVpp</td><td>11.99 Hz</td></tr>
-          <tr><td>Flanger</td><td>3440 mVpp</td><td>11.42 Hz</td></tr>
-          <tr><td>Tremolo</td><td>4600 mVpp</td><td>24.27 Hz</td></tr>
+          <tr>
+            <td class="es">Phaser — RATE máx</td><td class="en">Phaser — RATE max</td>
+            <td>1170 mVpp</td><td>11.99 Hz</td>
+          </tr>
+          <tr>
+            <td class="es">Phaser — RATE mín</td><td class="en">Phaser — RATE min</td>
+            <td>1040 mVpp</td><td>0.063 Hz</td>
+          </tr>
+          <tr>
+            <td class="es">Flanger — RATE máx</td><td class="en">Flanger — RATE max</td>
+            <td>3440 mVpp</td><td>11.42 Hz</td>
+          </tr>
+          <tr>
+            <td class="es">Flanger — RATE mín</td><td class="en">Flanger — RATE min</td>
+            <td>3520 mVpp</td><td>0.062 Hz</td>
+          </tr>
+          <tr>
+            <td class="es">Tremolo — RATE máx</td><td class="en">Tremolo — RATE max</td>
+            <td>4600 mVpp</td><td>24.27 Hz</td>
+          </tr>
+          <tr>
+            <td class="es">Tremolo — RATE mín</td><td class="en">Tremolo — RATE min</td>
+            <td>5240 mVpp</td><td>1.232 Hz</td>
+          </tr>
         </tbody>
       </table>
-      <p class="small es">RATE mínimo y modos Triangle / Square del Tremolo verificados. Señal medida con osciloscopio.</p>
-      <p class="small en">Minimum RATE and Triangle / Square Tremolo modes verified. Signal measured with oscilloscope.</p>
+      <p class="small es">Todas las formas de onda fueron verificadas y medidas en osciloscopio en integración electrónica.</p>
+      <p class="small en">All waveforms were verified and measured on oscilloscope during electronic integration.</p>
     </div>
   </div>
 
