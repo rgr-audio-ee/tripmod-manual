@@ -39,6 +39,26 @@
     }
     .lang-btn:hover { background: #444; }
 
+    .toc-btn {
+      position: fixed;
+      bottom: 12px;
+      left: 12px;
+      z-index: 999;
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      padding: 6px 16px;
+      font-size: 10pt;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      border-radius: 3px;
+      text-decoration: none;
+      display: inline-block;
+      line-height: 1.55;
+    }
+    .toc-btn:hover { background: #444; }
+
     /* hide/show by language */
     .es, .en { display: none; }
     body.lang-es .es { display: block; }
@@ -93,6 +113,7 @@
         border-radius: 0;
       }
       .lang-btn { display: none; }
+      .toc-btn  { display: none; }
     }
     * {
       print-color-adjust: exact;
@@ -638,6 +659,7 @@
 <body class="lang-es">
 
 <button class="lang-btn no-print" onclick="toggleLang()">EN / ES</button>
+<a class="toc-btn no-print" href="#toc"><span class="es">Índice</span><span class="en">Index</span></a>
 
 <script>
   function toggleLang() {
@@ -659,7 +681,7 @@
 <!-- ============================================================
      PÁGINA 2 — ÍNDICE / TABLE OF CONTENTS
 ============================================================ -->
-<div class="page">
+<div class="page" id="toc">
   <div class="page-header">
     <span class="ph-brand"><img src="assets/logotipo-tripmod.png" alt="TripMod" class="ph-logo-tripmod"></span>
     <span class="ph-section es">Índice</span>
