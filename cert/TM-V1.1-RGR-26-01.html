@@ -119,6 +119,15 @@
 
   .sig-line { margin-top: 6mm; display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; }
   .sig-line .field { border-top: 1px solid #1a1a1a; padding-top: 1.5mm; font-size: 8.5pt; color: #444; }
+
+  .ident-header-wrap { display: flex; align-items: center; gap: 6mm; margin-bottom: 2.5mm; }
+  .ident-header-wrap .ident-table { flex: 1; margin-bottom: 0; }
+  .ident-logo { width: 36mm; flex-shrink: 0; text-align: center; }
+  .ident-logo img { max-width: 100%; display: block; }
+  @media screen and (max-width: 750px) {
+    .ident-header-wrap { flex-direction: column; align-items: flex-start; }
+    .ident-logo { width: 28mm; }
+  }
 </style>
 </head>
 <body class="lang-es">
@@ -144,32 +153,37 @@ function toggleLang() {
   <h2 class="sec-front es">Certificado de Calidad</h2>
   <h2 class="sec-front en">Quality Certificate</h2>
 
-  <table class="ident-table">
-    <tr>
-      <td class="es">Número de Serie</td><td class="en">Serial Number</td>
-      <td><strong>TM.PFT-V1.1-26.06-01</strong><span class="approved-badge"><span class="es">Aprobado</span><span class="en">Approved</span></span></td>
-    </tr>
-    <tr>
-      <td class="es">Modelo</td><td class="en">Model</td>
-      <td>TripMod v1.1 — Phaser · Flanger · Tremolo</td>
-    </tr>
-    <tr>
-      <td class="es">Firmware</td><td class="en">Firmware</td>
-      <td>Rev. 1.7.7</td>
-    </tr>
-    <tr>
-      <td class="es">Fecha de fabricación</td><td class="en">Manufacturing date</td>
-      <td>21/04/2026</td>
-    </tr>
-    <tr>
-      <td class="es">Responsable QC</td><td class="en">QC Responsible</td>
-      <td>Reinaldo González Reyes</td>
-    </tr>
-    <tr>
-      <td class="es">Fecha de certificación</td><td class="en">Certification date</td>
-      <td>26/06/2026</td>
-    </tr>
-  </table>
+  <div class="ident-header-wrap">
+    <table class="ident-table">
+      <tr>
+        <td class="es">Número de Serie</td><td class="en">Serial Number</td>
+        <td><strong>TM.PFT-V1.1-26.06-01</strong><span class="approved-badge"><span class="es">Aprobado</span><span class="en">Approved</span></span></td>
+      </tr>
+      <tr>
+        <td class="es">Modelo</td><td class="en">Model</td>
+        <td>TripMod v1.1 — Phaser · Flanger · Tremolo</td>
+      </tr>
+      <tr>
+        <td class="es">Firmware</td><td class="en">Firmware</td>
+        <td>Rev. 1.7.7</td>
+      </tr>
+      <tr>
+        <td class="es">Fecha de fabricación</td><td class="en">Manufacturing date</td>
+        <td>21/04/2026</td>
+      </tr>
+      <tr>
+        <td class="es">Responsable QC</td><td class="en">QC Responsible</td>
+        <td>Reinaldo González Reyes</td>
+      </tr>
+      <tr>
+        <td class="es">Fecha de certificación</td><td class="en">Certification date</td>
+        <td>26/06/2026</td>
+      </tr>
+    </table>
+    <div class="ident-logo">
+      <img src="assets/logo-rgr-descripcion.png" alt="RGR Audio Electronic Engineering">
+    </div>
+  </div>
 
   <p class="es">Esta unidad fue inspeccionada y probada individualmente antes de su envío. Se aplicaron puntos de chequeo de firmware, de hardware, calibración individual de efectos y análisis de calidad de audio.</p>
   <p class="en">This unit was individually inspected and tested before shipping. Quality control applied: firmware check-points, hardware verification, individual effect calibration, and audio quality analysis.</p>
