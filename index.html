@@ -39,7 +39,10 @@
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
     }
-    .lang-btn:hover { background: rgba(26, 26, 26, 0.88); }
+    @media (hover: hover) {
+      .lang-btn:hover { background: rgba(26, 26, 26, 0.88); }
+    }
+    .lang-btn:active { background: rgba(26, 26, 26, 0.88); }
 
     .toc-btn {
       position: fixed;
@@ -61,7 +64,10 @@
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
     }
-    .toc-btn:hover { background: rgba(26, 26, 26, 0.88); }
+    @media (hover: hover) {
+      .toc-btn:hover { background: rgba(26, 26, 26, 0.88); }
+    }
+    .toc-btn:active { background: rgba(26, 26, 26, 0.88); }
 
     /* hide/show by language */
     .es, .en { display: none; }
