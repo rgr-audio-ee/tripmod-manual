@@ -153,8 +153,9 @@
   .ident-logo { width: 36mm; flex-shrink: 0; text-align: center; }
   .ident-logo img { max-width: 100%; display: block; }
   @media screen and (max-width: 750px) {
-    .ident-header-wrap { align-items: flex-start; gap: 3mm; }
-    .ident-logo { width: 22mm; }
+    .ident-header-wrap { flex-direction: column; gap: 2mm; }
+    .ident-table { width: 100%; }
+    .ident-logo { width: 20mm; order: -1; margin: 0 auto 1mm auto; }
   }
 
   /* Approval ink stamp */
