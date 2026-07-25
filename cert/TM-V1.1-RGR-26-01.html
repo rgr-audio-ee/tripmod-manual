@@ -153,9 +153,11 @@
   .ident-logo { width: 36mm; flex-shrink: 0; text-align: center; }
   .ident-logo img { max-width: 100%; display: block; }
   @media screen and (max-width: 750px) {
-    .ident-header-wrap { flex-direction: column; gap: 2mm; }
-    .ident-table { width: 100%; }
-    .ident-logo { width: 20mm; order: -1; margin: 0 auto 1mm auto; }
+    .ident-header-wrap { align-items: flex-start; gap: 2mm; }
+    .ident-table td { vertical-align: top; text-align: left; }
+    .ident-table td:first-child { width: 24mm; font-size: 7pt; }
+    .ident-table td:not(:first-child) { font-size: 7.5pt; }
+    .ident-logo { width: 15mm; }
   }
 
   /* Approval ink stamp */
