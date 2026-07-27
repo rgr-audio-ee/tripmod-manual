@@ -163,6 +163,7 @@
     .ident-table td.es, .ident-table td.en { width: 24mm; font-size: 7pt; }
     .ident-table td:not(.es):not(.en) { font-size: 7.5pt; }
     .ident-table tr:first-child td:last-child { white-space: nowrap; }
+    .flanger-fr-table th, .flanger-fr-table td { white-space: nowrap; }
     .ident-logo { width: 15mm; }
     .approved-badge, .pending-badge {
       font-size: 5.5pt; padding: 0.6mm 1.6mm; letter-spacing: 0.4px; margin-left: 1.5mm;
@@ -499,7 +500,7 @@ document.querySelectorAll('.lang-btn, .top-btn').forEach(function(el) {
     <img class="en" src="assets/FR_SN02_Flanger_en.png" alt="Flanger frequency response (EN)">
   </div>
 
-  <table>
+  <table class="flanger-fr-table">
     <thead>
       <tr><th class="es">Notch</th><th class="en">Notch</th><th class="es">Frecuencia</th><th class="en">Frequency</th><th class="es">Nivel</th><th class="en">Level</th><th class="es">Retardo BBD</th><th class="en">BBD Delay</th></tr>
     </thead>
