@@ -125,7 +125,7 @@
 
   .ident-table { margin-bottom: 2.5mm; }
   .ident-table td { font-size: 9pt; padding: 1.1mm 0; border: none; background: transparent !important; }
-  .ident-table td:first-child { font-weight: 700; width: 48mm; color: #555; font-size: 8.5pt; }
+  .ident-table td.es, .ident-table td.en { font-weight: 700; width: 48mm; color: #555; font-size: 8.5pt; }
 
   .approved-badge {
     display: inline-block; background: #0a7a1f; color: #fff;
@@ -160,9 +160,13 @@
   @media screen and (max-width: 750px) {
     .ident-header-wrap { align-items: flex-start; gap: 2mm; }
     .ident-table td { vertical-align: top; text-align: left; }
-    .ident-table td:first-child { width: 24mm; font-size: 7pt; }
-    .ident-table td:not(:first-child) { font-size: 7.5pt; }
+    .ident-table td.es, .ident-table td.en { width: 24mm; font-size: 7pt; }
+    .ident-table td:not(.es):not(.en) { font-size: 7.5pt; }
+    .ident-table tr:first-child td:last-child { white-space: nowrap; }
     .ident-logo { width: 15mm; }
+    .approved-badge, .pending-badge {
+      font-size: 5.5pt; padding: 0.6mm 1.6mm; letter-spacing: 0.4px; margin-left: 1.5mm;
+    }
   }
 
   /* Approval ink stamp */
