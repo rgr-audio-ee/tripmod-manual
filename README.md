@@ -63,4 +63,4 @@ Files: `assets/qr-tripmod-manual.svg` and `assets/qr-tripmod-manual.png`
 
 ---
 
-Firmware: TripMod Bassic v1.7.7 | RGR Effects & Electronic Engineering
+Firmware: TripMod Bassic v1.7.8 | RGR Effects & Electronic Engineering
